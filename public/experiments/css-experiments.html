@@ -1,27 +1,52 @@
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <!-- add some good icon here-->
-    <link rel="icon" href="../../favicon.ico">
+    <link type="text/css" rel="stylesheet" href="css/style1.css"/>
+    <link type="text/css" rel="stylesheet" href="css/style2.css"/>
+    <style>
+        /*#box1 {*/
+            /*background-color: gray;*/
+            /*width: 500px;*/
+            /*height: 200px;*/
+            /*color: white;*/
+            /*margin: 50px;*/
+            /*border-width: 10px;*/
+            /*border-style: dashed;*/
+            /*border-color: sienna;*/
+            /*padding: 10px;*/
+        /*}*/
+        /*#box2 {*/
+            /*background-color: blue;*/
+            /*width: 300px;*/
+            /*height: 300px;*/
+            /*color: white;*/
+            /*padding: 30px;*/
 
-    <title>Experiments Home</title>
+        /*}*/
 
-    <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        /*.centered {*/
+            /*width: 600px;*/
+            /*margin: auto;*/
+            /*text-align: justify;*/
+        /*}*/
 
-    <!-- Font Awesome icons -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        /*h1.blueColor { color: gold;  }*/
+        /*h1 { color: red;  }*/
 
-    <!-- Custom styles for this template -->
-    <link href="dashboard/css/dashboard.css" rel="stylesheet">
+        /*h1#head      { color: yellow; }*/
+        /*h1           { color: red;    }*/
+        /*h1.blueColor { color: blue;   }*/
+
+        /*b { color: red; background: green }*/
+        /*p { color: blue; }*/
+
+
+    </style>
+
 
 </head>
 
@@ -50,7 +75,87 @@
 </nav>
 
 
+Precedence
+1) Inline
+2) div ID #
+3) div class .
+4) default name
 
+
+<!--box experiment-->
+<!--<h1>Box 1</h1>-->
+<!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum-->
+
+<!--<div id="box1">-->
+    <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum-->
+<!--</div>-->
+
+<!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum-->
+
+<!--<h1>Box 2</h1>-->
+
+<!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum-->
+
+<!--<div id="box2">-->
+    <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum-->
+<!--</div>-->
+
+<!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum-->
+
+
+
+<!--centered experiment-->
+
+<!--<div class="centered">-->
+    <!--<h1>Centered Content</h1>-->
+    <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum-->
+<!--</div>-->
+
+
+<!--Class-->
+
+<!--<h1 class="blueColor">Hello World</h1>-->
+
+
+
+<!--ID and class precedence-->
+
+<!--<h1-->
+    <!--class="blueColor" id="head">Hello World</h1>-->
+
+
+<!--Inheritence-->
+
+
+<!--<h1>CSS Inheritance</h1>-->
+
+<!--<p>-->
+    <!--HTML Elements can be nested.-->
+    <!--CSS properties from parent-->
+    <!--elements are <b>inherited</b> by-->
+    <!--child elements-->
+<!--</p>-->
+
+<!--Inline style-->
+<!--<h1	style="color: green"-->
+       <!--id="head"-->
+       <!--class="blueColor">Hello World</h1>-->
+
+
+<!--linking style sheets-->
+<h1>HTML Link Element</h1>
+
+<p>
+    Use HTML Link Element to load external
+    CSS files
+</p>
+
+<h2>Override Styles in Style Elements</h2>
+
+<p>
+    Override styles with your own style sheet
+    or style element
+</p>
 
 
 

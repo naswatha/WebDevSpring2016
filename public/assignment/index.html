@@ -1,10 +1,37 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="FormBuilderApp">
 <head>
-    <meta charset="UTF-8">
-    <title>Assignment</title>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--Jquery CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!--Bootstrap CDN-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!--Angular JS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <!--Anuglar routing JS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+
+    <!--Load app.js-->
+    <script src="app.js"></script>
+    <!--Load config.js-->
+    <script src="config.js"></script>
+
+
+
+
 </head>
-<body>
-Assignment
+
+<body ng-controller="MainController">
+
+<div ng-include="header/header.view.html"></div>
+<div ng-include="sidebar/sidebar.view.html"></div>
+
+<div ng-view=""></div>
+
+
 </body>
 </html>

@@ -3,9 +3,5 @@
  */
 (function(){
     "use strict";
-    angular
-        .module("FormBuilderApp")
-        .controller("MainController",function MainController($location,$scope){
-
-        });
+    angular.module("FormBuilderApp", ["ngRoute"])
 })();

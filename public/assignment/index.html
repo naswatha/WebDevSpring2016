@@ -2,36 +2,56 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="FormBuilderApp">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!--Jquery CDN-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!--Bootstrap CDN-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <!--Angular JS-->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-    <!--Anuglar routing JS-->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+    <!-- add link to profile page-->
+    <!-- add some good icon here-->
+    <!--<link rel="icon" href="../../favicon.ico">-->
 
-    <!--Load app.js-->
-    <script src="app.js"></script>
-    <!--Load config.js-->
-    <script src="config.js"></script>
+    <title>Form Builder</title>
 
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
 
 </head>
 
 <body ng-controller="MainController">
 
-<div ng-include="header/header.view.html"></div>
-<div ng-include="sidebar/sidebar.view.html"></div>
+<div ng-include="'views/header/header.view.html'"></div>
+<div ng-include="'views/sidebar/sidebar.view.html'"></div>
 
-<div ng-view=""></div>
+<div ng-view></div>
 
+
+<!-- Bootstrap core JavaScript
+   ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!--Jquery CDN-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!--Bootstrap CDN-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<!--Angular JS-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<!--Anuglar routing JS-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+
+<!--Load app.js-->
+<script src="app.js"></script>
+<!--Load config.js-->
+<script src="config.js"></script>
+<!--Load MainController.js-->
+<script src="views/main/main.controller.js"></script>
 
 </body>
 </html>

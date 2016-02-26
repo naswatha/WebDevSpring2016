@@ -7,36 +7,36 @@
         .module("FormBuilderApp")
         .config(function($routeProvider){
             $routeProvider
-                .when("#/home",{
+                .when("/home",{
                     templateUrl: "views/home/home.view.html",
                     controller: "HomeController"
                 })
-                .when("#/admin",{
+                .when("/admin",{
                     templateUrl: "views/admin/admin.view.html",
                     controller: "AdminController"
                 })
-                .when("#/forms",{
+                .when("/forms",{
                     templateUrl: "views/forms/forms.view.html",
                     controller: "FormController"
                 })
-                .when("#/fields",{
+                .when("/fields",{
                     templateUrl: "views/forms/fields.view.html",
                     controller: "FieldsController"
                 })
-                .when("#/login",{
+                .when("/login",{
                     templateUrl: "views/users/login.view.html",
                     controller: "LoginController"
                 })
-                .when("#/profile",{
+                .when("/profile",{
                     templateUrl: "views/users/profile.view.html",
                     controller: "ProfileController"
                 })
-                .when("#/register",{
+                .when("/register",{
                     templateUrl: "views/users/register.view.html",
                     controller: "RegisterController"
                 })
                 .otherwise({
-                    redirectTo: "/"
+                    redirectTo: "/home"
                 });
         });
 })();

@@ -14,7 +14,7 @@
 
         $scope.login = function(user){
             UserService.findUserByCredentials(user.username,user.password,callback);
-            //callback assign user to root scope
+            //callback assign user to root sco
         };
 
     }

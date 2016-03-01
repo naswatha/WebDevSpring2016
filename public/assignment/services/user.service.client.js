@@ -8,8 +8,8 @@
         .factory("UserService",UserService)
 
     function UserService(){
-        var currentUsers = [];
-        currentUsers = [
+        var Users = [];
+        Users = [
             {
                 "_id":123,
                 "firstName":"Alice",
@@ -64,43 +64,47 @@
         ];
 
 
-        function findUserByCredentials(username, password, callback) {
+        UserService.findUserByCredentials = function (username, password, callback) {
             var userIndex;
-            for(userIndex in currentUsers) {
-                var user = currentUsers[userIndex];
+            for(userIndex in Users) {
+                var user = Users[userIndex];
                 if(username === user.username && password === user.password){
                     callback(user);
+                    console.log(user);
+                }
+                else{
+                    callback(null);
                 }
             }
-            callback(null);
-        }
+        };
 
-        function findAllUsers(callback){
-            callback(currentUsers);
-        }
+        UserService.findAllUsers = function (callback){
+            callback(Users);
+        };
 
-        function createUser(user,callback){
-            user._id = (new Date).getTime();
-            currentUsers.push(user);
-            callback(user);
-        }
+        UserService.createUser = function(user,callback){
 
-        function deleteUserById(userId,callback){
+            this.user._id = (new Date).getTime();
+            Users.push(this.user);
+            callback(this.user);
+        };
+
+        UserService.deleteUserById = function (userId,callback){
             var userIndex;
-            for(userIndex in currentUsers){
-                var user = currentUsers[userIndex];
-                if(user._id === userId){
-                    currentUsers.splice(userIndex,1);
-                    callback(currentUsers);
+            for(userIndex in Users){
+                var user = Users[userIndex];
+                if(userId === user._id){
+                    Users.splice(userIndex,1);
+                    callback(Users);
                 }
             }
-        }
+        };
 
-        function updateUser(userId,user,callback){
+        UserService.updateUser = function (userId,user,callback){
             var userIndex;
-            for(userIndex in currentUsers){
-                var updateUser = currentUsers[userIndex];
-                if(user._id === userId){
+            for(userIndex in Users){
+                var updateUser = Users[userIndex];
+                if(userId === updateUser._id ){
                     updateUser.username = user.username;
                     updateUser.password = user.password;
                     updateUser.firstName = user.firstName;
@@ -109,8 +113,16 @@
                     callback(updateUser);
                 }
             }
-        }
+        };
 
+        return {
+            Users: Users,
+            findUserByCredentials: UserService.findUserByCredentials,
+            findAllUsers: UserService.findAllUsers,
+            createUser: UserService.createUser,
+            deleteUserById: UserService.deleteUserById,
+            updateUser: UserService.updateUser
+        };
 
     }
 })();

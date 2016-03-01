@@ -10,18 +10,21 @@
         //inject UserService
         function RegisterController ($scope,$location,$rootScope,UserService){
 
+            var callback = function(userResponse){
+                //store new user in rootscope
+                $rootScope.currentUser = userResponse;
+                //location to navigate to profile.
+                $location.url("/profile");
+            };
+
+
             //implement event handler register()
             $scope.register = function(user){
                 //userService to create new user
                 UserService.createUser(user,callback);
             };
 
-             var callback = function(userResponse){
-                 //store new user in rootscope
-                $rootScope.currentUser = userResponse;
-                 //location to navigate to profile.
-                $location.url("/profile");
-            };
+
 
         }
 

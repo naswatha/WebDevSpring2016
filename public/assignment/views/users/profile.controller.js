@@ -8,7 +8,7 @@
         .controller("ProfileController",ProfileController);
 
     //inject UserServiec
-    function ProfileController ($scope,$location,$rootScope,UserService){
+    function ProfileController ($scope,$rootScope,UserService){
 
         //retreive current user.
         $scope.User = $rootScope.currentUser;

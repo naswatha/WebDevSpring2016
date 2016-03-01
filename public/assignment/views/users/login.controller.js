@@ -8,7 +8,7 @@
         .controller("LoginController",LoginController);
 
     //inject UserService
-    function LoginController ($scope,$location,$rootScope,UserService){
+    function LoginController ($rootScope, $scope, $location, UserService){
 
         var callback = function(userResponse) {
             if (!userResponse) {
@@ -18,6 +18,7 @@
         };
 
         $scope.login = function(user){
+
             UserService.findUserByCredentials(user.username,user.password,callback);
         };
 

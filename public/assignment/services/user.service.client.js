@@ -80,9 +80,9 @@
 
         UserService.createUser = function(user,callback){
 
-            this.user._id = (new Date).getTime();
-            Users.push(this.user);
-            callback(this.user);
+            user._id = (new Date).getTime();
+            Users.push(user);
+            callback(user);
         };
 
         UserService.deleteUserById = function (userId,callback){
@@ -105,7 +105,7 @@
                     updateUser.password = user.password;
                     updateUser.firstName = user.firstName;
                     updateUser.lastName = user.lastName;
-                    updateUser.roles = user.roles;
+                    updateUser.email = user.email;
                     callback(updateUser);
                 }
             }

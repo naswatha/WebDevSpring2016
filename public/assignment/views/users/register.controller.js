@@ -11,8 +11,8 @@
         function RegisterController ($scope,$location,$rootScope,UserService){
 
             var callback = function(userResponse){
-                //store new user in rootscope
-                $rootScope.currentUser = userResponse;
+                //setting the currentUser using userResponse in service with $rootscope
+                UserService.setCurrentUser(userResponse);
                 //location to navigate to profile.
                 $location.url("/profile");
             };

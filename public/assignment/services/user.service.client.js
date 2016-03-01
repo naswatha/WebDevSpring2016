@@ -5,9 +5,9 @@
     "use strict";
     angular
         .module("FormBuilderApp")
-        .factory("UserService",UserService)
+        .factory("UserService",UserService);
 
-    function UserService(){
+    function UserService($rootScope){
         var Users = [];
         Users = [
             {
@@ -64,16 +64,12 @@
         ];
 
 
-        UserService.findUserByCredentials = function (username, password, callback) {
+        UserService.findUserByCredentials = function(username, password, callback) {
             var userIndex;
-            for(userIndex in Users) {
+            for (userIndex in Users) {
                 var user = Users[userIndex];
-                if(username === user.username && password === user.password){
+                if (username === user.username && password === user.password) {
                     callback(user);
-                    console.log(user);
-                }
-                else{
-                    callback(null);
                 }
             }
         };
@@ -115,13 +111,18 @@
             }
         };
 
+        UserService.setCurrentUser = function(user) {
+            $rootScope.currentUser = user;
+        };
+
         return {
             Users: Users,
             findUserByCredentials: UserService.findUserByCredentials,
             findAllUsers: UserService.findAllUsers,
             createUser: UserService.createUser,
             deleteUserById: UserService.deleteUserById,
-            updateUser: UserService.updateUser
+            updateUser: UserService.updateUser,
+            setCurrentUser : UserService.setCurrentUser
         };
 
     }

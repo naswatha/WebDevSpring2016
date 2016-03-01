@@ -22,41 +22,50 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td><input type="text" class="form-control" placeholder="name"/></td>
+                                <td><input ng-model="form.title" type="text" class="form-control" placeholder="name"/></td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="btn btn-default" href="#"><i class="fa fa-plus"></i></a>
-                                        <a class="btn btn-default" href="#"><i class="fa fa-check"></i></a>
+                                        <a class="btn btn-default" ng-click="addForm(form)"><i class="fa fa-plus"></i></a>
+                                        <a class="btn btn-default" ng-click="updateForm(form)"><i class="fa fa-check"></i></a>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td><a href="fields.view.html">Registration Form</a></td>
+                            <tr ng-repeat="form in createdForms">
+                                <td> {{form.title}} </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="btn btn-default" href="#"><i class="fa fa-times"></i></a>
-                                        <a class="btn btn-default" href="#"><i class="fa fa-pencil"></i></a>
+                                        <a class="btn btn-default" ng-click="deleteForm(form)"><i class="fa fa-times"></i></a>
+                                        <a class="btn btn-default" ng-click="selectForm(form)"><i class="fa fa-pencil"></i></a>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td><a href="fields.view.html">Contact List</a></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-default" href="#"><i class="fa fa-times"></i></a>
-                                        <a class="btn btn-default" href="#"><i class="fa fa-pencil"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="fields.view.html">To Do List</a></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-default" href="#"><i class="fa fa-times"></i></a>
-                                        <a class="btn btn-default" href="#"><i class="fa fa-pencil"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
+                            <!--<tr>-->
+                                <!--<td><a href="fields.view.html">Registration Form</a></td>-->
+                                <!--<td>-->
+                                    <!--<div class="btn-group">-->
+                                        <!--<a class="btn btn-default" href="#"><i class="fa fa-times"></i></a>-->
+                                        <!--<a class="btn btn-default" href="#"><i class="fa fa-pencil"></i></a>-->
+                                    <!--</div>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td><a href="fields.view.html">Contact List</a></td>-->
+                                <!--<td>-->
+                                    <!--<div class="btn-group">-->
+                                        <!--<a class="btn btn-default" href="#"><i class="fa fa-times"></i></a>-->
+                                        <!--<a class="btn btn-default" href="#"><i class="fa fa-pencil"></i></a>-->
+                                    <!--</div>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td><a href="fields.view.html">To Do List</a></td>-->
+                                <!--<td>-->
+                                    <!--<div class="btn-group">-->
+                                        <!--<a class="btn btn-default" href="#"><i class="fa fa-times"></i></a>-->
+                                        <!--<a class="btn btn-default" href="#"><i class="fa fa-pencil"></i></a>-->
+                                    <!--</div>-->
+                                <!--</td>-->
+                            <!--</tr>-->
                             </tbody>
                         </table>
                     </div>

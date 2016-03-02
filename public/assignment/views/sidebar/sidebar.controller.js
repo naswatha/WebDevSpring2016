@@ -5,7 +5,10 @@
     "use strict";
     angular
         .module("FormBuilderApp")
-        .controller("SidebarController",function SidebarController($location,$scope){
+        .controller("SidebarController",SidebarController);
 
-        });
+    function SidebarController($scope,$location){
+
+    }
+
 })();

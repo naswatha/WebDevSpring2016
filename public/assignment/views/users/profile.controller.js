@@ -11,7 +11,7 @@
     function ProfileController ($scope,$rootScope,UserService){
 
         //retreive current user.
-        $scope.user = $rootScope.currentUser;
+        $scope.user = $rootScope.loggedUser;
 
         //callback does not have to return anything
         //no location change for updating profile.

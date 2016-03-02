@@ -112,7 +112,7 @@
         };
 
         UserService.setCurrentUser = function(user) {
-            $rootScope.currentUser = user;
+            $rootScope.loggedUser = user;
         };
 
         return {

@@ -5,9 +5,9 @@
     "use strict";
     angular
         .module("WorkoutBuilderApp")
-        .controller("HomeController",HomeController);
+        .controller("SidebarController",SidebarController);
 
-    function HomeController($scope,$location){
+    function SidebarController($scope,$location){
 
     }
 

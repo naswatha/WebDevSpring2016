@@ -2,7 +2,7 @@
  * Created by Naveen on 2/25/2016.
  */
 (function(){
-    "use strict"
+    "use strict";
     angular
         .module("FormBuilderApp")
         .config(configuration);
@@ -11,8 +11,8 @@
     function configuration ($routeProvider){
             $routeProvider
                 .when("/home",{
-                    templateUrl: "views/home/home.view.html"
-                    //controller: "HomeController"
+                    templateUrl: "views/home/home.view.html",
+                    controller: "HomeController"
                 })
                 .when("/admin",{
                     templateUrl: "views/admin/admin.view.html"

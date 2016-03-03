@@ -2,7 +2,7 @@
  * Created by Naveen on 2/25/2016.
  */
 (function() {
-    "use strict"
+    "use strict";
     angular
         .module("FormBuilderApp")
         .controller("MainController", MainController);

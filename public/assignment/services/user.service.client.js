@@ -71,6 +71,9 @@
                 if (username === user.username && password === user.password) {
                     callback(user);
                 }
+                else{
+                    callback(null);
+                }
             }
         };
 
@@ -84,6 +87,7 @@
             Users.push(user);
             callback(user);
         };
+
 
         UserService.deleteUserById = function (userId,callback){
             var userIndex;

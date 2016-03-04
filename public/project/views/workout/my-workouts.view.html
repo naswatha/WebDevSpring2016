@@ -1,10 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">My Workouts</h1>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th><i class="fa fa-fw fa-sort"></i>Workout Name</th>
+                        <th><i class="fa fa-fw fa-sort"></i>Action</th>
+                        <th><i class="fa fa-fw fa-sort"></i>Make Active</th>
+                        <th><i class="fa fa-fw fa-sort"></i>Make Public</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>2 Week Strength Program</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-default"><i class="fa fa-times"></i></a>
+                            </div>
+                        </td>
+                        <td><input type="radio" name="activeWork"></td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-default"><i class="fa fa-check"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4 Week Begineer Workout</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-default"><i class="fa fa-times"></i></a>
+                            </div>
+                        </td>
+                        <td><input type="radio" name="activeWork"></td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-default"><i class="fa fa-check"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--<tr ng-repeat="form in loggedUserForms">-->
+                        <!--<td> {{form.title}} </td>-->
+                        <!--<td>-->
+                            <!--<div class="btn-group">-->
+                                <!--<a class="btn btn-default" ng-click="deleteForm($index)"><i class="fa fa-times"></i></a>-->
+                                <!--<a class="btn btn-default" ng-click="selectForm($index)"><i class="fa fa-pencil"></i></a>-->
+                            <!--</div>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="fields" class="tab-pane fade">
+                <h3>Fields</h3>
+                <p>Some content in menu 1.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+

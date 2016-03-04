@@ -6,6 +6,7 @@
                 <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/profile'}"><a href="#/profile">Profile</a></li>
                 <li ng-show="loggedUser.roles.indexOf('admin') >= 0" ng-class="{'active' : $location.url() == '/admin'}"><a href="#/admin">Admin</a></li>
                 <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/active-workout'}"><a href="#/active-workout">Active Workout</a></li>
+                <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/create-workout'}"><a href="#/create-workout">Create New Workout</a></li>
                 <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/my-workouts'}"><a href="#/my-workouts">My Workout</a></li>
                 <li ng-class="{'active' : $location.url() == '/exercise-search'}"><a href="#/exercise-search">Exercises</a></li>
                 <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/public-workouts'}"><a href="#/public-workouts">Public Workouts</a></li>

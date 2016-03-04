@@ -33,6 +33,22 @@
                 templateUrl: "views/exercise/exercise-search.view.html",
                 controller: "ExerciseSearchController"
             })
+            .when("/active-workout",{
+                templateUrl: "views/workout/active-workout.view.html"
+                //controller: "ExerciseSearchController"
+            })
+            .when("/my-workouts",{
+                templateUrl: "views/workout/my-workouts.view.html"
+                //controller: "ExerciseSearchController"
+            })
+            .when("/public-workouts",{
+                templateUrl: "views/workout/public-workouts.view.html"
+                //controller: "ExerciseSearchController"
+            })
+            .when("/create-workout",{
+                templateUrl: "views/workout/create-workout.view.html"
+                //controller: "ExerciseSearchController"
+            })
             .otherwise({
                 redirectTo: "/home"
             });

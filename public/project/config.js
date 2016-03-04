@@ -30,8 +30,8 @@
                 controller: "RegisterController"
             })
             .when("/exercise-search",{
-                templateUrl: "views/exercise/exercise-search.view.html"
-                //controller: "RegisterController"
+                templateUrl: "views/exercise/exercise-search.view.html",
+                controller: "ExerciseSearchController"
             })
             .otherwise({
                 redirectTo: "/home"

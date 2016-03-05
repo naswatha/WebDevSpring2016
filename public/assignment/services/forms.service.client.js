@@ -9,33 +9,22 @@
         var Forms = [];
         Forms = [
             {
-                "_id":"000",
-                "title":"Contacts",
-                "userId":123
+                "_id":"000", "title":"Contacts", "userId":123
             },
             {
-                "_id":"010",
-                "title":"ToDo",
-                "userId":123
+                "_id":"010", "title":"ToDo", "userId":123
             },
             {
-                "_id":"020",
-                "title":"CDs",
-                "userId":234
+                "_id":"020", "title":"CDs", "userId":234
             }
-
         ];
 
-
         FormService.createFormForUser = function(userId, form, callback) {
-            var form = {
-                _id: (new Date).getTime(),
-                title: form.name,
-                userId: userId
-            };
+            form._id = (new Date).getTime();
+            form.userId = userId;
+            form.title = form.name;
             Forms.push(form);
             callback(form);
-
         };
 
         FormService.findAllFormsForUser = function(userId, callback) {
@@ -49,7 +38,6 @@
                 }
             }
             callback(userForms);
-
         };
 
         FormService.deleteFormById = function(formId,currentUserForms,callback) {
@@ -79,8 +67,6 @@
         FormService.setLoggedUserForms = function (Forms) {
             $rootScope.loggedUserForms = Forms;
         };
-
-
 
         return {
             Forms: Forms,

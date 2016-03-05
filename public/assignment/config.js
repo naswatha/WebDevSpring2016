@@ -7,7 +7,6 @@
         .module("FormBuilderApp")
         .config(configuration);
 
-
     function configuration ($routeProvider){
             $routeProvider
                 .when("/home",{

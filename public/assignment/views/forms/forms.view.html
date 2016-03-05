@@ -4,9 +4,13 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Forms</h1>
 
+            <div ng-show="message" class="alert alert-danger fade in">
+                <div class="close" data-dismiss="alert" aria-label="close">&times;</div>
+                <strong>{{message}}</strong>
+            </div>
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="forms.view.html">Forms</a></li>
-                <li><a href="fields.view.html">Fields</a></li>
+                <li><a href="#">Fields</a></li>
             </ul>
 
             <div class="tab-content">

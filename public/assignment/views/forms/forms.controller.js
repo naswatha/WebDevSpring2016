@@ -48,6 +48,7 @@
         var formIndex;
         //event handler selectForm
         $scope.selectForm = function(index) {
+
             formIndex = index;
             $scope.form = $rootScope.loggedUserForms[index];
             $scope.form.name = $scope.form.title;
@@ -56,8 +57,7 @@
 
         // delete form handler
         var deleteUserForms = function(userForms) {
-            console.log(userForms);
-            $rootScope.loggedUserForms = userForms;
+            FormService.setLoggedUserForms(userForms);
         };
 
         $scope.deleteForm = function(index) {
@@ -65,4 +65,5 @@
             FormService.deleteFormById(currentUserForms[index]._id,currentUserForms,deleteUserForms);
         }
     }
+
 })();

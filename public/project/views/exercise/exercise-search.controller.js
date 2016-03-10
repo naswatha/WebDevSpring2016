@@ -8,64 +8,65 @@
         .controller("ExerciseSearchController", ExerciseSearchController);
 
 
-    function ExerciseSearchController($http, $scope, $rootScope) {
-        $scope.search = function (term) {
-            $http.get('http://wger.de/api/v2/exercise/search/?term='+term).success(function(data){
-                if(data.length > 0){
-                    $scope.searchResults = data;
-                    $scope.exerciseDetails = null;
-                }
-                console.log(data);
-            });
-        };
+    function ExerciseSearchController ($scope,WgerApiService) {
 
+        $scope.search = search;
+        $scope.details = details;
 
+        function search (term){
+            WgerApiService.searchExercise(term,
+                function(response){
+                    $scope.searchResults = response;
 
-        $scope.details = function (exercise) {
-
-            $http.get('http://wger.de/api/v2/exercise/'+exercise.id).success(function(exerciseDetails){
-                $scope.exerciseDetails = exerciseDetails;
-                console.log(exerciseDetails);
-
-                $http.get('http://wger.de/api/v2/muscle/').success(function(muscles){
-                    var primaryMuslces =[];
-                    var secondaryMuscles =[];
-
-                    for(var j=0;j<exerciseDetails.muscles.length;j++){
-                        for(var i=0;i<muscles.results.length;i++){
-                            if(exerciseDetails.muscles[j] == muscles.results[i].id){
-                                primaryMuslces.push(muscles.results[j].name);
-                            }
-                        }
-                    }
-                    $scope.displayMuscles = primaryMuslces;
-                    console.log(primaryMuslces);
-
-                    for(var j=0;j<exerciseDetails.muscles_secondary.length;j++){
-                        for(var i=0;i<muscles.results.length;i++){
-                            if(exerciseDetails.muscles_secondary[j] == muscles.results[i].id){
-                                secondaryMuscles.push(muscles.results[j].name);
-                            }
-                        }
-                    }
-                    $scope.displaySecondaryMuscles = secondaryMuscles;
-                    console.log(secondaryMuscles);
 
                 });
+        }
 
-                $http.get('http://wger.de/api/v2/equipment/').success(function(equipments){
-                    var requiredEquipments =[];
-                    for(var j=0;j<exerciseDetails.equipment.length;j++){
-                        for(var i=0;i<equipments.results.length;i++){
-                            if(exerciseDetails.equipment[j] == equipments.results[i].id){
-                                requiredEquipments.push(equipments.results[j].name);
+        function details (exerciseId){
+            WgerApiService.findExerciseByID ( exerciseId,
+                function (exerciseDetails){
+                    $scope.exerciseDetails = exerciseDetails;
+                    WgerApiService.getAllEquipments(
+                        function (equipments){
+                            var requiredEquipments = [];
+                            for(var j=0;j<exerciseDetails.equipment.length;j++){
+                                for(var i=0;i<equipments.results.length;i++){
+                                    if(exerciseDetails.equipment[j] == equipments.results[i].id){
+                                        requiredEquipments.push(equipments.results[j].name);
+                                    }
+                                }
                             }
-                        }
-                    }
-                    $scope.displayEquipments = requiredEquipments;
-                    console.log(requiredEquipments);
+                            $scope.displayEquipments = requiredEquipments;
+                            console.log(requiredEquipments);
+                        });
+
+
+                    WgerApiService.getAllMuscles(
+                        function (muscles){
+                            var primaryMuscles =[];
+                            var secondaryMuscles =[];
+
+                            for(var l=0;l<exerciseDetails.muscles.length;l++){
+                                for(var m=0;m<muscles.results.length;m++){
+                                    if(exerciseDetails.muscles[l] == muscles.results[m].id){
+                                        primaryMuscles.push(muscles.results[l].name);
+                                    }
+                                }
+                            }
+                            $scope.displayMuscles = primaryMuscles;
+                            console.log(primaryMuscles);
+
+                            for(var j=0;j<exerciseDetails.muscles_secondary.length;j++){
+                                for(var i=0;i<muscles.results.length;i++){
+                                    if(exerciseDetails.muscles_secondary[j] == muscles.results[i].id){
+                                        secondaryMuscles.push(muscles.results[j].name);
+                                    }
+                                }
+                            }
+                            $scope.displaySecondaryMuscles = secondaryMuscles;
+                            console.log(secondaryMuscles);
+                        });
                 });
-            });
         }
     }
 })();

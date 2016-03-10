@@ -57,7 +57,7 @@
                         <tr ng-repeat="result in searchResults">
                             <td align="center"> {{result.category}} </td>
                             <td>
-                                <button ng-click="details(result)" class="btn btn-secondary btn-md text-left btn-block ">
+                                <button ng-click="details(result.id)" class="btn btn-secondary btn-md text-left btn-block ">
                                 {{result.value}}
                                 </button>
                             </td>

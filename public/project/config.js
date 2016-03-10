@@ -38,12 +38,12 @@
                 //controller: "ExerciseSearchController"
             })
             .when("/my-workouts",{
-                templateUrl: "views/workout/my-workouts.view.html"
-                //controller: "ExerciseSearchController"
+                templateUrl: "views/workout/my-workouts.view.html",
+                controller: "MyWorkoutController"
             })
             .when("/public-workouts",{
-                templateUrl: "views/workout/public-workouts.view.html"
-                //controller: "ExerciseSearchController"
+                templateUrl: "views/workout/public-workouts.view.html",
+                controller: "PublicWorkoutController"
             })
             .when("/create-workout",{
                 templateUrl: "views/workout/create-workout.view.html"

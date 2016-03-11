@@ -17,10 +17,9 @@
             WorkoutService.findAllPublicWorkouts(
                 function(response){
                     $scope.publicWorkouts = response;
-                    //console.log(response);
                 });
 
-        //console.log($scope.loggedUserId);
+
 
         $scope.selectedWorkoutIndex = null;
         var currentWorkout = {};
@@ -38,23 +37,12 @@
 
         $scope.show = function (workout){
             var count = 0;
-            for(var i = 0;i<workout.userId.length;i++) {
-                if (workout.userId[i] === $scope.loggedUserId) {
+            for(var i = 0;i<workout.userDetails.length;i++) {
+                if (workout.userDetails[i].userId === $scope.loggedUserId) {
                     count++;
                 }
             }
-                if(count >= 1){
-                    return false;
-                }
-                else {
-                    return true;
-
-                }
-
+            return !(count>=1);
         };
-
-
-
     }
-
 })();

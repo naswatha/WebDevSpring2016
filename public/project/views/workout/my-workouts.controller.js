@@ -29,18 +29,28 @@
             WorkoutService.deleteWorkoutById(currentWorkout._id,$rootScope.loggedUser._id,
                 function(response){
                     $scope.loggedUserWorkouts.splice(index,1);
-                    //console.log(response);
                 });
         };
 
         // make other workout active.
         $scope.makeActive = function(index){
             currentWorkout = $scope.loggedUserWorkouts[index];
-            WorkoutService.updateActiveWorkoutById(currentWorkout._id,$scope.loggedUserWorkouts,
+            WorkoutService.updateActiveWorkoutById(currentWorkout._id,$scope.loggedUserWorkouts,$rootScope.loggedUser._id,
                 function(response){
                     $scope.loggedUserWorkouts = response;
-                    //console.log(response);
                 });
+        };
+
+        $scope.showActive = function (workout){
+            var count = 0;
+            for(var i = 0;i<workout.userDetails.length;i++) {
+                if(workout.userDetails[i].userId == $rootScope.loggedUser._id){
+                    if (workout.userDetails[i].active === 1) {
+                        count++;
+                    }
+                }
+            }
+            return !(count>=1);
         };
 
 
@@ -50,7 +60,7 @@
             WorkoutService.makeWorkoutPublicById(currentWorkout._id,$scope.loggedUserWorkouts,
                 function(response){
                     $scope.loggedUserWorkouts = response;
-                    //console.log(response);
+
                 });
 
         }
@@ -59,3 +69,8 @@
     }
 
 })();
+
+//changes required for new userdetails.
+// 1) userworkouts details findAllWorkoutForUser
+// 2) deleteWorkoutById
+// 3) updateActiveWorkoutById

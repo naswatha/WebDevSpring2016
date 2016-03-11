@@ -101,12 +101,10 @@
         }
 
         function addWorkoutToMyList (workoutId,userId,publicWorkoutsList,callback){
-            //var publicWorkouts = [];
+            var userDet = {"userId":userId,"active": 0};
             for(var i=0;i<publicWorkoutsList.length;i++) {
                 if(publicWorkoutsList[i].public === 1 && workoutId === publicWorkoutsList[i]._id){
-                    //console.log(userId);
-                    publicWorkoutsList[i].userId.push(userId);
-                    //console.log(Workouts[i]);
+                    publicWorkoutsList[i].userDetails.push(userDet);
                 }
             }
             callback(publicWorkoutsList);
@@ -115,8 +113,8 @@
         function findAllWorkoutForUser (userId,callback){
             var userWorkouts = [];
             for(var i=0;i<Workouts.length;i++) {
-                for(var j=0;j<Workouts[i].userId.length;j++){
-                    if(Workouts[i].userId[j] == userId){
+                for(var j=0;j<Workouts[i].userDetails.length; j++){
+                    if(Workouts[i].userDetails[j].userId == userId){
                         userWorkouts.push(Workouts[i]);
                     }
                 }
@@ -124,29 +122,38 @@
             callback(userWorkouts);
         }
 
+
         function deleteWorkoutById(workoutId,userId,callback){
             for(var i=0;i<Workouts.length;i++) {
-                if(Workouts[i]._id == workoutId) {
-                    if(Workouts[i].userId.length > 1){
-                        for(var j = 0;Workouts[i].userId[j].length;j++){
-                            Workouts[i].userId.splice(j,1);
+                if(Workouts[i]._id === workoutId){
+                    if(Workouts[i].userDetails.length > 1){
+                        for(var j=0;j<Workouts[i].userDetails.length;j++){
+                            Workouts[i].userDetails.splice(j,1);
                         }
                     }
                     else{
-                        Workouts.splice(i, 1);
+                        Workouts.splice(i,1);
                     }
                 }
             }
             callback(Workouts);
         }
 
-        function updateActiveWorkoutById(workoutId,loggedUserWorkouts, callback){
+        function updateActiveWorkoutById(workoutId,loggedUserWorkouts,userId,callback){
             for(var i=0;i<loggedUserWorkouts.length;i++) {
                 if(loggedUserWorkouts[i]._id == workoutId) {
-                    loggedUserWorkouts[i].active = 1;
+                    for(var j= 0;j<loggedUserWorkouts[i].userDetails.length;j++){
+                        if(loggedUserWorkouts[i].userDetails[j].userId == userId){
+                            loggedUserWorkouts[i].userDetails[j].active = 1;
+                        }
+                    }
                 }
                 else{
-                    loggedUserWorkouts[i].active = 0;
+                    for(var j= 0;j<loggedUserWorkouts[i].userDetails.length;j++){
+                        if(loggedUserWorkouts[i].userDetails[j].userId == userId){
+                            loggedUserWorkouts[i].userDetails[j].active = 0;
+                        }
+                    }
                 }
             }
             callback(loggedUserWorkouts);

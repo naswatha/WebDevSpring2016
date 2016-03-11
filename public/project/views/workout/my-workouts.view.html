@@ -1,5 +1,5 @@
 
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="MyWorkoutController">
     <div class="row">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">My Workouts</h1>
@@ -15,44 +15,21 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>2 Week Strength Program</td>
+                    <tr ng-repeat="workout in loggedUserWorkouts">
+                        <td> {{workout.name}} </td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-times"></i></a>
+                                <a class="btn btn-default" ng-click="deleteWorkout($index)"><i class="fa fa-times"></i></a>
+                                <a class="btn btn-default" ng-click="editWorkout($index)"><i class="fa fa-pencil"></i></a>
                             </div>
                         </td>
-                        <td><input type="radio" name="activeWork"></td>
+                        <td><input ng-show="workout.active == 0" type="radio" ng-click="makeActive($index)" name="activeWork"></td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-check"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4 Week Begineer Workout</td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-times"></i></a>
-                            </div>
-                        </td>
-                        <td><input type="radio" name="activeWork"></td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-check"></i></a>
+                                <a class="btn btn-default" ng-show="workout.public == 0" ng-click="makeWorkoutPublic($index)"><i class="fa fa-check"></i></a>
                             </div>
                         </td>
                     </tr>
-                    <!--<tr ng-repeat="form in loggedUserForms">-->
-                        <!--<td> {{form.title}} </td>-->
-                        <!--<td>-->
-                            <!--<div class="btn-group">-->
-                                <!--<a class="btn btn-default" ng-click="deleteForm($index)"><i class="fa fa-times"></i></a>-->
-                                <!--<a class="btn btn-default" ng-click="selectForm($index)"><i class="fa fa-pencil"></i></a>-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    </tbody>
                 </table>
             </div>
 

@@ -1,5 +1,5 @@
 
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="PublicWorkoutController">
     <div class="row">
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Public Workouts</h1>
@@ -9,59 +9,24 @@
                     <thead>
                     <tr>
                         <th><i class="fa fa-fw fa-sort"></i>Workout Name</th>
-                        <th><i class="fa fa-fw fa-sort"></i>Action</th>
-                        <th><i class="fa fa-fw fa-sort"></i>Add to My Workout</th>
+                        <th><i class="fa fa-fw fa-sort"></i>View</th>
+                        <th><i class="fa fa-fw fa-sort"></i>Add to My Workout List</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>7 Day Beginner Trainer</td>
+                    <tr ng-repeat="workout in publicWorkouts">
+                        <td> {{workout.name}} </td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-times"></i></a>
+                                <a class="btn btn-default" ng-click="viewWorkout($index)"><i class="fa fa-eye"></i></a>
                             </div>
                         </td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-plus"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Power Bodybuilding</td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-times"></i></a>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-plus"></i></a>
+                                <a class="btn btn-default" ng-show="show(workout)" ng-click="addWorkout($index)"><i class="fa fa-plus"></i></a>
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Lean Body Trainer</td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-times"></i></a>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-plus"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <!--<tr ng-repeat="form in loggedUserForms">-->
-                    <!--<td> {{form.title}} </td>-->
-                    <!--<td>-->
-                    <!--<div class="btn-group">-->
-                    <!--<a class="btn btn-default" ng-click="deleteForm($index)"><i class="fa fa-times"></i></a>-->
-                    <!--<a class="btn btn-default" ng-click="selectForm($index)"><i class="fa fa-pencil"></i></a>-->
-                    <!--</div>-->
-                    <!--</td>-->
-                    <!--</tr>-->
                     </tbody>
                 </table>
             </div>

@@ -44,5 +44,12 @@
             }
             return !(count>=1);
         };
+
+        $scope.viewWorkout = function(workout){
+            $rootScope.displayWorkout = workout;
+
+            $location.path('/view-workout');
+        };
+
     }
 })();

@@ -49,6 +49,10 @@
                 templateUrl: "views/workout/create-workout.view.html"
                 //controller: "ExerciseSearchController"
             })
+            .when("/view-workout",{
+                templateUrl: "views/workout/view-workout.view.html",
+                controller: "ViewWorkoutController"
+            })
             .otherwise({
                 redirectTo: "/home"
             });

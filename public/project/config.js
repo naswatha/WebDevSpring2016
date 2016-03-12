@@ -46,8 +46,8 @@
                 controller: "PublicWorkoutController"
             })
             .when("/create-workout",{
-                templateUrl: "views/workout/create-workout.view.html"
-                //controller: "ExerciseSearchController"
+                templateUrl: "views/workout/create-workout.view.html",
+                controller: "CreateWorkoutController"
             })
             .when("/view-workout",{
                 templateUrl: "views/workout/view-workout.view.html",

@@ -9,9 +9,20 @@
 
     function CreateWorkoutController($scope, $location) {
 
-        $scope.addTable = function(){
+        $scope.addTable = function(weekNum){
+            //$scope.weekArray = 0;
             $scope.addTableFlag = true;
-        }
+            if(weekNum >= 1){
+                $scope.addTableFlag = true;
+                $scope.weekArray = new Array();
+                for (var i = 1; i <= weekNum; i++) {
+                    $scope.weekArray.push(i);
+                }
+            }
+            console.log($scope.weekArray);
+
+        };
+
     }
 
 })();

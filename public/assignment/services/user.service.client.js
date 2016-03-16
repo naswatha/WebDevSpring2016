@@ -7,7 +7,7 @@
         .module("FormBuilderApp")
         .factory("UserService",UserService);
 
-    function UserService($rootScope){
+    function UserService ($rootScope){
         var Users = [];
         Users = [
             {
@@ -63,72 +63,55 @@
             }
         ];
 
-
-        UserService.findUserByCredentials = function(username, password, callback) {
-            var userIndex;
-            for (userIndex in Users) {
-                var user = Users[userIndex];
-                if (username === user.username && password === user.password) {
-                    callback(user);
-                }
-                else{
-                    callback(null);
-                }
-            }
+        var service = {
+            findAllUsers : findAllUsers,
+            findUserByCredentials:findUserByCredentials,
+            createUser : createUser,
+            deleteUserById : deleteUserById,
+            updateUser : updateUser
         };
 
-        UserService.findAllUsers = function (callback){
-            callback(Users);
-        };
+        return service;
 
-        UserService.createUser = function(user,callback){
-
-            user._id = (new Date).getTime();
-            Users.push(user);
+        function findUserByCredentials (username, password, callback){
+            var user = null;
+                for (var i =0;i<Users.length;i++) {
+                   if (username === Users[i].username && password === Users[i].password) {
+                        user = Users[i]
+                    }
+                }
             callback(user);
-        };
+        }
 
+        function findAllUsers (callback){
+            callback(Users);
+        }
 
-        UserService.deleteUserById = function (userId,callback){
-            var userIndex;
-            for(userIndex in Users){
-                var user = Users[userIndex];
-                if(userId === user._id){
-                    Users.splice(userIndex,1);
-                    callback(Users);
+        function createUser (user,callback){
+                user._id = (new Date).getTime();
+                Users.push(user);
+                callback(user);
+        }
+
+        function deleteUserById (userId,callback){
+            for (var i = 0; i < Users.length; i++) {
+                if (Users[i]._id == userId) {
+                    Users.splice(i, 1);
                 }
             }
-        };
+            callback(Users);
+        }
 
-        UserService.updateUser = function (userId,user,callback){
-            var userIndex;
-            for(userIndex in Users){
-                var updateUser = Users[userIndex];
-                if(userId === updateUser._id ){
-                    updateUser.username = user.username;
-                    updateUser.password = user.password;
-                    updateUser.firstName = user.firstName;
-                    updateUser.lastName = user.lastName;
-                    updateUser.email = user.email;
-                    callback(updateUser);
+        function updateUser (userId,user,callback){
+            var updatedUser = null;
+            for (var i = 0; i < Users.length; i++) {
+                if (Users[i]._id == userId) {
+                    Users[i] = user;
+                    updatedUser = user;
                 }
             }
-        };
-
-        UserService.setCurrentUser = function(user) {
-            $rootScope.loggedUser = user;
-        };
-
-        return {
-            Users: Users,
-            findUserByCredentials: UserService.findUserByCredentials,
-            findAllUsers: UserService.findAllUsers,
-            createUser: UserService.createUser,
-            deleteUserById: UserService.deleteUserById,
-            updateUser: UserService.updateUser,
-            setCurrentUser : UserService.setCurrentUser
-        };
-
+            callback(updatedUser);
+        }
     }
 })();
 

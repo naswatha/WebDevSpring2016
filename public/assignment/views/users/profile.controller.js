@@ -8,26 +8,15 @@
         .controller("ProfileController",ProfileController);
 
     //inject UserServiec
-    function ProfileController ($scope,$rootScope,UserService){
+    function ProfileController ($scope,$rootScope,$location,UserService){
 
         //retreive current user.
         $scope.user = $rootScope.loggedUser;
 
         $scope.message = null;
 
-        $scope.successMessage = null;
-        //callback does not have to return anything
-        //no location change for updating profile.
-        var callback = function(userResponse){
-            if(userResponse != null){
-                    $scope.successMessage = "Profile updated successfully!";
-            }
-        };
-
         //update handler
         $scope.update = function(user){
-
-
 
             if(!user.username || user.username == null){
                 $scope.message = "Please enter Username";
@@ -48,8 +37,13 @@
                 $scope.message = "Please enter LastName";
                 return;
             }
-            UserService.updateUser($scope.user._id,user,callback);
+            UserService.updateUser($scope.user._id,user,
+                function (callback){
+                    $rootScope.loggedUser = callback;
+                });
+            $location.path('/profile');
         };
+
     }
 })();
 

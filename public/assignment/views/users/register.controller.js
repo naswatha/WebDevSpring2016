@@ -12,20 +12,6 @@
 
             $scope.message = null;
 
-            $scope.successMessage = null;
-
-
-            var callback = function(userResponse){
-                //if(userResponse != null){
-                //    $scope.successMessage = "Registration completed successfully!";
-                //}
-                //setting the currentUser using userResponse in service with $rootscope
-                UserService.setCurrentUser(userResponse);
-                //location to navigate to profile.
-                $location.url("/profile");
-            };
-
-
             //implement event handler register()
             $scope.register = function(user){
 
@@ -53,7 +39,11 @@
 
 
                 //userService to create new user
-                UserService.createUser(user,callback);
+                UserService.createUser(user,
+                    function (callback){
+                        $rootScope.loggedUser = callback;
+                    });
+                $location.path('/profile');
             };
 
 

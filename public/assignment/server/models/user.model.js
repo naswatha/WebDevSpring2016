@@ -1,9 +1,10 @@
 /**
  * Created by Naveen on 3/16/2016.
  */
-var users = require("./user.mock.json");
-
+    "use strict";
 module.exports = function(app){
+
+    var users = require("./user.mock.json");
 
     var api = {
 
@@ -51,9 +52,9 @@ module.exports = function(app){
         for(var i = 0; i <  users.length; i++){
             if(users[i].id == id){
                 users.splice(i, 1);
-                return users;
             }
         }
+        return users;
     }
 
     function findUserByUsername(username){

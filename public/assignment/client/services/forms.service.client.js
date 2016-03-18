@@ -25,111 +25,113 @@
                     }
                 ];
 
-        //var service = {
-        //    createFormForUser: createFormForUser,
-        //    findAllFormsForUser: findAllFormsForUser,
-        //    deleteFormById: deleteFormById,
-        //    updateFormById: updateFormById
+        var service = {
+            createFormForUser: createFormForUser,
+            findAllFormsForUser: findAllFormsForUser,
+            deleteFormById: deleteFormById,
+            updateFormById: updateFormById
+        };
+
+        return service;
+
+        function createFormForUser (userId,form,callback){
+                form._id = (new Date).getTime();
+                form.userId = userId;
+                Forms.push(form);
+                callback(form);
+        }
+
+        function findAllFormsForUser (userId, callback){
+
+            var userforms = [];
+            for(var i=0;i<Forms.length;i++) {
+                if(Forms[i].userId == userId){
+                    userforms.push(Forms[i]);
+                }
+            }
+            callback(userforms);
+        }
+
+        function deleteFormById (formId, callback){
+            for(var i=0;i<Forms.length;i++) {
+                if(Forms[i]._id == formId) {
+                    Forms.splice(i, 1);
+                }
+            }
+            callback(Forms);
+        }
+
+        function updateFormById (formId, newForm,callback){
+            var updateForm = null;
+            for (var i = 0; i < Forms.length; i++) {
+                if (Forms[i]._id == formId) {
+                    Forms[i] = newForm;
+                    updateForm =  Forms[i];
+                }
+            }
+            callback(updateForm);
+        }
+
+
+        //old
+
+        //FormService.createFormForUser = function(userId, form, callback) {
+        //    form._id = (new Date).getTime();
+        //    form.userId = userId;
+        //    form.title = form.name;
+        //    Forms.push(form);
+        //    callback(form);
         //};
         //
-        //return service;
+        //FormService.findAllFormsForUser = function(userId, callback) {
         //
-        //function createFormForUser (userId,form,callback){
-        //        form._id = (new Date).getTime();
-        //        form.userId = userId;
-        //        form.title = form.name;
-        //        Forms.push(form);
-        //        callback(form);
-        //}
-        //
-        //function findAllFormsForUser (userId, callback){
-        //
-        //    var userforms = [];
-        //    for(var i=0;i<Forms.length;i++) {
-        //        if(Forms[i].userId == userId){
-        //            userforms.push(Forms[i]);
+        //    var formIndex;
+        //    var userForms = [];
+        //    for(formIndex in Forms){
+        //        var form = Forms[formIndex];
+        //        if(userId === form.userId){
+        //            userForms.push(form);
         //        }
         //    }
-        //    callback(userforms);
-        //}
+        //    callback(userForms);
+        //};
         //
-        //function deleteFormById (formId, callback){
-        //    for(var i=0;i<Forms.length;i++) {
-        //        if(Forms[i]._id == formId) {
-        //            Forms.splice(i, 1);
+        //FormService.deleteFormById = function(formId,currentUserForms,callback) {
+        //
+        //    var formIndex;
+        //    for(formIndex in currentUserForms){
+        //        var form = currentUserForms[formIndex];
+        //        if(formId === form._id){
+        //            currentUserForms.splice(formIndex, 1);
+        //            callback(currentUserForms);
         //        }
         //    }
-        //    callback(Forms);
-        //}
+        //};
         //
-        //function updateFormById (formId, newForm,callback){
-        //    var updateForm = null;
-        //    for (var i = 0; i < Forms.length; i++) {
-        //        if (Forms[i]._id == formId) {
-        //            Forms[i] = newForm;
-        //            updateForm =  Forms[i];
+        //FormService.updateFormById = function(formId, newForm, callback) {
+        //
+        //    var formIndex;
+        //    for(formIndex in Forms){
+        //        var form = Forms[formIndex];
+        //        if(formId === form._id){
+        //            form.title = newForm.title;
+        //            callback(form);
         //        }
         //    }
-        //    callback(updateForm);
-        //}
-
-        FormService.createFormForUser = function(userId, form, callback) {
-            form._id = (new Date).getTime();
-            form.userId = userId;
-            form.title = form.name;
-            Forms.push(form);
-            callback(form);
-        };
-
-        FormService.findAllFormsForUser = function(userId, callback) {
-
-            var formIndex;
-            var userForms = [];
-            for(formIndex in Forms){
-                var form = Forms[formIndex];
-                if(userId === form.userId){
-                    userForms.push(form);
-                }
-            }
-            callback(userForms);
-        };
-
-        FormService.deleteFormById = function(formId,currentUserForms,callback) {
-
-            var formIndex;
-            for(formIndex in currentUserForms){
-                var form = currentUserForms[formIndex];
-                if(formId === form._id){
-                    currentUserForms.splice(formIndex, 1);
-                    callback(currentUserForms);
-                }
-            }
-        };
-
-        FormService.updateFormById = function(formId, newForm, callback) {
-
-            var formIndex;
-            for(formIndex in Forms){
-                var form = Forms[formIndex];
-                if(formId === form._id){
-                    form.title = newForm.title;
-                    callback(form);
-                }
-            }
-        };
-
-        FormService.setLoggedUserForms = function (Forms) {
-            $rootScope.loggedUserForms = Forms;
-        };
-
-        return {
-            Forms: Forms,
-            createFormForUser: FormService.createFormForUser,
-            findAllFormsForUser : FormService.findAllFormsForUser,
-            deleteFormById : FormService.deleteFormById,
-            updateFormById : FormService.updateFormById,
-            setLoggedUserForms : FormService.setLoggedUserForms
-        };
+        //};
+        //
+        //FormService.setLoggedUserForms = function (Forms) {
+        //    $rootScope.loggedUserForms = Forms;
+        //};
+        //
+        //return {
+        //    Forms: Forms,
+        //    createFormForUser: FormService.createFormForUser,
+        //    findAllFormsForUser : FormService.findAllFormsForUser,
+        //    deleteFormById : FormService.deleteFormById,
+        //    updateFormById : FormService.updateFormById,
+        //    setLoggedUserForms : FormService.setLoggedUserForms
+        //};
 
     }
 })();

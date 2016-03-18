@@ -9,60 +9,51 @@
 
     function FormController($scope, $rootScope, $location, FormService) {
 
-        // Using the FormService, get the current array of forms for the currently
-        // logged in user and make them available for the view to render
-        if($rootScope.loggedUser){
+        $scope.selectedFormIndex = null;
+        var currentForm = {};
 
-            FormService.findAllFormsForUser($rootScope.loggedUser._id,
-                function(response){
-                    $scope.loggedUserForms = response;
-                    FormService.setLoggedUserForms(response);
+        FormService.findAllFormsForUser($rootScope.loggedUser._id,
+            function(response){
+                $scope.loggedUserForms = response;
+            });
+
+        $scope.addForm = function() {
+            if($scope.formName!=null) {
+                currentForm.title = $scope.formName;
+                FormService.createFormForUser($rootScope.loggedUser._id, currentForm,
+                    function(callback){
+                        $scope.loggedUserForms.push(callback);
+                    });
+                $scope.formName = null;
+                currentForm = {};
+            }
+        };
+
+        $scope.updateForm = function(){
+            if($scope.formName!=null && $scope.selectedFormIndex!=null) {
+                currentForm = $scope.loggedUserForms[$scope.selectedFormIndex];
+                currentForm.title = $scope.formName;
+                FormService.updateFormById(currentForm._id, currentForm,
+                    function (callback){
+                        $scope.loggedUserForms[$scope.selectedFormIndex] = callback;
+                    });
+                currentForm = {};
+                $scope.formName = null;
+                $scope.selectedFormIndex = null;
+            }
+        };
+
+        $scope.deleteForm = function(index){
+            currentForm = $scope.loggedUserForms[index];
+            FormService.deleteFormById(currentForm._id,
+                function(callback){
+                    $scope.loggedUserForms.splice(index,1);
                 });
-        }
-
-        //event handler addForm()
-        var addUserForms = function(form) {
-            var loggedUserForms = $rootScope.loggedUserForms;
-            if (loggedUserForms != null) {
-                loggedUserForms.push(form);
-            }
-            FormService.setLoggedUserForms(loggedUserForms);
-            $scope.form = null;
         };
 
-        $scope.addForm = function(form) {
-            FormService.createFormForUser($rootScope.loggedUser._id,form,addUserForms);
-        };
-
-        // update form handler
-        $scope.updateForm = function(form) {
-            if(formIndex != null) {
-                var currentUserForms = $rootScope.loggedUserForms;
-                currentUserForms[formIndex].title = form.name;
-                FormService.setLoggedUserForms(currentUserForms);
-                $scope.form = null;
-                formIndex = null;
-            }
-        };
-
-        var formIndex;
-        //event handler selectForm
-        $scope.selectForm = function(index) {
-
-            formIndex = index;
-            $scope.form = $rootScope.loggedUserForms[index];
-            $scope.form.name = $scope.form.title;
-
-        };
-
-        // delete form handler
-        var deleteUserForms = function(userForms) {
-            FormService.setLoggedUserForms(userForms);
-        };
-
-        $scope.deleteForm = function(index) {
-            var currentUserForms = $rootScope.loggedUserForms;
-            FormService.deleteFormById(currentUserForms[index]._id,currentUserForms,deleteUserForms);
+        $scope.selectForm = function(index){
+            $scope.selectedFormIndex = index;
+            $scope.formName = $scope.loggedUserForms[index].title;
         }
     }
 

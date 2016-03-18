@@ -37,11 +37,13 @@
                 $scope.message = "Please enter LastName";
                 return;
             }
-            UserService.updateUser($scope.user._id,user,
-                function (callback){
-                    $rootScope.loggedUser = callback;
-                });
-            $location.path('/profile');
+
+            UserService.updateUser($scope.user._id,user).then(
+                function (response){
+                    $rootScope.loggedUser = response.data;
+                    $location.path('/profile');
+            });
+
         };
 
     }

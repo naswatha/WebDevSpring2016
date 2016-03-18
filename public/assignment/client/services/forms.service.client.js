@@ -5,7 +5,7 @@
         .module("FormBuilderApp")
         .factory("FormService",FormService);
 
-    function FormService($rootScope){
+    function FormService($rootScope,$http){
 
         var service = {
             createFormForUser: createFormForUser,
@@ -33,7 +33,7 @@
 
         function updateFormById (formId, newForm){
             var url = "/api/assignment/form/"+formId;
-            return $http.post(url,newForm);
+            return $http.put(url,newForm);
         }
     }
 })();

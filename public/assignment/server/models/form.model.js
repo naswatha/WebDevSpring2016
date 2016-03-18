@@ -26,9 +26,10 @@ module.exports = function(app){
     function create(userId, form) {
 
         form.userId = userId;
-        form.id = (new Date).getTime();
+        form._id = (new Date).getTime();
+        form.fields = [];
         forms.push(form);
-        return findFormByUserId(userId);
+        return form;
     }
 
     function findAll() {
@@ -38,7 +39,7 @@ module.exports = function(app){
     function findById(id) {
         for(var i = 0; i < forms.length; i++) {
             var form = forms[i];
-            if(form.id == id){
+            if(form._id == id){
                 return form;
             }
         }
@@ -58,7 +59,7 @@ module.exports = function(app){
 
     function update(id, form){
         for(var i = 0; i < forms.length; i++) {
-            if(forms[i].id == id) {
+            if(forms[i]._id == id) {
                 forms[i] = form;
                 return;
             }
@@ -67,7 +68,7 @@ module.exports = function(app){
 
     function remove(id){
         for(var i = 0; i <  forms.length; i++){
-            if(forms[i].id == id){
+            if(forms[i]._id == id){
                 forms.splice(i, 1);
                 return;
             }
@@ -77,7 +78,7 @@ module.exports = function(app){
     function findFieldsByFormId(id){
         for(var i = 0; i < forms.length; i++) {
             var form = forms[i];
-            if(form.id == id){
+            if(form._id == id){
                 return form.fields;
             }
         }
@@ -87,10 +88,10 @@ module.exports = function(app){
     function findFieldById(formId, fieldId){
 
         for(var j = 0; j < forms.length; j++) {
-            if(forms[j].id == formId){
+            if(forms[j]._id == formId){
                 for (var i = 0; i < forms[j].fields.length; i++) {
                     var field = forms[j].fields[i];
-                    if (field.id == fieldId) {
+                    if (field._id == fieldId) {
                         return field;
                     }
                 }
@@ -102,9 +103,9 @@ module.exports = function(app){
     function removeField(formId, fieldId){
 
         for(var j = 0; j < forms.length; j++) {
-            if(forms[j].id == formId){
+            if(forms[j]._id == formId){
                 for (var i = 0; i < forms[j].fields.length; i++) {
-                    if(forms[j].fields[i].id == fieldId){
+                    if(forms[j].fields[i]._id == fieldId){
                         forms[j].fields.splice(i, 1);
                         return forms[j].fields;
                     }
@@ -115,9 +116,9 @@ module.exports = function(app){
 
     function createField(formId, field){
 
-        field.id = (new Date).getTime();
+        field._id = (new Date).getTime();
         for(var i = 0; i < forms.length; i++){
-            if(forms[i].id == formId){
+            if(forms[i]._id == formId){
                 forms[i].fields.push(field);
                 return forms[i].fields;
             }
@@ -127,9 +128,9 @@ module.exports = function(app){
     function updateField(formId, fieldId, field){
 
         for(var j = 0; j < forms.length; j++) {
-            if(forms[j].id == formId){
+            if(forms[j]._id == formId){
                 for (var i = 0; i < forms[j].fields.length; i++) {
-                    if(forms[j].fields[i].id == fieldId){
+                    if(forms[j].fields[i]._id == fieldId){
                         forms[j].fields[i] = field;
                         return forms[j].fields;
                     }

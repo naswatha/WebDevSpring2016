@@ -44,7 +44,7 @@
 
         function updateUser (userId,user){
             var url = "/api/assignment/user/"+userId;
-            return $http.post(url,user);
+            return $http.put(url,user);
         }
     }
 })();

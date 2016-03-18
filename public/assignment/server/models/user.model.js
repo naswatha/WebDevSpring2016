@@ -21,8 +21,10 @@ module.exports = function(app){
     return api;
 
     function create(user) {
+        console.log(user);
+        user._id = (new Date).getTime();
         users.push(user);
-        return users;
+        return user;
     }
 
     function findAll() {
@@ -32,7 +34,7 @@ module.exports = function(app){
     function findById(id) {
         for(var i = 0; i < users.length; i++) {
             var user = users[i];
-            if(user.id == id){
+            if(user._id == id){
                 return user;
             }
         }
@@ -41,16 +43,16 @@ module.exports = function(app){
 
     function update(id, user){
         for(var i = 0; i < users.length; i++) {
-            if(users[i].id == id) {
+            if(users[i]._id == id) {
                 users[i] = user;
-                return users;
+                return users[i];
             }
         }
     }
 
     function remove(id){
         for(var i = 0; i <  users.length; i++){
-            if(users[i].id == id){
+            if(users[i]._id == id){
                 users.splice(i, 1);
             }
         }

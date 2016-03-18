@@ -28,19 +28,19 @@
                 $scope.message = "Please enter Password";
                 return;
             }
-            UserService.findUserByCredentials(user.username,user.password,
-                function (callback){
-                    if(callback == null){
-                        $scope.message = "Entered Username and Password not match!";
-                    }else{
-                        $rootScope.loggedUser = callback;
-                        $location.path('/profile');
-                    }
-                });
+            UserService.findUserByCredentials(user.username,user.password).then(
+                    function (response){
+                        if(response.data == null){
+                            $scope.message = "Username and Password does not match, new User please register";
+                        }
+                        else{
+                            $rootScope.loggedUser = response.data;
+                            $location.path("/profile");
+                        }
+
+                    });
         };
-
     }
-
 })();
 
 

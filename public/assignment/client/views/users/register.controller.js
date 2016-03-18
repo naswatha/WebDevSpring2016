@@ -15,7 +15,7 @@
             //implement event handler register()
             $scope.register = function(user){
 
-                console.log(user);
+                //console.log(user);
 
                 if(user == null){
                     $scope.message = "Please enter details to register";
@@ -39,9 +39,10 @@
 
 
                 //userService to create new user
-                UserService.createUser(user,
-                    function (callback){
-                        $rootScope.loggedUser = callback;
+                UserService.createUser(user).then(
+                    function (response){
+                        console.log(response);
+                        $rootScope.loggedUser = response.data;
                     });
                 $location.path('/profile');
             };

@@ -17,7 +17,6 @@ module.exports = function(app,model){
     }
 
     function getFormById(req, res){
-        console.log(res.json(model.findById(req.params.formId)));
         res.json(model.findById(req.params.formId));
     }
 

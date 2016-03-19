@@ -7,7 +7,7 @@
         .module("FormBuilderApp")
         .factory("FieldService",FieldService);
 
-    function FieldService($rootScope){
+    function FieldService($http){
 
         var service = {
             createFieldForForm: createFieldForForm,
@@ -36,7 +36,7 @@
 
         function deleteFieldFromForm(formId,fieldId){
             var url = "/api/assignment/form/"+formId+"/field/"+fieldId;
-            return $http.get(url);
+            return $http.delete(url);
         }
 
         function updateField(formId,fieldId,field){

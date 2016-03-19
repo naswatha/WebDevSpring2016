@@ -10,7 +10,7 @@
             </div>
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="forms.view.html">Forms</a></li>
-                <li><a href="#">Fields</a></li>
+                <li><a href="#/field">Fields</a></li>
             </ul>
 
             <div class="tab-content">
@@ -35,7 +35,7 @@
                                 </td>
                             </tr>
                             <tr ng-repeat="form in loggedUserForms">
-                                <td> {{form.title}} </td>
+                                <td><a href="#/form/{{form._id}}/fields" ng-click="loggedUser.formName = form.title">{{form.title}}</a></td>
                                 <td>
                                     <div class="btn-group">
                                         <a class="btn btn-default" ng-click="deleteForm($index)"><i class="fa fa-times"></i></a>

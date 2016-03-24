@@ -4,23 +4,23 @@
         <!--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">-->
         <div class="main">
             <h1 class="page-header">Create New Workout</h1>
-            <form class="form-horizontal">
+            <form class="form-horizontal" ng-show="!displaySuccessFlag">
                 <div class="form-group">
                     <label for="inputWorkoutName" class="col-sm-2 control-label">Workout Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputWorkoutName" placeholder="workout name">
+                        <input type="text" ng-model = "workoutPlan.name" class="form-control" id="inputWorkoutName" placeholder="workout name">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputDesc" class="col-sm-2 control-label">Description</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputDesc" placeholder="Description">
+                        <input type="text" ng-model = "workoutPlan.description" class="form-control" id="inputDesc" placeholder="Description">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputStartDate" class="col-sm-2 control-label">Start Date</label>
                     <div class="col-sm-10">
-                        <input type="date" class="form-control" id="inputStartDate" placeholder="Select Date">
+                        <input type="date" ng-model = "workoutPlan.startDate" class="form-control" id="inputStartDate" placeholder="Select Date">
                     </div>
                 </div>
                 <div class="form-group">
@@ -39,8 +39,10 @@
                     <tbody>
                     <tr>
                         <td><h4>Week : {{index.weekNum}}</h4></td>
-                        <td><input ng-model="weekArray.wDescription" class="form-control" type="text" placeholder="description"/></td>
+                        <!--<td><input ng-model="weekArray.wDescription" class="form-control" type="text" placeholder="description"/></td>-->
                     </tr>
+
+                    <!--Sunday-->
                     <tr>
                         <td width="20%">Sunday</td>
                         <td>
@@ -58,7 +60,6 @@
                             </div>
                         </td>
                     </tr>
-
                     <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Sunday">
                         <td><label>{{exer.eName}}</label></td>
                         <td><label>{{exer.reps}}</label></td>
@@ -69,6 +70,7 @@
                         </td>
                     </tr>
 
+                    <!--Monday-->
                     <tr>
                         <td width="20%">Monday</td>
                         <td>
@@ -86,7 +88,6 @@
                             </div>
                         </td>
                     </tr>
-
                     <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Monday">
                         <td><label>{{exer.eName}}</label></td>
                         <td><label>{{exer.reps}}</label></td>
@@ -97,98 +98,176 @@
                         </td>
                     </tr>
 
+                    <!--Tuesday-->
                     <tr>
                         <td width="20%">Tuesday</td>
                         <td>
-                            <input ng-model="week.Monday" type="text" class="form-control" placeholder="Exercise name"/>
+                            <input ng-model="tueExerciseData.name" type="text" class="form-control" placeholder="Exercise name"/>
                         </td>
                         <td align="center">Reps :
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
+                            <input type="number" ng-model="tueExerciseData.rep1" min="1" max="16">
+                            <input type="number" ng-model="tueExerciseData.rep2" min="1" max="16">
+                            <input type="number" ng-model="tueExerciseData.rep3" min="1" max="16">
+                            <input type="number" ng-model="tueExerciseData.rep4" min="1" max="16">
                         </td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-plus"></i></a>
+                                <a class="btn btn-default" ng-click="addTuesday(index.weekNum)"><i class="fa fa-plus"></i></a>
                             </div>
                         </td>
                     </tr>
+                    <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Tuesday">
+                        <td><label>{{exer.eName}}</label></td>
+                        <td><label>{{exer.reps}}</label></td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-default" ng-click=""><i class="fa fa-remove"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!--Wednesday-->
                     <tr>
                         <td width="20%">Wednesday</td>
                         <td>
-                            <input ng-model="week.Monday" type="text" class="form-control" placeholder="Exercise name"/>
+                            <input ng-model="wedExerciseData.name" type="text" class="form-control" placeholder="Exercise name"/>
                         </td>
                         <td align="center">Reps :
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
+                            <input type="number" ng-model="wedExerciseData.rep1" min="1" max="16">
+                            <input type="number" ng-model="wedExerciseData.rep2" min="1" max="16">
+                            <input type="number" ng-model="wedExerciseData.rep3" min="1" max="16">
+                            <input type="number" ng-model="wedExerciseData.rep4" min="1" max="16">
                         </td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-plus"></i></a>
+                                <a class="btn btn-default" ng-click="addWednesday(index.weekNum)"><i class="fa fa-plus"></i></a>
                             </div>
                         </td>
                     </tr>
+                    <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Wednesday">
+                        <td><label>{{exer.eName}}</label></td>
+                        <td><label>{{exer.reps}}</label></td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-default" ng-click=""><i class="fa fa-remove"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!--Thursday-->
                     <tr>
                         <td width="20%">Thursday</td>
                         <td>
-                            <input ng-model="week.Monday" type="text" class="form-control" placeholder="Exercise name"/>
+                            <input ng-model="thurExerciseData.name" type="text" class="form-control" placeholder="Exercise name"/>
                         </td>
                         <td align="center">Reps :
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
+                            <input type="number" ng-model="thurExerciseData.rep1" min="1" max="16">
+                            <input type="number" ng-model="thurExerciseData.rep2" min="1" max="16">
+                            <input type="number" ng-model="thurExerciseData.rep3" min="1" max="16">
+                            <input type="number" ng-model="thurExerciseData.rep4" min="1" max="16">
                         </td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-plus"></i></a>
+                                <a class="btn btn-default" ng-click="addThursday(index.weekNum)"><i class="fa fa-plus"></i></a>
                             </div>
                         </td>
                     </tr>
+                    <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Thursday">
+                        <td><label>{{exer.eName}}</label></td>
+                        <td><label>{{exer.reps}}</label></td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-default" ng-click=""><i class="fa fa-remove"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!--Friday-->
                     <tr>
                         <td width="20%">Friday</td>
                         <td>
-                            <input ng-model="week.Monday" type="text" class="form-control" placeholder="Exercise name"/>
+                            <input ng-model="friExerciseData.name" type="text" class="form-control" placeholder="Exercise name"/>
                         </td>
                         <td align="center">Reps :
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
+                            <input type="number" ng-model="friExerciseData.rep1" min="1" max="16">
+                            <input type="number" ng-model="friExerciseData.rep2" min="1" max="16">
+                            <input type="number" ng-model="friExerciseData.rep3" min="1" max="16">
+                            <input type="number" ng-model="friExerciseData.rep4" min="1" max="16">
                         </td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-plus"></i></a>
+                                <a class="btn btn-default" ng-click="addFriday(index.weekNum)"><i class="fa fa-plus"></i></a>
                             </div>
                         </td>
                     </tr>
+                    <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Friday">
+                        <td><label>{{exer.eName}}</label></td>
+                        <td><label>{{exer.reps}}</label></td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-default" ng-click=""><i class="fa fa-remove"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!--Saturday-->
                     <tr>
                         <td width="20%">Saturday</td>
                         <td>
-                            <input ng-model="week.Monday" type="text" class="form-control" placeholder="Exercise name"/>
+                            <input ng-model="satExerciseData.name" type="text" class="form-control" placeholder="Exercise name"/>
                         </td>
                         <td align="center">Reps :
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
+                            <input type="number" ng-model="satExerciseData.rep1" min="1" max="16">
+                            <input type="number" ng-model="satExerciseData.rep2" min="1" max="16">
+                            <input type="number" ng-model="satExerciseData.rep3" min="1" max="16">
+                            <input type="number" ng-model="satExerciseData.rep4" min="1" max="16">
                         </td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-plus"></i></a>
+                                <a class="btn btn-default" ng-click="addSaturday(index.weekNum)"><i class="fa fa-plus"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Saturday">
+                        <td><label>{{exer.eName}}</label></td>
+                        <td><label>{{exer.reps}}</label></td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-default" ng-click=""><i class="fa fa-remove"></i></a>
                             </div>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-            </div>
-                <div class="col-sm-offset-2 col-sm-10" ng-show="addTableFlag">
-                <button class="btn btn-block" ng-click="createWorkout()">Create</button>
                 </div>
+                    <div class="col-sm-offset-2 col-sm-10" ng-show="addTableFlag">
+                    <button class="btn btn-block" ng-click="createWorkout()">Create</button>
+                    </div>
             </form>
+            <!--display workout has been successfully created.-->
+            <div class="table-responsive" ng-show="displaySuccessFlag">
+                <label><h4>Workout with the following detials has been successfully created, please go to My Workout tab to view the details and make this active.</h4></label>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td><h3>Name</h3></td>
+                        <td><h3>{{createdWorkout.name}}</h3></td>
+                    </tr>
+                    <tr>
+                        <td><h3>Description</h3></td>
+                        <td><h3>{{createdWorkout.description}}</h3></td>
+                    </tr>
+                    <!--<tr>-->
+                    <!--<td>Start Date</td>-->
+                    <!--<td> {{createdWorkout.startDate}} </td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                    <!--<td>Current Date</td>-->
+                    <!--<td> {{currentDate}} </td>-->
+                    <!--</tr>-->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

@@ -282,11 +282,26 @@
 
         return service;
 
-        function createWorkout (userId,workout,callback){
-            workout._id = (new Date).getTime();
-            workout.userId = userId;
-            Workouts.push(workout);
-            callback(workout);
+        function createWorkout (workout,userId,workoutDetails,callback){
+            var userDet = [];
+            var currentUser = {};
+            currentUser.userId = userId;
+            currentUser.active = 0;
+            userDet.push(currentUser);
+
+            var newWorkout = {};
+            newWorkout.weeks = workout;
+            newWorkout._id = (new Date).getTime();
+            newWorkout.name = workoutDetails.name;
+            newWorkout.description = workoutDetails.description;
+            newWorkout.public = 0;
+            newWorkout.userDetails = userDet;
+
+
+            //console.log(newWorkout);
+            Workouts.push(newWorkout);
+            console.log(Workouts);
+            callback(newWorkout);
         }
 
         function findAllPublicWorkouts (callback){
@@ -318,6 +333,8 @@
                     }
                 }
             }
+            console.log(Workouts);
+            console.log(userWorkouts);
             callback(userWorkouts);
         }
 

@@ -38,49 +38,65 @@
                 <table class="table table-striped">
                     <tbody>
                     <tr>
-                        <td><h4>Week : {{index}}</h4></td>
-                        <!--saveWeekDescription() method used to reflect the description that's it-->
-                        <td><input ng-model="week.wDescription" class="form-control" type="text" placeholder="name"/></td>
-                        <td>
-                            <div class="btn-group" ng-click="saveWeekDescription(week.wDescription,$index)">
-                                <a class="btn btn-default"><i class="fa fa-save"></i></a>
-                            </div>
-                        </td>
+                        <td><h4>Week : {{index.weekNum}}</h4></td>
+                        <td><input ng-model="weekArray.wDescription" class="form-control" type="text" placeholder="description"/></td>
                     </tr>
                     <tr>
                         <td width="20%">Sunday</td>
                         <td>
-                            <input ng-model="week.Sunday" type="text" class="form-control" placeholder="Exercise name"/>
+                            <input ng-model="sunExerciseData.name" type="text" class="form-control" placeholder="Exercise name"/>
                         </td>
                         <td align="center">Reps :
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                        </td>
-                        <td>
-                            <div class="btn-group" ng-click="addSunday()">
-                                <a class="btn btn-default"><i class="fa fa-plus"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="20%">Monday</td>
-                        <td>
-                            <input ng-model="week.Monday" type="text" class="form-control" placeholder="Exercise name"/>
-                        </td>
-                        <td align="center">Reps :
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
+                            <input type="number" ng-model="sunExerciseData.rep1" min="1" max="16">
+                            <input type="number" ng-model="sunExerciseData.rep2" min="1" max="16">
+                            <input type="number" ng-model="sunExerciseData.rep3" min="1" max="16">
+                            <input type="number" ng-model="sunExerciseData.rep4" min="1" max="16">
                         </td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-plus"></i></a>
+                                <a class="btn btn-default" ng-click="addSunday(index.weekNum)"><i class="fa fa-plus"></i></a>
                             </div>
                         </td>
                     </tr>
+
+                    <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Sunday">
+                        <td><label>{{exer.eName}}</label></td>
+                        <td><label>{{exer.reps}}</label></td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-default" ng-click=""><i class="fa fa-remove"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="20%">Monday</td>
+                        <td>
+                            <input ng-model="monExerciseData.name" type="text" class="form-control" placeholder="Exercise name"/>
+                        </td>
+                        <td align="center">Reps :
+                            <input type="number" ng-model="monExerciseData.rep1" min="1" max="16">
+                            <input type="number" ng-model="monExerciseData.rep2" min="1" max="16">
+                            <input type="number" ng-model="monExerciseData.rep3" min="1" max="16">
+                            <input type="number" ng-model="monExerciseData.rep4" min="1" max="16">
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-default" ng-click="addMonday(index.weekNum)"><i class="fa fa-plus"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Monday">
+                        <td><label>{{exer.eName}}</label></td>
+                        <td><label>{{exer.reps}}</label></td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-default" ng-click=""><i class="fa fa-remove"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+
                     <tr>
                         <td width="20%">Tuesday</td>
                         <td>
@@ -169,320 +185,10 @@
                     </tbody>
                 </table>
             </div>
+                <div class="col-sm-offset-2 col-sm-10" ng-show="addTableFlag">
+                <button class="btn btn-block" ng-click="createWorkout()">Create</button>
+                </div>
             </form>
-
-
-
-
-            <!--<div class="table-responsive">-->
-                <!--<table class="table table-striped">-->
-                    <!--<tbody>-->
-                    <!--<tr>-->
-                        <!--<td><h4>Week 1</h4></td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td width="20%">Sunday</td>-->
-                        <!--<td>-->
-                            <!--<input type="text" class="form-control" placeholder="Exercise name"/>-->
-                        <!--</td>-->
-                        <!--<td width="5%">-->
-                            <!--<a class="btn btn-default"><i class="fa fa-search"></i></a>-->
-                        <!--</td>-->
-                        <!--<td align="left">Reps :-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<div class="btn-group">-->
-                                <!--<a class="btn btn-default"><i class="fa fa-plus"></i></a>-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td>Leg Extension</td>-->
-                        <!--<td> 8 - 6 - 8 </td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td>Leg curls (sitting)</td>-->
-                        <!--<td> 10 - 12 </td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td>Leg curls (standing)</td>-->
-                        <!--<td> 10 - 12 - 10</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td width="12%">Monday</td>-->
-                        <!--<td>-->
-                            <!--<input type="text" class="form-control" placeholder="Exercise name"/>-->
-                        <!--</td>-->
-                        <!--<td width="5%">-->
-                            <!--<a class="btn btn-default"><i class="fa fa-search"></i></a>-->
-                        <!--</td>-->
-                        <!--<td align="left">Reps :-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<div class="btn-group">-->
-                                <!--<a class="btn btn-default"><i class="fa fa-plus"></i></a>-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td>Rest</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td width="12%">Tuesday</td>-->
-                        <!--<td>-->
-                            <!--<input type="text" class="form-control" placeholder="Exercise name"/>-->
-                        <!--</td>-->
-                        <!--<td width="5%">-->
-                            <!--<a class="btn btn-default"><i class="fa fa-search"></i></a>-->
-                        <!--</td>-->
-                        <!--<td align="left">Reps :-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<div class="btn-group">-->
-                                <!--<a class="btn btn-default"><i class="fa fa-plus"></i></a>-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td width="12%">Wednesday</td>-->
-                        <!--<td>-->
-                            <!--<input type="text" class="form-control" placeholder="Exercise name"/>-->
-                        <!--</td>-->
-                        <!--<td width="5%">-->
-                            <!--<a class="btn btn-default"><i class="fa fa-search"></i></a>-->
-                        <!--</td>-->
-                        <!--<td align="left">Reps :-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<div class="btn-group">-->
-                                <!--<a class="btn btn-default"><i class="fa fa-plus"></i></a>-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td width="12%">Thursday</td>-->
-                        <!--<td>-->
-                            <!--<input type="text" class="form-control" placeholder="Exercise name"/>-->
-                        <!--</td>-->
-                        <!--<td width="5%">-->
-                            <!--<a class="btn btn-default"><i class="fa fa-search"></i></a>-->
-                        <!--</td>-->
-                        <!--<td align="left">Reps :-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<div class="btn-group">-->
-                                <!--<a class="btn btn-default"><i class="fa fa-plus"></i></a>-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td width="12%">Friday</td>-->
-                        <!--<td>-->
-                            <!--<input type="text" class="form-control" placeholder="Exercise name"/>-->
-                        <!--</td>-->
-                        <!--<td width="5%">-->
-                            <!--<a class="btn btn-default"><i class="fa fa-search"></i></a>-->
-                        <!--</td>-->
-                        <!--<td align="left">Reps :-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<div class="btn-group">-->
-                                <!--<a class="btn btn-default"><i class="fa fa-plus"></i></a>-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td width="12%">Saturday</td>-->
-                        <!--<td>-->
-                            <!--<input type="text" class="form-control" placeholder="Exercise name"/>-->
-                        <!--</td>-->
-                        <!--<td width="5%">-->
-                            <!--<a class="btn btn-default"><i class="fa fa-search"></i></a>-->
-                        <!--</td>-->
-                        <!--<td align="left">Reps :-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<div class="btn-group">-->
-                                <!--<a class="btn btn-default"><i class="fa fa-plus"></i></a>-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td><h4>Week 1</h4></td>-->
-                    <!--</tr>-->
-                    <!--<td width="12%">Sunday</td>-->
-                    <!--<td>-->
-                        <!--<input type="text" class="form-control" placeholder="Exercise name"/>-->
-                    <!--</td>-->
-                    <!--<td width="5%">-->
-                        <!--<a class="btn btn-default"><i class="fa fa-search"></i></a>-->
-                    <!--</td>-->
-                    <!--<td align="left">Reps :-->
-                        <!--<input type="text" maxlength="2" size="2">-->
-                        <!--<input type="text" maxlength="2" size="2">-->
-                        <!--<input type="text" maxlength="2" size="2">-->
-                        <!--<input type="text" maxlength="2" size="2">-->
-                    <!--</td>-->
-                    <!--<td>-->
-                        <!--<div class="btn-group">-->
-                            <!--<a class="btn btn-default"><i class="fa fa-plus"></i></a>-->
-                        <!--</div>-->
-                    <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td width="12%">Monday</td>-->
-                        <!--<td>-->
-                            <!--<input type="text" class="form-control" placeholder="Exercise name"/>-->
-                        <!--</td>-->
-                        <!--<td width="5%">-->
-                            <!--<a class="btn btn-default"><i class="fa fa-search"></i></a>-->
-                        <!--</td>-->
-                        <!--<td align="left">Reps :-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<div class="btn-group">-->
-                                <!--<a class="btn btn-default"><i class="fa fa-plus"></i></a>-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td width="12%">Tuesday</td>-->
-                        <!--<td>-->
-                            <!--<input type="text" class="form-control" placeholder="Exercise name"/>-->
-                        <!--</td>-->
-                        <!--<td width="5%">-->
-                            <!--<a class="btn btn-default"><i class="fa fa-search"></i></a>-->
-                        <!--</td>-->
-                        <!--<td align="left">Reps :-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<div class="btn-group">-->
-                                <!--<a class="btn btn-default"><i class="fa fa-plus"></i></a>-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td width="12%">Wednesday</td>-->
-                        <!--<td>-->
-                            <!--<input type="text" class="form-control" placeholder="Exercise name"/>-->
-                        <!--</td>-->
-                        <!--<td width="5%">-->
-                            <!--<a class="btn btn-default"><i class="fa fa-search"></i></a>-->
-                        <!--</td>-->
-                        <!--<td align="left">Reps :-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<div class="btn-group">-->
-                                <!--<a class="btn btn-default"><i class="fa fa-plus"></i></a>-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td width="12%">Thursday</td>-->
-                        <!--<td>-->
-                            <!--<input type="text" class="form-control" placeholder="Exercise name"/>-->
-                        <!--</td>-->
-                        <!--<td width="5%">-->
-                            <!--<a class="btn btn-default"><i class="fa fa-search"></i></a>-->
-                        <!--</td>-->
-                        <!--<td align="left">Reps :-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<div class="btn-group">-->
-                                <!--<a class="btn btn-default"><i class="fa fa-plus"></i></a>-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td width="12%">Friday</td>-->
-                        <!--<td>-->
-                            <!--<input type="text" class="form-control" placeholder="Exercise name"/>-->
-                        <!--</td>-->
-                        <!--<td width="5%">-->
-                            <!--<a class="btn btn-default"><i class="fa fa-search"></i></a>-->
-                        <!--</td>-->
-                        <!--<td align="left">Reps :-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<div class="btn-group">-->
-                                <!--<a class="btn btn-default"><i class="fa fa-plus"></i></a>-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td width="12%">Saturday</td>-->
-                        <!--<td>-->
-                            <!--<input type="text" class="form-control" placeholder="Exercise name"/>-->
-                        <!--</td>-->
-                        <!--<td width="5%">-->
-                            <!--<a class="btn btn-default"><i class="fa fa-search"></i></a>-->
-                        <!--</td>-->
-                        <!--<td align="left">Reps :-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                            <!--<input type="text" maxlength="2" size="2">-->
-                        <!--</td>-->
-                        <!--<td>-->
-                            <!--<div class="btn-group">-->
-                                <!--<a class="btn btn-default"><i class="fa fa-plus"></i></a>-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--</tbody>-->
-                <!--</table>-->
-                <!--<div class="col-sm-offset-2 col-sm-10">-->
-                    <!--<button class="btn btn-block">Create</button>-->
-                <!--</div>-->
-            <!--</div>-->
         </div>
     </div>
 </div>

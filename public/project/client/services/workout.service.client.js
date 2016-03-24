@@ -122,7 +122,7 @@
                                             "reps": [10,12,10],
                                             "achievedReps": []
 
-                                    },
+                                        },
                                         {
                                             "eName":"Crunches with Cable",
                                             "sets": 3,

@@ -67,6 +67,12 @@
             return(workout.public == 0);
         };
 
+        $scope.viewWorkout = function(workout){
+            console.log("Here");
+            $rootScope.displayWorkout = workout;
+            $location.path('/view-workout');
+        };
+
     }
 
 })();

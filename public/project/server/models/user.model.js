@@ -1,7 +1,7 @@
 /**
  * Created by Naveen on 3/16/2016.
  */
-    "use strict";
+"use strict";
 module.exports = function(app){
 
     var users = require("./user.mock.json");

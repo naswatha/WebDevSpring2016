@@ -21,13 +21,13 @@
                         <td>
                             <div class="btn-group">
                                 <a class="btn btn-default" ng-click="deleteWorkout($index)"><i class="fa fa-times"></i></a>
-                                <a class="btn btn-default" ng-click="editWorkout($index)"><i class="fa fa-pencil"></i></a>
+                                <a class="btn btn-default" ng-click="viewWorkout(workout)"><i class="fa fa-eye"></i></a>
                             </div>
                         </td>
                         <td><input ng-show="showActive(workout)" type="radio" ng-click="makeActive($index)" name="activeWork"></td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-default" ng-show="workout.public == 0" ng-click="makeWorkoutPublic($index)"><i class="fa fa-check"></i></a>
+                                <a class="btn btn-default" ng-show="showPublic(workout)" ng-click="makeWorkoutPublic($index)"><i class="fa fa-check"></i></a>
                             </div>
                         </td>
                     </tr>

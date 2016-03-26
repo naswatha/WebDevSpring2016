@@ -63,11 +63,6 @@
                     <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Sunday">
                         <td><label>{{exer.eName}}</label></td>
                         <td><label>{{exer.reps}}</label></td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default" ng-click=""><i class="fa fa-remove"></i></a>
-                            </div>
-                        </td>
                     </tr>
 
                     <!--Monday-->
@@ -91,11 +86,6 @@
                     <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Monday">
                         <td><label>{{exer.eName}}</label></td>
                         <td><label>{{exer.reps}}</label></td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default" ng-click=""><i class="fa fa-remove"></i></a>
-                            </div>
-                        </td>
                     </tr>
 
                     <!--Tuesday-->
@@ -119,11 +109,6 @@
                     <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Tuesday">
                         <td><label>{{exer.eName}}</label></td>
                         <td><label>{{exer.reps}}</label></td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default" ng-click=""><i class="fa fa-remove"></i></a>
-                            </div>
-                        </td>
                     </tr>
 
                     <!--Wednesday-->
@@ -147,11 +132,6 @@
                     <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Wednesday">
                         <td><label>{{exer.eName}}</label></td>
                         <td><label>{{exer.reps}}</label></td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default" ng-click=""><i class="fa fa-remove"></i></a>
-                            </div>
-                        </td>
                     </tr>
 
                     <!--Thursday-->
@@ -175,11 +155,6 @@
                     <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Thursday">
                         <td><label>{{exer.eName}}</label></td>
                         <td><label>{{exer.reps}}</label></td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default" ng-click=""><i class="fa fa-remove"></i></a>
-                            </div>
-                        </td>
                     </tr>
 
                     <!--Friday-->
@@ -203,11 +178,6 @@
                     <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Friday">
                         <td><label>{{exer.eName}}</label></td>
                         <td><label>{{exer.reps}}</label></td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default" ng-click=""><i class="fa fa-remove"></i></a>
-                            </div>
-                        </td>
                     </tr>
 
                     <!--Saturday-->
@@ -231,17 +201,12 @@
                     <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Saturday">
                         <td><label>{{exer.eName}}</label></td>
                         <td><label>{{exer.reps}}</label></td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default" ng-click=""><i class="fa fa-remove"></i></a>
-                            </div>
-                        </td>
                     </tr>
                     </tbody>
                 </table>
                 </div>
                     <div class="col-sm-offset-2 col-sm-10" ng-show="addTableFlag">
-                    <button class="btn btn-block" ng-click="createWorkout()">Create</button>
+                    <button class="btn btn-block" ng-click="create()">Create</button>
                     </div>
             </form>
             <!--display workout has been successfully created.-->

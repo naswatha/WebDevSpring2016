@@ -13,11 +13,10 @@
         $scope.publicWorkouts = [];
         $scope.loggedUserId = $rootScope.loggedUser._id;
 
-
-            WorkoutService.findAllPublicWorkouts(
-                function(response){
-                    $scope.publicWorkouts = response;
-                });
+        WorkoutService.findAllPublicWorkouts(1).then(
+            function(response){
+                $scope.publicWorkouts = response.data;
+            });
 
 
 
@@ -27,19 +26,19 @@
         // add public workout to logged user workout
         $scope.addWorkout = function(index){
             currentWorkout = $scope.publicWorkouts[index];
-            WorkoutService.addWorkoutToMyList(currentWorkout._id,$rootScope.loggedUser._id,$scope.publicWorkouts,
+            WorkoutService.addWorkoutToMyList($rootScope.loggedUser._id,currentWorkout._id).then(
                 function(response){
-                    $scope.publicWorkouts = response;
-                    console.log(response);
+                    $scope.publicWorkouts = response.data;
                 });
         };
-
 
         $scope.show = function (workout){
             var count = 0;
             for(var i = 0;i<workout.userDetails.length;i++) {
-                if (workout.userDetails[i].userId === $scope.loggedUserId) {
-                    count++;
+                if(workout.userDetails[i].userId == $rootScope.loggedUser._id){
+                    if (workout.public == 1) {
+                        count++;
+                    }
                 }
             }
             return !(count>=1);
@@ -47,7 +46,6 @@
 
         $scope.viewWorkout = function(workout){
             $rootScope.displayWorkout = workout;
-
             $location.path('/view-workout');
         };
 

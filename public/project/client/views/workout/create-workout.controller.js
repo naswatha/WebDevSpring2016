@@ -40,7 +40,6 @@
                     $scope.weekArray.push(weekData);
                 }
             }
-            //console.log($scope.weekArray);
         };
 
         $scope.addSunday = function(index){
@@ -233,15 +232,31 @@
             //console.log($scope.weekArray);
         };
 
-        $scope.createWorkout = function(){
 
-            WorkoutService.createWorkout($scope.weekArray,$rootScope.loggedUser._id,$scope.workoutPlan,
-                function callback(response){
+
+        $scope.create = function(){
+
+            var userDet = [];
+            var currentUser = {};
+            currentUser.userId = $rootScope.loggedUser._id;
+            currentUser.active = 0;
+            userDet.push(currentUser);
+            var newWorkout = {};
+            newWorkout.weeks = $scope.weekArray;
+            newWorkout.startdate = $scope.workoutPlan.startDate;
+            newWorkout.name = $scope.workoutPlan.name;
+            newWorkout.description = $scope.workoutPlan.description;
+            newWorkout.public = 0;
+            newWorkout.userDetails = userDet;
+            console.log(newWorkout);
+            WorkoutService.createWorkout(newWorkout).then(
+                function (response){
                     if(response){
-                        $scope.createdWorkout = response;
+                        $scope.createdWorkout = response.data;
                         $scope.displaySuccessFlag = true;
                     }
                 });
+
         };
     }
 

@@ -1,0 +1,258 @@
+[
+  {
+    "_id":"111",
+    "name":"2 Week Beginner Workout",
+    "description":"2 Week Beginner Workout",
+    "startDate":"2016-03-12T18:25:43.511Z",
+    "public": 0,
+    "numWeek": 2,
+    "userDetails":
+    [{
+      "userId": 234,
+      "active": 1
+    }],
+    "weeks": []
+  },
+  {
+    "_id":"222",
+    "name":"Beginner Compound Workout",
+    "description":"Beginner Compound Workout",
+    "startDate":"2016-03-12T18:25:43.511Z",
+    "public": 0,
+    "numWeek": 1,
+    "userDetails":
+    [{
+      "userId": 234,
+      "active": 0
+    }],
+    "weeks": []
+  },
+  {
+    "_id":"333",
+    "name":"2 Weeks Six Pack Abs",
+    "description":"Beginner 2 week six pack abs, starting with compound exercises",
+    "startDate":"2016-03-12T18:25:43.511Z",
+    "public": 1,
+    "numWeek": 2,
+    "userDetails":
+    [{
+      "userId": 234,
+      "active": 0
+    },
+      {
+        "userId": 123,
+        "active": 0
+      }],
+    "weeks":
+    [{
+      "wDescription":"Compound exercises",
+      "Sunday":
+      [   {
+        "eName":"Push Up",
+        "sets": 3,
+        "reps": [10,12,10],
+        "achievedReps": []
+
+      },
+        {
+          "eName":"Pull Up",
+          "sets": 3,
+          "reps": [5,6,5],
+          "achievedReps": []
+        },
+        {
+          "eName":"Sit Up",
+          "sets": 3,
+          "reps": [15,10,12],
+          "achievedReps": []
+        }
+      ],
+      "Monday":
+      [   {
+        "eName":"Rest",
+        "sets": 0,
+        "reps": [],
+        "achievedReps": []
+      }
+      ],
+      "Tuesday":
+      [   {
+        "eName":"Side Crunch",
+        "sets": 3,
+        "reps": [10,12,10],
+        "achievedReps": []
+
+      },
+        {
+          "eName":"Pull Up",
+          "sets": 3,
+          "reps": [5,6,5],
+          "achievedReps": []
+        },
+        {
+          "eName": "Crunches",
+          "sets": 3,
+          "reps": [10,10,8],
+          "achievedReps": []
+        }
+      ],
+      "Wednesday":
+      [   {
+        "eName":"Rest",
+        "sets": 0,
+        "reps": [],
+        "achievedReps": []
+      }
+      ],
+      "Thursday":
+      [   {
+        "eName":"Crunches",
+        "sets": 3,
+        "reps": [10,12,10],
+        "achievedReps": []
+
+      },
+        {
+          "eName":"Crunches with Cable",
+          "sets": 3,
+          "reps": [5,6,5],
+          "achievedReps": []
+        },
+        {
+          "eName": "Negative Crunches",
+          "sets": 3,
+          "reps": [10,10,8],
+          "achievedReps": []
+        }
+      ],
+      "Friday":
+      [   {
+        "eName":"Rest",
+        "sets": 0,
+        "reps": [],
+        "achievedReps": []
+      }
+      ],
+      "Saturday":
+      [   {
+        "eName":"Rest",
+        "sets": 0,
+        "reps": [],
+        "achievedReps": []
+      }
+      ]
+    },
+      {
+        "wDescription":"Abs Concentrate",
+        "Sunday":
+        [   {
+          "eName":"Push Up",
+          "sets": 3,
+          "reps": [10,12,10],
+          "achievedReps": []
+
+        },
+          {
+            "eName":"Pull Up",
+            "sets": 3,
+            "reps": [5,6,5],
+            "achievedReps": []
+          },
+          {
+            "eName":"Sit Up",
+            "sets": 3,
+            "reps": [15,10,12],
+            "achievedReps": []
+          }
+        ],
+        "Monday":
+        [   {
+          "eName":"Rest",
+          "sets": 0,
+          "reps": [],
+          "achievedReps": []
+        }
+        ],
+        "Tuesday":
+        [   {
+          "eName":"Side Crunch",
+          "sets": 3,
+          "reps": [10,12,10],
+          "achievedReps": []
+
+        },
+          {
+            "eName":"Pull Up",
+            "sets": 3,
+            "reps": [5,6,5],
+            "achievedReps": []
+          },
+          {
+            "eName": "Crunches",
+            "sets": 3,
+            "reps": [10,10,8],
+            "achievedReps": []
+          }
+        ],
+        "Wednesday":
+        [   {
+          "eName":"Rest",
+          "sets": 0,
+          "reps": [],
+          "achievedReps": []
+        }
+        ],
+        "Thursday":
+        [   {
+          "eName":"Crunches",
+          "sets": 3,
+          "reps": [10,12,10],
+          "achievedReps": []
+
+        },
+          {
+            "eName":"Crunches with Cable",
+            "sets": 3,
+            "reps": [5,6,5],
+            "achievedReps": []
+          },
+          {
+            "eName": "Negative Crunches",
+            "sets": 3,
+            "reps": [10,10,8],
+            "achievedReps": []
+          }
+        ],
+        "Friday":
+        [   {
+          "eName":"Rest",
+          "sets": 0,
+          "reps": [],
+          "achievedReps": []
+        }
+        ],
+        "Saturday":
+        [   {
+          "eName":"Rest",
+          "sets": 0,
+          "reps": [],
+          "achievedReps": []
+        }
+        ]
+      }]
+  },
+  {
+    "_id":"444",
+    "name":"3 Week Beginner Strength Workout",
+    "description":"3 Week Beginner Strength Workout",
+    "startDate":"2016-03-12T18:25:43.511Z",
+    "public": 0,
+    "numWeek": 3,
+    "userDetails":
+    [{
+      "userId": 123,
+      "active": 1
+    }],
+    "weeks": []
+  }
+]

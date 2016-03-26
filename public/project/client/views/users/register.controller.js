@@ -12,10 +12,11 @@
 
         $scope.message = null;
 
+
         //implement event handler register()
         $scope.register = function(user){
 
-            //console.log(user);
+            console.log(user);
 
             if(user == null){
                 $scope.message = "Please enter details to register";
@@ -27,12 +28,12 @@
                 return;
             }
 
-            if(!user.password || !user.verifyPass){
+            if(!user.password || !user.verifypassword){
                 $scope.message = "Please enter Password";
                 return;
             }
 
-            if(user.password != user.verifyPass){
+            if(user.password != user.verifypassword){
                 $scope.message = "Password do not match";
                 return;
             }
@@ -41,7 +42,7 @@
             //userService to create new user
             UserService.createUser(user).then(
                 function (response){
-                    console.log(response);
+                    //console.log(response);
                     $rootScope.loggedUser = response.data;
                 });
             $location.path('/profile');

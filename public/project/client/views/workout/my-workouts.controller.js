@@ -9,14 +9,12 @@
 
     function MyWorkoutController($scope,$rootScope, $location,WorkoutService) {
 
-        $scope.loggedUserWorkouts = [];
 
         // display all the workout for the logged user.
         if($rootScope.loggedUser){
-
-            WorkoutService.findAllWorkoutForUser($rootScope.loggedUser._id,
+            WorkoutService.findAllWorkoutForUser($rootScope.loggedUser._id).then(
                 function(response){
-                    $scope.loggedUserWorkouts = response;
+                    $scope.loggedUserWorkouts = response.data;
                 });
         }
 
@@ -26,23 +24,26 @@
         // delete workout which user selects
         $scope.deleteWorkout = function(index){
             currentWorkout = $scope.loggedUserWorkouts[index];
-            WorkoutService.deleteWorkoutById(currentWorkout._id,$rootScope.loggedUser._id,
+            WorkoutService.deleteWorkoutById($rootScope.loggedUser._id, currentWorkout._id).then(
                 function(response){
-                    $scope.loggedUserWorkouts.splice(index,1);
+                    WorkoutService.findAllWorkoutForUser($rootScope.loggedUser._id).then(
+                        function(response){
+                            $scope.loggedUserWorkouts = response.data;
+                        });
                 });
         };
 
-        // make other workout active.
         $scope.makeActive = function(index){
             currentWorkout = $scope.loggedUserWorkouts[index];
-            WorkoutService.updateActiveWorkoutById(currentWorkout._id,$scope.loggedUserWorkouts,$rootScope.loggedUser._id,
+            WorkoutService.updateActiveWorkoutById($rootScope.loggedUser._id,currentWorkout._id).then(
                 function(response){
-                    $scope.loggedUserWorkouts = response;
+                    $scope.loggedUserWorkouts = response.data;
                 });
         };
 
         $scope.showActive = function (workout){
             var count = 0;
+            console.log($rootScope.loggedUser._id);
             for(var i = 0;i<workout.userDetails.length;i++) {
                 if(workout.userDetails[i].userId == $rootScope.loggedUser._id){
                     if (workout.userDetails[i].active === 1) {
@@ -53,24 +54,19 @@
             return !(count>=1);
         };
 
-
-        // make workout public.
+        //// make workout public.
         $scope.makeWorkoutPublic = function(index){
             currentWorkout = $scope.loggedUserWorkouts[index];
-            WorkoutService.makeWorkoutPublicById(currentWorkout._id,$scope.loggedUserWorkouts,
+            WorkoutService.makeWorkoutPublicById($rootScope.loggedUser._id,currentWorkout._id).then(
                 function(response){
-                    $scope.loggedUserWorkouts = response;
-
+                    $scope.loggedUserWorkouts = response.data;
                 });
+        };
 
-        }
-
+        $scope.showPublic = function (workout){
+            return(workout.public == 0);
+        };
 
     }
 
 })();
-
-//changes required for new userdetails.
-// 1) userworkouts details findAllWorkoutForUser
-// 2) deleteWorkoutById
-// 3) updateActiveWorkoutById

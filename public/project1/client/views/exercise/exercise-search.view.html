@@ -1,0 +1,73 @@
+
+<div class="container-fluid" ng-controller="ExerciseSearchController">
+    <div class="row">
+        <!--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">-->
+        <div class="main">
+            <h1 class="page-header">Search for Exercise</h1>
+            <form class="form-horizontal">
+                <div id="imaginary_container">
+                    <div class="input-group stylish-input-group">
+                        <input ng-model="term" type="text" class="form-control"  placeholder="Search" >
+                        <span class="input-group-addon">
+                            <button ng-click="search(term)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <br>
+
+                <div class="container-fluid" ng-show="exerciseDetails">
+                    <div class="row">
+                            <ul>
+                                <li> <h4>Name :</h4> {{exerciseDetails.name}}</li>
+                                <br>
+                                <li> <h4>Description :</h4> {{exerciseDetails.description}}</li>
+                                <br>
+                                <li> <h4>Equipment :</h4>
+                                    <ul>
+                                        <li ng-repeat="eq in displayEquipments">{{eq}}</li>
+                                    </ul>
+                                </li>
+                                <br>
+                                <li> <h4>Primary Muscle :</h4>
+                                    <ul>
+                                        <li ng-repeat="mus in displayMuscles">{{mus}}</li>
+                                    </ul>
+                                </li>
+                                <br>
+                                <li> <h4>Secondary Muscle :</h4>
+                                    <ul>
+                                        <li ng-repeat="smus in displaySecondaryMuscles">{{smus}}</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        <br>
+                    </div>
+                </div>
+
+                <div ng-show="searchResults" class="table-responsive">
+                    <table class="table table-striped">
+                        <thead align="center">
+                        <tr>
+                            <td> Category </td>
+                            <td> Exercise Name</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="result in searchResults">
+                            <td align="center"> {{result.category}} </td>
+                            <td>
+                                <button ng-click="details(result.id)" class="btn btn-secondary btn-md text-left btn-block ">
+                                {{result.value}}
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

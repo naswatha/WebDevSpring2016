@@ -3,7 +3,7 @@
  */
 "use strict";
 
-module.exports = function(app, model){
+module.exports = function(app, UserModel){
 
     app.post("/api/assignment/user", createUser);
     app.get("/api/assignment/user", findUser);
@@ -13,33 +13,51 @@ module.exports = function(app, model){
 
     function createUser(req, res){
         var user = req.body;
-        res.json(model.create(user));
+        //res.json(model.create(user));
+        UserModel.create(user).then(
+            function(response){
+                res.json(user);
+            });
     }
 
     function findUser(req, res){
         var username = req.query.username;
         var password = req.query.password;
-        if(!username && !password){
-            res.json(model.findAll());
-        }
-        else if(username && !password){
-            res.json(model.findUserByUsername(username));
-        }
-
-        else {
-            res.json(model.findUserByCredentials(req.query));
+        if(username && password){
+            UserModel.findUserByCredentials(req.query).then(
+                function(response){
+                    res.json(response);
+                });
+            //res.json(model.findUserByCredentials(req.query));
         }
     }
 
     function findUserById(req,res){
-        res.json(model.findById(req.params.id));
+        UserModel.findById(req.params.id).then(
+            function(response){
+                res.json(response);
+            });
+        //res.json(model.findById(req.params.id));
     }
 
     function updateUser(req,res){
-        res.json(model.update(req.params.id, req.body));
+        //UserModel.update(req.params.id, req.body).then(
+        //    function(response){
+        //        res.json(response);
+        //    });
+
+        UserModel.update(req.params.id, req.body).then(
+                function(response) {
+                    res.json(response);
+                });
+        //res.json(model.update(req.params.id, req.body));
     }
 
     function deleteUser(req, res){
-        res.json(model.remove(req.params.id));
+        UserModel.remove(req.params.id).then(
+            function(response){
+                res.json(response);
+            });
+        //res.json(model.remove(req.params.id));
     }
 };

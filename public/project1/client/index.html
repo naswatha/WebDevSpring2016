@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="WorkoutBuilderApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Workout Builder Version 2.0</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- Bootstrap core JavaScript
+      ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--Jquery CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!--Bootstrap CDN-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!--Angular JS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <!--Anuglar routing JS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+
+    <!--Load app.js-->
+    <script src="app.js"></script>
+    <!--Load config.js-->
+    <script src="config.js"></script>
+
+
+    <!--Load UserService-->
+    <script src="services/user.service.client.js"></script>
+    <!--Load WgerApiService-->
+    <script src="services/wgerapi.service.client.js"></script>
+    <!--Load WorkoutService-->
+    <script src="services/workout.service.client.js"></script>
+
+    <!--Load MainController.js-->
+    <script src="views/main/main.controller.js"></script>
+    <!--Load Login controller-->
+    <script src="views/users/login.controller.js"></script>
+    <!--Load Profile controller-->
+    <script src="views/users/profile.controller.js"></script>
+    <!--Load Register controller-->
+    <script src="views/users/register.controller.js"></script>
+    <!--Load Header controller-->
+    <script src="views/header/header.controller.js"></script>
+    <!--Load Sidebar controller-->
+    <script src="views/sidebar/sidebar.controller.js"></script>
+    <!--Load Home controller-->
+    <script src="views/home/home.controller.js"></script>
+    <!--Load ExerciseSearch controller-->
+    <script src="views/exercise/exercise-search.controller.js"></script>
+    <!--Load MyWorkout controller-->
+    <script src="views/workout/my-workouts.controller.js"></script>
+    <!--Load PublicWorkout controller-->
+    <script src="views/workout/public-workouts.controller.js"></script>
+    <!--Load ViewWorkout controller-->
+    <script src="views/workout/view-workout.controller.js"></script>
+    <!--Load Createworkout controller-->
+    <script src="views/workout/create-workout.controller.js"></script>
+
+
+</head>
+
+<body ng-controller="MainController">
+
+<div ng-include="'views/header/header.view.html'"></div>
+<!--<div ng-include="'views/sidebar/sidebar.view.html'"></div>-->
+<div ng-view></div>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+
+<div class="container-fluid" ng-controller="ViewWorkoutController">
+    <div class="row">
+        <!--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">-->
+            <div class="main">
+            <h1 class="page-header">View Workout</h1>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2"><h3>Name</h3></label>
+                        <div class="col-sm-10">
+                            <h3>{{displayWorkout.name}}</h3>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2"><h3>Description</h3></label>
+                        <div class="col-sm-10">
+                            <h3>{{displayWorkout.description}}</h3>
+                        </div>
+                    </div>
+                </form>
+
+            <br>
+
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tbody ng-repeat="week in displayWorkout.weeks">
+                    <tr><td><h4>Week : {{week.wDescription}}</h4></td></tr>
+                    <tr><td><h4>Sunday</h4></td></tr>
+                    <tr ng-repeat="exercise in week.Sunday">
+                        <td>{{exercise.eName}}</td>
+                        <td>{{exercise.reps}}</td>
+                    </tr>
+                    <tr><td><h4>Monday</h4></td></tr>
+                    <tr ng-repeat="exercise in week.Monday">
+                        <td>{{exercise.eName}}</td>
+                        <td>{{exercise.reps}}</td>
+                    </tr>
+                    <tr><td><h4>Tuesday</h4></td></tr>
+                    <tr ng-repeat="exercise in week.Tuesday">
+                        <td>{{exercise.eName}}</td>
+                        <td>{{exercise.reps}}</td>
+                    </tr>
+                    <tr><td><h4>Wednesday</h4></td></tr>
+                    <tr ng-repeat="exercise in week.Wednesday">
+                        <td>{{exercise.eName}}</td>
+                        <td>{{exercise.reps}}</td>
+                    </tr>
+                    <tr><td><h4>Thursday</h4></td></tr>
+                    <tr ng-repeat="exercise in week.Thursday">
+                        <td>{{exercise.eName}}</td>
+                        <td>{{exercise.reps}}</td>
+                    </tr>
+                    <tr><td><h4>Friday</h4></td></tr>
+                    <tr ng-repeat="exercise in week.Friday">
+                        <td>{{exercise.eName}}</td>
+                        <td>{{exercise.reps}}</td>
+                    </tr>
+                    <tr><td><h4>Saturday</h4></td></tr>
+                    <tr ng-repeat="exercise in week.Saturday">
+                        <td>{{exercise.eName}}</td>
+                        <td>{{exercise.reps}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+

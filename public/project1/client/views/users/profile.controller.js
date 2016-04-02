@@ -1,10 +1,10 @@
 /**
- * Created by Naveen on 2/25/2016.
+ * Created by Naveen on 3/2/2016.
  */
 (function(){
     "use strict";
     angular
-        .module("FormBuilderApp")
+        .module("WorkoutBuilderApp")
         .controller("ProfileController",ProfileController);
 
     //inject UserServiec
@@ -14,8 +14,6 @@
         $scope.user = $rootScope.loggedUser;
 
         $scope.message = null;
-        //console.log("Profile");
-        //console.log($scope.user);
 
         //update handler
         $scope.update = function(user){
@@ -40,18 +38,13 @@
                 return;
             }
 
-            console.log($scope.user._id);
-            console.log(user);
             UserService.updateUser($scope.user._id,user).then(
                 function (response){
-                    console.log(response.data);
                     $rootScope.loggedUser = response.data;
                     $location.path('/profile');
-            });
+                });
 
         };
 
     }
 })();
-
-

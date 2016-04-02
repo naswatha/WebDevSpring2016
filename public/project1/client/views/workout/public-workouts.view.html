@@ -1,0 +1,43 @@
+
+<div class="container-fluid" ng-controller="PublicWorkoutController">
+    <div class="row">
+        <!--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">-->
+            <div class="main">
+            <h1 class="page-header">Public Workouts</h1>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th><i class="fa fa-fw fa-sort"></i>Workout Name</th>
+                        <th><i class="fa fa-fw fa-sort"></i>View</th>
+                        <th><i class="fa fa-fw fa-sort"></i>Add to My Workout List</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="workout in publicWorkouts">
+                        <td> {{workout.name}} </td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-default" ng-click="viewWorkout(workout)"><i class="fa fa-eye"></i></a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-default" ng-show="show(workout)" ng-click="addWorkout($index)"><i class="fa fa-plus"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="fields" class="tab-pane fade">
+                <h3>Fields</h3>
+                <p>Some content in menu 1.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+

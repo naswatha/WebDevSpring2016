@@ -42,35 +42,6 @@
             }
         };
 
-        $scope.addExercise = function(index, day) {
-
-            $scope.showFlag = true;
-            var exerciseDetails = {};
-            var repArr = [];
-            if($scope[day].rep1 != null) {
-                repArr.push($scope[day].rep1);
-            }
-            if($scope[day].rep2 != null) {
-                repArr.push($scope[day].rep2);
-            }
-            if($scope[day].rep3 != null) {
-                repArr.push($scope[day].rep3);
-            }
-            if($scope[day].rep4 != null) {
-                repArr.push($scope[day].rep4);
-            }
-            exerciseDetails.eName = $scope[day].name;
-            exerciseDetails.reps = repArr;
-            for(var i = 0; i <= index; i++){
-                if($scope.weekArray[i].weekNum == index){
-                    $scope.weekArray[i].Sunday.push(exerciseDetails);
-                    break;
-                }
-            }
-            // console.log($scope.weekArray);
-        }
-
-
         $scope.addSunday = function(index){
 
             $scope.showFlag = true;

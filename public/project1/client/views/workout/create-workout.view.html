@@ -1,0 +1,50 @@
+
+<div class="container-fluid" ng-controller="CreateWorkoutController">
+    <div class="row">
+        <!--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">-->
+        <div class="main">
+            <h1 class="page-header">Create New Workout</h1>
+            <form class="form-horizontal" ng-show="!displaySuccessFlag">
+                <div class="form-group">
+                    <label for="inputWorkoutName" class="col-sm-2 control-label">Workout Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model = "workoutPlan.name" class="form-control" id="inputWorkoutName" placeholder="workout name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputDesc" class="col-sm-2 control-label">Description</label>
+                    <div class="col-sm-10">
+                        <input type="text" ng-model = "workoutPlan.description" class="form-control" id="inputDesc" placeholder="Description">
+                    </div>
+                </div>
+                <!--add single day to -->
+
+            </form>
+            <!--display workout has been successfully created.-->
+            <div class="table-responsive" ng-show="displaySuccessFlag">
+                <label><h4>Workout with the following detials has been successfully created, please go to My Workout tab to view the details and make this active.</h4></label>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td><h3>Name</h3></td>
+                        <td><h3>{{createdWorkout.name}}</h3></td>
+                    </tr>
+                    <tr>
+                        <td><h3>Description</h3></td>
+                        <td><h3>{{createdWorkout.description}}</h3></td>
+                    </tr>
+                    <!--<tr>-->
+                    <!--<td>Start Date</td>-->
+                    <!--<td> {{createdWorkout.startDate}} </td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                    <!--<td>Current Date</td>-->
+                    <!--<td> {{currentDate}} </td>-->
+                    <!--</tr>-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

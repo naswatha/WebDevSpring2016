@@ -1,0 +1,34 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/home">Workout Builder 2.0</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-hide="loggedUser" ng-class="{'active': $location.url()=='/register'}"><a href="#/register">Register</a></li>
+                <li ng-hide="loggedUser" ng-class="{'active': $location.url()=='/login'}"><a href="#/login"><i class="fa fa-sign-in"></i></a></li>
+                <li ng-show="loggedUser" ng-class="{'active': $location.url()=='/profile'}"><a href="#/profile"><i class="fa fa-user"></i></a></li>
+                <li ng-show="loggedUser.roles.indexOf('admin') >= 0" ng-class="{'active': $location.url()=='/admin'}"><a href="#/admin">Admin</a></li>
+                <li ng-show="loggedUser"><a href="#/home" ng-click="logout()"><i class="fa fa-sign-out"></i></a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-left">
+                <li ng-class="{'active' : $location.url() == '/home'}"><a href="#/home">Home</a></li>
+                <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/profile'}"><a href="#/profile">Profile</a></li>
+                <li ng-show="loggedUser.roles.indexOf('admin') >= 0" ng-class="{'active' : $location.url() == '/admin'}"><a href="#/admin">Admin</a></li>
+                <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/active-workout'}"><a href="#/active-workout">Active Workout</a></li>
+                <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/create-workout'}"><a href="#/create-workout">Create New Workout</a></li>
+                <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/my-workouts'}"><a href="#/my-workouts">My Workout</a></li>
+                <li ng-class="{'active' : $location.url() == '/exercise-search'}"><a href="#/exercise-search">Exercises</a></li>
+                <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/public-workouts'}"><a href="#/public-workouts">Public Workouts</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+

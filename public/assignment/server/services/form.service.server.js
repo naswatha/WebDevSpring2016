@@ -11,24 +11,56 @@ module.exports = function(app,model){
     app.delete("/api/assignment/form/:formId", deleteForm);
     app.post("/api/assignment/user/:userId/form", create);
     app.put("/api/assignment/form/:formId", update);
+    app.get("/api/assignment/form?formTitle=formTitle", getFormByTitle);
 
     function getFormByUserId(req, res){
-        res.json(model.findFormByUserId(req.params.userId));
+        model.findFormByUserId(req.params.userId).then(
+            function(response){
+                res.json(response);
+            });
+
+        //res.json(model.findFormByUserId(req.params.userId));
     }
 
     function getFormById(req, res){
-        res.json(model.findById(req.params.formId));
+        model.findById(req.params.formId).then(
+            function(response){
+                res.json(response);
+            });
+
+        //res.json(model.findById(req.params.formId));
     }
 
     function deleteForm(req, res){
-        res.json(model.remove(req.params.formId));
+        model.remove(req.params.formId).then(
+            function(response){
+                res.json(response);
+            });
+        //res.json(model.remove(req.params.formId));
     }
 
     function create(req, res){
-        res.json(model.create(req.params.userId,req.body));
+        model.create(req.params.userId, req.body).then(
+            function(response){
+                res.json(response);
+            });
+        //res.json(model.create(req.params.userId,req.body));
     }
 
     function update(req, res){
-        res.json(model.update(req.params.formId, req.body));
+        model.update(req.params.formId, req.body).then(
+            function(response){
+                res.json(response);
+            });
+        //res.json(model.update(req.params.formId, req.body));
+    }
+
+    function getFormByTitle(req, res){
+
+        var formTitle = req.param("formTitle");
+        model.findFormByTitle(formTitle)
+            .then(function(response){
+                res.json(response);
+            });
     }
 };

@@ -5,6 +5,7 @@
 var q = require("q");
 module.exports = function(mongoose, assignmentDb){
 
+    //var users = require("./user.mock.json");
     var UserSchema = require("./user.schema.server.js")(mongoose);
     var UserModel = mongoose.model('User',UserSchema);
 
@@ -23,15 +24,14 @@ module.exports = function(mongoose, assignmentDb){
     return api;
 
     function create(user) {
-
         var deferred = q.defer();
 
         UserModel.create(user,
-            function (err, created) {
-                if (created) {
-                    deferred.resolve(created);
+            function (err, document) {
+                if (err) {
+                    deferred.reject(err)
                 } else {
-                    deferred.reject(err);
+                    deferred.resolve(document);
                 }
         });
 
@@ -43,12 +43,13 @@ module.exports = function(mongoose, assignmentDb){
 
         UserModel.find(
             function(err, users){
-                if (users) {
-                    deferred.resolve(users);
+                if (err) {
+                    deferred.reject(err)
                 } else {
-                    deferred.reject(err);
+                    deferred.resolve(users);
                 }
         });
+
         return deferred.promise;
     }
 
@@ -58,57 +59,63 @@ module.exports = function(mongoose, assignmentDb){
 
         UserModel.findById(id, function(err, user){
             if (err) {
-                deferred.reject(err);
+                deferred.reject(err)
             } else {
                 deferred.resolve(user);
             }
         });
 
         return deferred.promise;
-
     }
 
     function update(id, user){
 
         var deferred = q.defer();
 
-        UserModel.findById({"_id": id},
-            function(err, updatedUser) {
-                if (err) {
+        UserModel.findById(id,
+            function(err,response){
+                if(err){
                     deferred.reject(err);
-                } else {
-                    updatedUser.username = user.username;
-                    updatedUser.password = user.password;
-                    updatedUser.firstName = user.firstName;
-                    updatedUser.lastName = user.lastName;
-                    updatedUser.emails = user.emails;
-                    updatedUser.phones = user.phones;
-                    updatedUser.save(function(err, savedUser) {
-                        if (err) {
-                            deferred.reject(err);
-                        } else {
-                            deferred.resolve(savedUser);
-                        }
-                    });
                 }
-            });
+                else{
+                    response.firstName = user.firstName;
+                    response.lastName = user.lastName;
+                    response.username = user.username;
+                    response.password = user.password;
+                    response.emails = user.emails;
+                    response.phones = user.phones;
+                    response.save(
+                        function(err, document) {
+                            deferred.resolve(document);
+                });
+            }
+        });
         return deferred.promise;
     }
 
     function remove(id){
         var deferred = q.defer();
         UserModel.remove({_id: id},
-            function(err, users){
-                if (users) {
-                    deferred.resolve(users);
+            function(err, user){
+                if (err) {
+                    deferred.reject(err)
                 } else {
-                    deferred.reject(err);
+                    deferred.resolve(user);
                 }
         });
 
         return deferred.promise;
     }
 
+    //function findUserByUsername(username){
+    //    for(var i = 0; i < users.length; i++){
+    //        var user = users[i];
+    //        if(user.username == username){
+    //            return user;
+    //        }
+    //    }
+    //    return null;
+    //}
 
     function findUserByCredentials(credentials){
 
@@ -116,11 +123,12 @@ module.exports = function(mongoose, assignmentDb){
         UserModel.findOne({ username: credentials.username, password: credentials.password },
             function(err, user){
                 if (err) {
-                    deferred.reject(err);
+                    deferred.reject(err)
                 } else {
                     deferred.resolve(user);
                 }
             });
+
         return deferred.promise;
     }
 

@@ -40,3 +40,12 @@ require("./public/project/server/app.js")(app);
 require("./public/project1/server/app.js")(app);
 //require("./public/project/server/app.js")(app, mongoose, projectDb);
 app.listen(port, ipaddress);
+
+
+//MongoDB 2.4 database added.  Please make note of these credentials:
+//
+//    Root User:     admin
+//Root Password: s4Asu3yzc1Yx
+//Database Name: webdevelopment
+//
+//Connection URL: mongodb://$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/

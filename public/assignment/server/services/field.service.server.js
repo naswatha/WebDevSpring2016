@@ -1,6 +1,7 @@
 /**
  * Created by Naveen on 3/16/2016.
  */
+"use strict";
 module.exports = function(app,model){
 
     app.get("/api/assignment/form/:formId/field", getFieldsByFormId);
@@ -10,22 +11,47 @@ module.exports = function(app,model){
     app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldByFormIdAndFieldId);
 
     function getFieldsByFormId(req, res){
-        res.json(model.findFieldsByFormId(req.params.formId));
+
+        model.findFieldsByFormId(req.params.formId).then(
+            function(response){
+                res.json(response.field);
+            });
+        //res.json(model.findFieldsByFormId(req.params.formId));
     }
 
     function getFieldByFormIdAndFieldId(req, res){
-        res.json(model.findFieldById(req.params.formId,req.params.fieldId));
+
+        model.findFieldById(req.params["formId"],req.params["fieldId"]).then(
+            function(response){
+                res.json(response);
+            });
+        //res.json(model.findFieldById(req.params.formId,req.params.fieldId));
     }
 
     function deleteFieldByFormIdAndFieldId(req, res){
-        res.json(model.removeField(req.params.formId,req.params.fieldId));
+        console.log("field service server js");
+        console.log(req.params["fieldId"]);
+        model.removeField(req.params["formId"], req.params["fieldId"]).then(
+            function(response){
+                res.json(response.field);
+            });
+
+        //res.json(model.removeField(req.params.formId,req.params.fieldId));
     }
 
     function createFieldByFormId(req, res){
-        res.json(model.createField(req.params.formId,req.body));
+        model.createField(req.params.formId,req.body).then(
+            function (response) {
+                res.json(response.field);
+            });
+        //res.json(model.createField(req.params.formId,req.body));
     }
 
     function updateFieldByFormIdAndFieldId(req, res){
-        res.json(model.updateField(req.params.formId,req.params.fieldId,req.body));
+        model.updateField(req.params["formId"], req.params["fieldId"], req.body).then(
+            function(response){
+                res.json(response.field);
+            });
+        //res.json(model.updateField(req.params.formId,req.params.fieldId,req.body));
     }
 };

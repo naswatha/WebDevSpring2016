@@ -13,11 +13,10 @@ module.exports = function(app, UserModel){
 
     function createUser(req, res){
         var user = req.body;
-        //res.json(model.create(user));
         UserModel.create(user).then(
             function(response){
-                res.json(user);
-            });
+                res.json(response);
+        });
     }
 
     function findUser(req, res){
@@ -28,7 +27,6 @@ module.exports = function(app, UserModel){
                 function(response){
                     res.json(response);
                 });
-            //res.json(model.findUserByCredentials(req.query));
         }
     }
 
@@ -37,20 +35,13 @@ module.exports = function(app, UserModel){
             function(response){
                 res.json(response);
             });
-        //res.json(model.findById(req.params.id));
     }
 
     function updateUser(req,res){
-        //UserModel.update(req.params.id, req.body).then(
-        //    function(response){
-        //        res.json(response);
-        //    });
-
         UserModel.update(req.params.id, req.body).then(
-                function(response) {
-                    res.json(response);
-                });
-        //res.json(model.update(req.params.id, req.body));
+            function(response){
+                res.json(response);
+            });
     }
 
     function deleteUser(req, res){
@@ -58,6 +49,5 @@ module.exports = function(app, UserModel){
             function(response){
                 res.json(response);
             });
-        //res.json(model.remove(req.params.id));
     }
 };

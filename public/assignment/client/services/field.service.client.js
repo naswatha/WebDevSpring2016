@@ -35,6 +35,9 @@
         }
 
         function deleteFieldFromForm(formId,fieldId){
+            console.log("field service client js");
+            console.log(fieldId);
+
             var url = "/api/assignment/form/"+formId+"/field/"+fieldId;
             return $http.delete(url);
         }

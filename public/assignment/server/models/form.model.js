@@ -2,9 +2,14 @@
  * Created by Naveen on 3/16/2016.
  */
 "use strict";
-module.exports = function(app){
+var q = require("q");
+module.exports = function(mongoose, assignmentDb){
 
-    var forms = require("./form.mock.json");
+    //var forms = require("./form.mock.json");
+    var FormSchema = require("./form.schema.server.js")(mongoose);
+    var FormModel = mongoose.model('Form',FormSchema);
+    var FieldSchema = require("./field.schema.server.js")(mongoose);
+    var FieldModel = mongoose.model('Field',FieldSchema);
 
     var api = {
 

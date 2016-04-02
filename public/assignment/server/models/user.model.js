@@ -5,7 +5,6 @@
 var q = require("q");
 module.exports = function(mongoose, assignmentDb){
 
-    //var users = require("./user.mock.json");
     var UserSchema = require("./user.schema.server.js")(mongoose);
     var UserModel = mongoose.model('User',UserSchema);
 
@@ -24,7 +23,6 @@ module.exports = function(mongoose, assignmentDb){
     return api;
 
     function create(user) {
-        //console.log(user);
 
         var deferred = q.defer();
 
@@ -38,9 +36,6 @@ module.exports = function(mongoose, assignmentDb){
         });
 
         return deferred.promise;
-        //user._id = (new Date).getTime();
-        //users.push(user);
-        //return user;
     }
 
     function findAll() {
@@ -55,7 +50,6 @@ module.exports = function(mongoose, assignmentDb){
                 }
         });
         return deferred.promise;
-        //return users;
     }
 
     function findById(id) {
@@ -72,13 +66,6 @@ module.exports = function(mongoose, assignmentDb){
 
         return deferred.promise;
 
-        //for(var i = 0; i < users.length; i++) {
-        //    var user = users[i];
-        //    if(user._id == id){
-        //        return user;
-        //    }
-        //}
-        //return null;
     }
 
     function update(id, user){
@@ -105,12 +92,6 @@ module.exports = function(mongoose, assignmentDb){
                     });
                 }
             });
-        //for(var i = 0; i < users.length; i++) {
-        //    if(users[i]._id == id) {
-        //        users[i] = user;
-        //        return users[i];
-        //    }
-        //}
         return deferred.promise;
     }
 
@@ -126,23 +107,8 @@ module.exports = function(mongoose, assignmentDb){
         });
 
         return deferred.promise;
-        //for(var i = 0; i <  users.length; i++){
-        //    if(users[i]._id == id){
-        //        users.splice(i, 1);
-        //    }
-        //}
-        //return users;
     }
 
-    //function findUserByUsername(username){
-    //    for(var i = 0; i < users.length; i++){
-    //        var user = users[i];
-    //        if(user.username == username){
-    //            return user;
-    //        }
-    //    }
-    //    return null;
-    //}
 
     function findUserByCredentials(credentials){
 
@@ -155,16 +121,7 @@ module.exports = function(mongoose, assignmentDb){
                     deferred.resolve(user);
                 }
             });
-
         return deferred.promise;
-
-        //for(var i = 0; i < users.length; i++){
-        //    var user = users[i];
-        //    if(user.username == credentials.username && user.password == credentials.password){
-        //        return user;
-        //    }
-        //}
-        //return null;
     }
 
 };

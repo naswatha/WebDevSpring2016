@@ -3,7 +3,7 @@
  */
     "use strict";
 var q = require("q");
-module.exports = function(mongoose, assignmentDb){
+module.exports = function(mongoose, webDevDb){
 
     //var users = require("./user.mock.json");
     var UserSchema = require("./user.schema.server.js")(mongoose);

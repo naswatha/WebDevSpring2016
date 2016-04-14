@@ -12,7 +12,7 @@ module.exports = function(mongoose){
         "field": [FieldSchema],
         "created": Date,
         "udpated": Date
-    },{collection: 'form'});
+    },{collection: 'assignment.form'});
 
     return FormSchema;
 };

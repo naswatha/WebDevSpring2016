@@ -21,29 +21,29 @@
         return service;
 
         function findUserByUsername (username){
-            return $http.get("/api/assignment/user?username="+username);
+            return $http.get("/api/project/user?username="+username);
         }
 
         function findUserByCredentials (username, password){
-            return $http.get("/api/assignment/user?username="+username+"&password="+password);
+            return $http.get("/api/project/user?username="+username+"&password="+password);
         }
 
         function findAllUsers (){
-            return $http.get("/api/assignment/user");
+            return $http.get("/api/project/user");
         }
 
         function createUser (user){
-            var url = "/api/assignment/user";
+            var url = "/api/project/user";
             return $http.post(url,user);
         }
 
         function deleteUserById (userId){
-            var url = "/api/assignment/user/";
+            var url = "/api/project/user/";
             return $http.delete(url+userId);
         }
 
         function updateUser (userId,user){
-            var url = "/api/assignment/user/"+userId;
+            var url = "/api/project/user/"+userId;
             return $http.put(url,user);
         }
     }

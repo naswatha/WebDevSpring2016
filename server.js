@@ -5,19 +5,19 @@ var multer = require('multer');
 var mongoose = require('mongoose');
 
 
-var assignmentDbName = 'assignment';
-var assignmentConnectString = 'mongodb://127.0.0.1:27017/' + assignmentDbName;
-
+var WebDevDbName = 'webdev';
+var webDevConnectString = 'mongodb://127.0.0.1:27017/' + WebDevDbName;
 
 if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
-    assignmentConnectString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+    webDevConnectString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
         process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
         process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
         process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
         process.env.OPENSHIFT_APP_NAME;
 }
 
-var assignmentDb = mongoose.connect(assignmentConnectString);
+var webDevDb = mongoose.connect(webDevConnectString);
+
 
 //var projectDbName = 'assignment';
 //var projectConnectString = 'mongodb://localhost/' + projectDbName;
@@ -34,9 +34,10 @@ var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 
-require("./public/assignment/server/app.js")(app, mongoose, assignmentDb);
+require("./public/assignment/server/app.js")(app, mongoose, webDevDb);
+require("./public/project/server/app.js")(app, mongoose, webDevDb);
 //require("./public/assignment/server/app.js")(app);
-require("./public/project/server/app.js")(app);
+//require("./public/project/server/app.js")(app);
 require("./public/project1/server/app.js")(app);
 //require("./public/project/server/app.js")(app, mongoose, projectDb);
 app.listen(port, ipaddress);

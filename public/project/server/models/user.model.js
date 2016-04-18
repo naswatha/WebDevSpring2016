@@ -58,12 +58,14 @@ module.exports = function(mongoose, webDevDb){
 
         var deferred = q.defer();
 
-        UserModel.findById(id, function(err, user){
-            if (err) {
-                deferred.reject(err)
-            } else {
-                deferred.resolve(user);
-            }
+        UserModel.findById(id,
+            function(err, user){
+                if (err) {
+                    deferred.reject(err)
+                }
+                else {
+                    deferred.resolve(user);
+                }
         });
 
         return deferred.promise;

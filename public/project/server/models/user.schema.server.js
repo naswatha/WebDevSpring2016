@@ -9,7 +9,9 @@ module.exports = function(mongoose){
         "password": String,
         "firstName": String,
         "lastName": String,
-        "email": String
+        "email": String,
+        "activeWorkoutId": String,
+        "myWorkoutIds": [String]
     },{collection: 'project.user'});
 
     return UserSchema;

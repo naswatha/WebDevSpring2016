@@ -36,6 +36,7 @@
                     else{
                         $rootScope.loggedUser = response.data;
                         $location.path("/profile");
+
                     }
 
                 });

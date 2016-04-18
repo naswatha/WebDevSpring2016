@@ -12,13 +12,13 @@
         var service = {
 
             findAllWorkoutForUser: findAllWorkoutForUser,
-            createWorkout: createWorkout,
-            deleteWorkoutById: deleteWorkoutById,
-            updateWorkoutById: updateWorkoutById,
-            findAllPublicWorkouts: findAllPublicWorkouts,
-            updateActiveWorkoutById: updateActiveWorkoutById,
-            makeWorkoutPublicById: makeWorkoutPublicById,
-            addWorkoutToMyList: addWorkoutToMyList
+            createWorkout: createWorkout
+            //deleteWorkoutById: deleteWorkoutById,
+            //updateWorkoutById: updateWorkoutById,
+            //findAllPublicWorkouts: findAllPublicWorkouts,
+            //updateActiveWorkoutById: updateActiveWorkoutById,
+            //makeWorkoutPublicById: makeWorkoutPublicById,
+            //addWorkoutToMyList: addWorkoutToMyList
 
     };
 
@@ -26,43 +26,45 @@
 
         function createWorkout (newWorkout){
             var url = "/api/project/workout";
+            //console.log(newWorkout);
             return $http.post(url,newWorkout);
         }
 
 
-        function findAllWorkoutForUser(userId){
-            var url = "/api/project/user/"+userId+"/workout";
+        function findAllWorkoutForUser(username){
+            console.log(username);
+            var url = "/api/project/user/"+username+"/workout";
             return $http.get(url);
         }
 
-        function deleteWorkoutById(userId,workoutId){
-            var url = "/api/project/user/"+userId+"/workout/"+workoutId;
-            return $http.delete(url);
-        }
-
-        function updateActiveWorkoutById(userId,workoutId){
-            var url = "/api/project/user/"+userId+"/workout/"+workoutId;
-            return $http.put(url);
-        }
-
-        function makeWorkoutPublicById(userId,workoutId){
-            var url = "/api/project/user/"+userId+"/makePublicWorkout/"+workoutId;
-            return $http.put(url);
-        }
-
-        function findAllPublicWorkouts (publicId){
-            var url = "/api/project/getPublic/"+publicId;
-            return $http.get(url);
-        }
-
-        function addWorkoutToMyList(userId,workoutId){
-            var url = "/api/project/addList/user/"+userId+"/workout/"+workoutId;
-            return $http.put(url);
-        }
-
-        function updateWorkoutById(userId,workoutId){
-            var url = "/api/project/updateWorkout/user/"+userId+"/workout/"+workoutId;
-            return $http.put(url);
-        }
+        //function deleteWorkoutById(userId,workoutId){
+        //    var url = "/api/project/user/"+userId+"/workout/"+workoutId;
+        //    return $http.delete(url);
+        //}
+        //
+        //function updateActiveWorkoutById(userId,workoutId){
+        //    var url = "/api/project/user/"+userId+"/workout/"+workoutId;
+        //    return $http.put(url);
+        //}
+        //
+        //function makeWorkoutPublicById(userId,workoutId){
+        //    var url = "/api/project/user/"+userId+"/makePublicWorkout/"+workoutId;
+        //    return $http.put(url);
+        //}
+        //
+        //function findAllPublicWorkouts (publicId){
+        //    var url = "/api/project/getPublic/"+publicId;
+        //    return $http.get(url);
+        //}
+        //
+        //function addWorkoutToMyList(userId,workoutId){
+        //    var url = "/api/project/addList/user/"+userId+"/workout/"+workoutId;
+        //    return $http.put(url);
+        //}
+        //
+        //function updateWorkoutById(userId,workoutId){
+        //    var url = "/api/project/updateWorkout/user/"+userId+"/workout/"+workoutId;
+        //    return $http.put(url);
+        //}
     }
 })();

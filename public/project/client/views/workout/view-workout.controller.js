@@ -9,7 +9,7 @@
 
     function ViewWorkoutController($scope,$rootScope, $location) {
 
-        console.log($rootScope.displayWorkout);
+        //console.log($rootScope.displayWorkout);
         $scope.displayWorkout = $rootScope.displayWorkout;
         $scope.currentDate = (new Date).getTime();
 

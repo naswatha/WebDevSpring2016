@@ -18,10 +18,12 @@ module.exports = function(mongoose, webDevDb){
         getAllWorkouts: getAllWorkouts,
         //getWorkoutById: getWorkoutById,
         getWorkoutByUsername: getWorkoutByUsername,
-        //getAllPublicWorkout: getAllPublicWorkout,
+        getAllPublicWorkout: getAllPublicWorkout,
+        makeUserWorkoutsFalse: makeUserWorkoutsFalse,
+        makeUserWorkoutTrue: makeUserWorkoutTrue,
         //
         //addWorkoutList: addWorkoutList,
-        //makePublic: makePublic,
+        makePublic: makePublic
         //makeActive: makeActive
 
 
@@ -69,6 +71,84 @@ module.exports = function(mongoose, webDevDb){
             });
         return deferred.promise;
     }
+
+    function makePublic(workoutId){
+        var deferred = q.defer();
+        WorkoutModel.findById(workoutId,
+            function(err, workout){
+                if (err) {
+                    deferred.reject(err);
+                }
+                else
+                {
+                    workout.public = true;
+                    workout.save(function (err, updatedWorkout){
+                        if(err){
+                            deferred.reject(err);
+                        }
+                        else
+                        {
+                            deferred.resolve(updatedWorkout);
+                        }
+                    });
+                }
+            });
+        return deferred.promise;
+    }
+
+    function getAllPublicWorkout(publicId){
+        var deferred = q.defer();
+        WorkoutModel.find({"public": true},
+            function(err, workouts){
+                if (err) {
+                    deferred.reject(err)
+                } else {
+                    deferred.resolve(workouts);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function makeUserWorkoutsFalse(username){
+        var deferred = q.defer();
+        WorkoutModel.update({"username": username }, {"active": false}, {multi: true},
+            function(err, workouts){
+                if (err) {
+                    deferred.reject(err);
+                }
+                else
+                {
+                    deferred.resolve(workouts);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function makeUserWorkoutTrue(workoutId){
+        var deferred = q.defer();
+        WorkoutModel.findById(workoutId,
+            function(err, workout){
+                if (err) {
+                    deferred.reject(err);
+                }
+                else
+                {
+                    workout.active = true;
+                    workout.save(function (err, updatedWorkout){
+                        if(err){
+                            deferred.reject(err);
+                        }
+                        else
+                        {
+                            deferred.resolve(updatedWorkout);
+                        }
+                    });
+                }
+            });
+        return deferred.promise;
+    }
+
+
 
     //function getWorkoutById(Id){
     //    var deferred = q.defer();

@@ -12,12 +12,13 @@
         var service = {
 
             findAllWorkoutForUser: findAllWorkoutForUser,
-            createWorkout: createWorkout
+            createWorkout: createWorkout,
             //deleteWorkoutById: deleteWorkoutById,
             //updateWorkoutById: updateWorkoutById,
-            //findAllPublicWorkouts: findAllPublicWorkouts,
-            //updateActiveWorkoutById: updateActiveWorkoutById,
-            //makeWorkoutPublicById: makeWorkoutPublicById,
+            findAllPublicWorkouts: findAllPublicWorkouts,
+            updateAllUserWorkoutInactive: updateAllUserWorkoutInactive,
+            updateWorkoutActive: updateWorkoutActive,
+            makeWorkoutPublicById: makeWorkoutPublicById
             //addWorkoutToMyList: addWorkoutToMyList
 
     };
@@ -32,9 +33,29 @@
 
 
         function findAllWorkoutForUser(username){
-            console.log(username);
+            //console.log(username);
             var url = "/api/project/user/"+username+"/workout";
             return $http.get(url);
+        }
+
+        function makeWorkoutPublicById(workoutId){
+            var url = "/api/project/makePublicWorkout/"+workoutId;
+            return $http.put(url);
+        }
+
+        function findAllPublicWorkouts (publicId){
+            var url = "/api/project/getPublic/"+publicId;
+            return $http.get(url);
+        }
+
+        function updateAllUserWorkoutInactive (username){
+            var url = "/api/project/inactiveall/"+username;
+            return $http.put(url);
+        }
+
+        function updateWorkoutActive (workoutId){
+            var url = "/api/project/makeactive/"+workoutId;
+            return $http.put(url);
         }
 
         //function deleteWorkoutById(userId,workoutId){

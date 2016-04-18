@@ -24,7 +24,8 @@
                                 <a class="btn btn-default" ng-click="viewWorkout(workout)"><i class="fa fa-eye"></i></a>
                             </div>
                         </td>
-                        <td><input ng-show="showActive(workout)" type="radio" ng-click="makeActive($index)" name="activeWork"></td>
+                        <!--<td><input ng-show="showActive(workout)" type="radio" ng-click="makeActive($index)" name="activeWork"></td>-->
+                        <td><input type="radio" ng-click="makeActive($index)" name="activeWork"></td>
                         <td>
                             <div class="btn-group">
                                 <a class="btn btn-default" ng-show="showPublic(workout)" ng-click="makeWorkoutPublic($index)"><i class="fa fa-check"></i></a>

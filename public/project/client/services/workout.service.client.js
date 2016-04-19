@@ -12,6 +12,7 @@
         var service = {
 
             findAllWorkoutForUser: findAllWorkoutForUser,
+            findAllWorkouts: findAllWorkouts,
             createWorkout: createWorkout,
             deleteWorkoutById: deleteWorkoutById,
             //updateWorkoutById: updateWorkoutById,
@@ -67,6 +68,11 @@
         function deleteWorkoutById(workoutId){
             var url = "/api/project/workout/"+workoutId;
             return $http.delete(url);
+        }
+
+        function findAllWorkouts (){
+            var url = "/api/project/allworkouts";
+            return $http.get(url);
         }
 
 

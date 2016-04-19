@@ -12,6 +12,7 @@ module.exports = function(app,WorkoutModel){
     app.get("/api/project/user/:username/workout", findWorkoutByUsername);
     app.get("/api/project/getPublic/:publicId", findAllPublicWorkout);
     app.get("/api/project/findactive/:username", findUserActiveWorkout);
+    app.get("/api/project/allworkouts", findAllWorkouts);
 
     //app.put("/api/project/workout/:workoutId", updateWorkout);
     //app.put("/api/project/user/:username/workout/:workoutId", updateActive);
@@ -34,6 +35,13 @@ module.exports = function(app,WorkoutModel){
 
     function findWorkoutById(req, res){
         WorkoutModel.getWorkoutById(req.params.id).then(
+            function(response){
+                res.json(response);
+            });
+    }
+
+    function findAllWorkouts(req, res){
+        WorkoutModel.getAllWorkouts().then(
             function(response){
                 res.json(response);
             });

@@ -1,62 +1,58 @@
-
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="AdminController">
     <div class="row">
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="main">
             <h1 class="page-header">Admin</h1>
 
-            <h2 class="sub-header">Users</h2>
-            <div class="table-responsive">
+            <div class="btn-group">
+                <a class="btn btn-default" ng-click="showUsers()">Users</a>
+                <a class="btn btn-default" ng-click="showWorkouts()">Workouts</a>
+            </div>
+            <br>
+            <br>
+            <div class="table-responsive" ng-show="toggle">
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th><i class="fa fa-fw fa-sort"></i>Username</th>
-                        <th><i class="fa fa-fw fa-sort"></i>Password</th>
-                        <th><i class="fa fa-fw fa-sort"></i>Role</th>
+                        <th><i class="fa fa-fw fa-sort"></i>Creation Date</th>
+                        <th><i class="fa fa-fw fa-sort"></i>Admin</th>
                         <th><i class="fa fa-fw fa-sort"></i>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td><input type="text" class="form-control" placeholder="Username"/></td>
-                        <td><input type="text" class="form-control" placeholder="Password"/></td>
-                        <td><input type="text" class="form-control" placeholder="role1, role2"/></td>
+                    <tr ng-repeat="user in userList">
+                        <td>{{user.username}}</td>
+                        <td>{{user.createdDate}}</td>
+                        <td>{{user.admin}}</td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-default" href="#"><i class="fa fa-plus"></i></a>
-                                <a class="btn btn-default" href="#"><i class="fa fa-check"></i></a>
+                                <a class="btn btn-default" ng-click="deleteUser(user)"><i class="fa fa-times"></i></a>
                             </div>
                         </td>
                     </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="table-responsive" ng-show="!toggle">
+                <table class="table table-striped">
+                    <thead>
                     <tr>
-                        <td>Alice</td>
-                        <td></td>
-                        <td>student</td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default" href="#"><i class="fa fa-times"></i></a>
-                                <a class="btn btn-default" href="#"><i class="fa fa-pencil"></i></a>
-                            </div>
-                        </td>
+                        <th><i class="fa fa-fw fa-sort"></i>Workout Name</th>
+                        <th><i class="fa fa-fw fa-sort"></i>Creation Date</th>
+                        <th><i class="fa fa-fw fa-sort"></i>Public</th>
+                        <th><i class="fa fa-fw fa-sort"></i>Action</th>
                     </tr>
-                    <tr>
-                        <td>Bob</td>
-                        <td></td>
-                        <td>faculty | admin</td>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="workout in workoutList">
+                        <td>{{workout.name}}</td>
+                        <td>{{workout.created}}</td>
+                        <td>{{workout.public}}</td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-default" href="#"><i class="fa fa-times"></i></a>
-                                <a class="btn btn-default" href="#"><i class="fa fa-pencil"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Charlie</td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default" href="#"><i class="fa fa-times"></i></a>
-                                <a class="btn btn-default" href="#"><i class="fa fa-pencil"></i></a>
+                                <a class="btn btn-default" ng-click="deleteWorkout(workout)"><i class="fa fa-times"></i></a>
                             </div>
                         </td>
                     </tr>

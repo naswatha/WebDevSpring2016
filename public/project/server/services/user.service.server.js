@@ -7,13 +7,14 @@ module.exports = function(app, UserModel){
 
     app.post("/api/project/user", createUser);
     app.get("/api/project/userbyusername/:username", findUserByUsername);
+    app.get("/api/project/alluser", findAllUsers);
     app.get("/api/project/user", findUser);
     app.get("/api/project/user/:id", findUserById);
     app.put("/api/project/user/:id", updateUser);
     app.put("/api/project/addsubcriber/:subscribeTo/loggeduser/:currUsername", addUserAsSubscriber);
     app.put("/api/project/removesubcriber/:subscribeTo/loggeduser/:currUsername", removeUserAsSubscriber);
 
-    app.delete("/api/project/user/:id", deleteUser);
+    app.delete("/api/project/user/:userId", deleteUser);
 
 
     function createUser(req, res){
@@ -34,6 +35,14 @@ module.exports = function(app, UserModel){
                 });
         }
     }
+
+    function findAllUsers(req, res){
+        UserModel.findAll().then(
+            function(response){
+                res.json(response);
+            });
+    }
+
 
     function findUserById(req,res){
         UserModel.findById(req.params.id).then(
@@ -57,7 +66,7 @@ module.exports = function(app, UserModel){
     }
 
     function deleteUser(req, res){
-        UserModel.remove(req.params.id).then(
+        UserModel.remove(req.params.userId).then(
             function(response){
                 res.json(response);
             });

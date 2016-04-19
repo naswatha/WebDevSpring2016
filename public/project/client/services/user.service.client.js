@@ -31,7 +31,7 @@
         }
 
         function findAllUsers (){
-            return $http.get("/api/project/user");
+            return $http.get("/api/project/alluser");
         }
 
         function createUser (user){
@@ -40,8 +40,8 @@
         }
 
         function deleteUserById (userId){
-            var url = "/api/project/user/";
-            return $http.delete(url+userId);
+            var url = "/api/project/user/"+userId;
+            return $http.delete(url);
         }
 
         function updateUser (userId,user){

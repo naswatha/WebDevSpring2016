@@ -14,8 +14,8 @@
                 //controller: "HomeController"
             })
             .when("/admin",{
-                templateUrl: "views/admin/admin.view.html"
-                //controller: "AdminController"
+                templateUrl: "views/admin/admin.view.html",
+                controller: "AdminController"
             })
             .when("/login",{
                 templateUrl: "views/users/login.view.html",

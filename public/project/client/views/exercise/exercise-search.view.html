@@ -7,10 +7,10 @@
             <form class="form-horizontal">
                 <div id="imaginary_container">
                     <div class="input-group stylish-input-group">
-                        <input ng-model="term" type="text" class="form-control"  placeholder="Search" >
+                        <input ng-model="term" type="text" class="form-control"  placeholder="try bench, chest, press...." >
                         <span class="input-group-addon">
                             <button ng-click="search(term)">
-                                <span class="glyphicon glyphicon-search"></span>
+                                <i class="fa fa-search" aria-hidden="true"></i>
                             </button>
                         </span>
                     </div>
@@ -22,54 +22,51 @@
                 <br>
                 <br>
 
-                <div class="container-fluid" ng-show="exerciseDetails">
-                    <div class="row">
-                            <ul>
-                                <li> <h4>Name :</h4> {{exerciseDetails.name}}</li>
-                                <br>
-                                <li> <h4>Description :</h4> {{exerciseDetails.description}}</li>
-                                <br>
-                                <li> <h4>Equipment :</h4>
-                                    <ul>
-                                        <li ng-repeat="eq in displayEquipments">{{eq}}</li>
-                                    </ul>
-                                </li>
-                                <br>
-                                <li> <h4>Primary Muscle :</h4>
-                                    <ul>
-                                        <li ng-repeat="mus in displayMuscles">{{mus}}</li>
-                                    </ul>
-                                </li>
-                                <br>
-                                <li> <h4>Secondary Muscle :</h4>
-                                    <ul>
-                                        <li ng-repeat="smus in displaySecondaryMuscles">{{smus}}</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        <br>
+                <div class="list-group" ng-show="exerciseDetails">
+                    <div class="list-group-item">
+                        <h4 class="list-group-item-heading">Name</h4>
+                        <p class="list-group-item-text">{{exerciseDetails.name}}</p>
+                    </div>
+                    <div class="list-group-item">
+                        <h4 class="list-group-item-heading">Description</h4>
+                        <p class="list-group-item-text">{{exerciseDetails.description}}</p>
+                    </div>
+                    <div class="list-group-item">
+                        <h4 class="list-group-item-heading">Equipment</h4>
+                        <p ng-repeat="eq in displayEquipments" class="list-group-item-text">{{eq}}</p>
+                    </div>
+                    <div class="list-group-item">
+                        <h4 class="list-group-item-heading">Primary Muscle</h4>
+                        <p ng-repeat="mus in displayMuscles" class="list-group-item-text">{{mus}}</p>
+                    </div>
+                    <div class="list-group-item">
+                        <h4 class="list-group-item-heading">Secondary Muscle</h4>
+                        <p ng-repeat="smus in displaySecondaryMuscles" class="list-group-item-text">{{smus}}</p>
                     </div>
                 </div>
 
-                <div ng-show="searchResults" class="table-responsive">
-                    <table class="table table-striped">
-                        <thead align="center">
-                        <tr>
-                            <td> Category </td>
-                            <td> Exercise Name</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="result in searchResults">
-                            <td align="center"> {{result.category}} </td>
-                            <td>
-                                <button ng-click="details(result.id)" class="btn btn-secondary btn-md text-left btn-primary ">
-                                {{result.value}}
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="row" ng-show="exerciseDetails">
+                    <div class="col-lg-12">
+                        <h4 class="page-header">Exercise Gallery</h4>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb" ng-repeat="image in exerciseImageURL">
+                        <a class="thumbnail">
+                            <img class="img-responsive" ng-src="{{image}}" alt="">
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <div ng-show="searchResults" class="list-group">
+                    <a class="list-group-item active">
+                        <h4 class="list-group-item-heading">Category : Exercise Name</h4>
+                        <p class="list-group-item-text">(Click on the below list for details)</p>
+                    </a>
+                    <a ng-repeat="result in searchResults"  ng-click="details(result.id)" class="list-group-item">
+                        {{result.category}}&nbsp;&nbsp;:&nbsp;&nbsp;{{result.value}}
+                    </a>
                 </div>
 
             </form>

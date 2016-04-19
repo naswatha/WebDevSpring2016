@@ -12,17 +12,37 @@
 
         $scope.search = search;
         $scope.details = details;
+        $scope.imageObjects = [];
+        $scope.exerciseImageURL = [];
+
+        WgerApiService.cacheImageData(
+            function(response){
+                //console.log(response);
+                for(var i = 0; i < response.results.length; i++){
+                    $scope.imageObjects.push(response.results[i]);
+                }
+
+                //$scope.imageObjects.push(response.results);
+                //console.log($scope.imageObjects);
+                //for(var j = 0; j < $scope.imageObjects.length; j++){
+                //    console.log($scope.imageObjects[j].image);
+                //}
+
+            });
+
+
+
+
 
         function search (term){
             WgerApiService.searchExercise(term,
                 function(response){
                     $scope.searchResults = response;
-
-
                 });
         }
 
         function details (exerciseId){
+            $scope.exerciseImageURL = [];
             WgerApiService.findExerciseByID ( exerciseId,
                 function (exerciseDetails){
                     $scope.exerciseDetails = exerciseDetails;
@@ -37,7 +57,7 @@
                                 }
                             }
                             $scope.displayEquipments = requiredEquipments;
-                            console.log(requiredEquipments);
+                            //console.log(requiredEquipments);
                         });
 
 
@@ -54,7 +74,7 @@
                                 }
                             }
                             $scope.displayMuscles = primaryMuscles;
-                            console.log(primaryMuscles);
+                            //console.log(primaryMuscles);
 
                             for(var j=0;j<exerciseDetails.muscles_secondary.length;j++){
                                 for(var i=0;i<muscles.results.length;i++){
@@ -64,8 +84,20 @@
                                 }
                             }
                             $scope.displaySecondaryMuscles = secondaryMuscles;
-                            console.log(secondaryMuscles);
+                            //console.log(secondaryMuscles);
                         });
+
+                    var description = $scope.exerciseDetails.description;
+                    description = description.replace(/<\/p>/gm, "");
+                    description = description.replace(/<p>/gm,"");
+                    $scope.exerciseDetails.description = description;
+
+                    for(var i =0; i < $scope.imageObjects.length; i++){
+                        if($scope.exerciseDetails.id == $scope.imageObjects[i].exercise){
+                            $scope.exerciseImageURL.push($scope.imageObjects[i].image);
+                        }
+                    }
+                    console.log($scope.exerciseImageURL);
                 });
         }
     }

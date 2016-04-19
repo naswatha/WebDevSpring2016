@@ -6,39 +6,50 @@
             <h1 class="page-header">Profile</h1>
 
             <form class="form-horizontal">
+
                 <div class="form-group">
                     <label for="inputUsername" class="col-sm-2 control-label">Username</label>
-                    <div class="col-sm-10">
-                        <input type="text" ng-model="user.username" class="form-control" id="inputUsername" placeholder="Username">
+                    <div class="input-group col-sm-10">
+                        <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                        <input type="text" ng-model = "user.username" class="form-control" id="inputUsername" placeholder="Username">
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label for="inputPassword" class="col-sm-2 control-label">Password</label>
-                    <div class="col-sm-10">
-                        <input type="password" ng-model="user.password" class="form-control" id="inputPassword" placeholder="Password">
+                    <div class="input-group col-sm-10">
+                        <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+                        <input type="password" ng-model = "user.password" class="form-control" id="inputPassword" placeholder="Passowrd">
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label for="inputFirstName" class="col-sm-2 control-label">First Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" ng-model="user.firstName" class="form-control" id="inputFirstName" placeholder="First Name">
+                    <div class="input-group col-sm-10">
+                        <span class="input-group-addon"><i class="fa fa-info" aria-hidden="true"></i></span>
+                        <input type="text" ng-model = "user.firstName" class="form-control" id="inputFirstName" placeholder="First Name">
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label for="inputLastName" class="col-sm-2 control-label">Last Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" ng-model="user.lastName" class="form-control" id="inputLastName" placeholder="Last Name">
+                    <div class="input-group col-sm-10">
+                        <span class="input-group-addon"><i class="fa fa-info" aria-hidden="true"></i></span>
+                        <input type="text" ng-model = "user.lastName" class="form-control" id="inputLastName" placeholder="Last Name">
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" ng-model="user.email" class="form-control" id="inputEmail" placeholder="Email">
+                    <div class="input-group col-sm-10">
+                        <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                        <input type="text" ng-model = "user.email" class="form-control" id="inputEmail" placeholder="email address">
                     </div>
                 </div>
+
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button ng-click="update(user)" class="btn btn-block">Update</button>
+                        <button ng-click="update(user)" class="btn btn-primary">Update</button>
                     </div>
                 </div>
             </form>
@@ -59,7 +70,7 @@
                             <td> {{name}} </td>
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-default" ng-click="removeSubscription(name)"><i class="fa fa-times"></i></a>
+                                    <a class="btn btn-danger" ng-click="removeSubscription(name)"><i class="fa fa-times"></i></a>
                                 </div>
                             </td>
                         </tr>

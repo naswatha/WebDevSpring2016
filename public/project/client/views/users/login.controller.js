@@ -7,7 +7,7 @@
         .module("WorkoutBuilderApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($rootScope, $scope, $location, UserService,WgerApiService) {
+    function LoginController($rootScope, $scope, $location, UserService) {
 
         $scope.message = null;
 
@@ -15,7 +15,6 @@
         $scope.login = function(user) {
             if(user == null){
                 $scope.message = "Please enter Username and Password";
-                console.log("Please enter Username and Password");
                 return;
             }
 

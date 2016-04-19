@@ -15,24 +15,40 @@
             getAllMuscles: getAllMuscles,
             getWeek: getWeek,
             getExerciseCategory: getExerciseCategory,
-            cacheExercises: cacheExercises
+            //cacheExercises: cacheExercises,
+            cacheImageData: cacheImageData
         };
 
         var baseUrl = "http://wger.de/api/v2";
         return api;
 
-        function cacheExercises(callback){
 
-            var exerciseCacheUrl = baseUrl +'/exercise/?language=2&page=1&status=2';
-            $http.get(exerciseCacheUrl)
-                .success(callback);
+        function cacheImageData(callback){
 
-            //for(var i = 1; i <= 9; i++){
-            //    var exerciseCacheUrl = baseUrl +'/exercise/?language=2&page='+i+'&status=2';
-            //    $http.get(exerciseCacheUrl)
-            //        .success(callback);
-            //}
+                //var exerciseCacheUrl = baseUrl +'/exerciseimage/?page='+1;
+                //$http.get(exerciseCacheUrl)
+                //    .success(callback);
+
+            for(var i = 1; i <= 11; i++){
+                var exerciseCacheUrl = baseUrl +'/exerciseimage/?page='+i;
+                $http.get(exerciseCacheUrl)
+                    .success(callback);
+            }
         }
+
+
+        //function cacheExercises(callback){
+        //
+        //    var exerciseCacheUrl = baseUrl +'/exercise/?language=2&page=1&status=2';
+        //    $http.get(exerciseCacheUrl)
+        //        .success(callback);
+        //
+        //    //for(var i = 1; i <= 9; i++){
+        //    //    var exerciseCacheUrl = baseUrl +'/exercise/?language=2&page='+i+'&status=2';
+        //    //    $http.get(exerciseCacheUrl)
+        //    //        .success(callback);
+        //    //}
+        //}
 
         function searchExercise(term, callback) {
             var exerciseSearchURL = baseUrl + '/exercise/search/?term=' + term;

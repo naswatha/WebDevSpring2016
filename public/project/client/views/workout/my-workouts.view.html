@@ -20,15 +20,15 @@
                         <td> {{workout.name}} </td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-default" ng-click="deleteWorkout($index)"><i class="fa fa-times"></i></a>
-                                <a class="btn btn-default" ng-click="viewWorkout(workout)"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-danger" ng-click="deleteWorkout($index)"><i class="fa fa-times"></i></a>
+                                <a class="btn btn-info" ng-click="viewWorkout(workout)"><i class="fa fa-eye"></i></a>
                             </div>
                         </td>
                         <td><input ng-show="showActive(workout)" type="radio" ng-click="makeActive($index)" name="activeWork"></td>
                         <!--<td><input type="radio" ng-click="makeActive($index)" name="activeWork"></td>-->
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-default" ng-show="showPublic(workout)" ng-click="makeWorkoutPublic($index)"><i class="fa fa-check"></i></a>
+                                <a class="btn btn-success" ng-show="showPublic(workout)" ng-click="makeWorkoutPublic($index)"><i class="fa fa-check"></i></a>
                             </div>
                         </td>
                     </tr>
@@ -39,7 +39,7 @@
             <br>
 
             <div class="col-sm-offset-2 col-sm-10" ng-show="subscribeFlag">
-                <button class="btn btn-block" ng-click="showSubscribedWorkouts()">Show Subscribed Workouts</button>
+                <button class="btn btn-primary" ng-click="showSubscribedWorkouts()">Show Subscribed Workouts</button>
             </div>
 
             <h2 ng-show="!subscribeFlag" class="page-header">Subscribed Workouts</h2>
@@ -58,7 +58,7 @@
                         <td> {{subworkout.username}} </td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-default" ng-click="viewWorkout(subworkout)"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-info" ng-click="viewWorkout(subworkout)"><i class="fa fa-eye"></i></a>
                             </div>
                         </td>
                     </tr>

@@ -1,21 +1,14 @@
 
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="ActiveWorkoutController">
     <div class="row">
         <!--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">-->
             <div class="main">
             <h1 class="page-header">Active Workouts</h1>
 
             <dl class="dl-horizontal">
-                <dt>Name :</dt>
-                <dd>2 Week Beginner Workout</dd>
-                <dt>Description :</dt>
-                <dd>Program is for absolute beginner who has never touched a weight before.</dd>
-                <dt>Start Date :</dt>
-                <dd>14 March 2016 : Monday</dd>
-                <dt>Current Date :</dt>
-                <dd>12 March 2016 : Saturday</dd>
-                <dt>Focus Group :</dt>
-                <dd>Legs</dd>
+                <dt>Name :</dt> <dd>{{activeWorkout.name}}</dd>
+                <dt>Description :</dt> <dd>{{activeWorkout.description}}</dd>
+                <dt>Week Number :</dt> <dd>{{currentWeekNumber}}</dd>
             </dl>
 
             <h3>Workout for today</h3>
@@ -24,84 +17,28 @@
                     <thead>
                     <tr>
                         <th><i class="fa fa-fw fa-sort"></i>Exercise Name</th>
-                        <th><i class="fa fa-fw fa-sort"></i>Target</th>
-                        <th><i class="fa fa-fw fa-sort"></i>Achieved</th>
+                        <th><i class="fa fa-fw fa-sort"></i>Target Reps</th>
+                        <!--<th><i class="fa fa-fw fa-sort"></i>Save Reps</th>-->
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Leg Extension</td>
-                        <td> 8 - 6 - 8 </td>
-                        <td>
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                        </td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-floppy-o fa-lg"></i></a>
-                            </div>
-                        </td>
+                    <tr ng-repeat="exercise in currentDayWorkout">
+                        <td>{{exercise.eName}}</td>
+                        <td><label ng-repeat="tReps in exercise.repsTarget">{{tReps}}&nbsp;&nbsp;</label></td>
+                        <!--<td><div ng-repeat="tReps in exercise.repsTarget">-->
+                            <!--<input  type="text" ng-model="achieve.rep" maxlength="2" size="2">&nbsp;&nbsp;-->
+                            <!--<div class="btn-group">-->
+                                <!--<a class="btn btn-default" ng-click="saveAchievedReps(achieve,$index,exercise)"><i class="fa fa-floppy-o fa-lg"></i></a>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                        <!--</td>-->
                     </tr>
-                    <tr>
-                        <td>Leg curls (sitting)</td>
-                        <td> 10 - 12 </td>
-                        <td>
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                        </td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-floppy-o fa-lg"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Leg press on hackenschmidt machine</td>
-                        <td> 5 - 7 - 6 </td>
-                        <td>
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                        </td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-floppy-o fa-lg"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Calf Press using Leg Press Machine</td>
-                        <td> 12 - 10 - 8 </td>
-                        <td>
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                            <input type="text" maxlength="2" size="2">
-                        </td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default"><i class="fa fa-floppy-o fa-lg"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <!--<tr ng-repeat="form in loggedUserForms">-->
-                    <!--<td> {{form.title}} </td>-->
-                    <!--<td>-->
-                    <!--<div class="btn-group">-->
-                    <!--<a class="btn btn-default" ng-click="deleteForm($index)"><i class="fa fa-times"></i></a>-->
-                    <!--<a class="btn btn-default" ng-click="selectForm($index)"><i class="fa fa-pencil"></i></a>-->
-                    <!--</div>-->
-                    <!--</td>-->
-                    <!--</tr>-->
                     </tbody>
                 </table>
             </div>
-
-            <div id="fields" class="tab-pane fade">
-                <h3>Fields</h3>
-                <p>Some content in menu 1.</p>
-            </div>
-
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-block" ng-click="currentWorkoutComplete()">Set Todays Workout Complete</button>
+                </div>
         </div>
     </div>
 </div>

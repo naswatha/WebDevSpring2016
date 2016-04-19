@@ -12,6 +12,7 @@
 
         //retreive current user.
         $scope.user = $rootScope.loggedUser;
+        $scope.subscriberList = $scope.user.subscribeTo;
 
         $scope.message = null;
 
@@ -45,6 +46,22 @@
                 });
 
         };
+
+        // delete user from subscription list
+        $scope.removeSubscription = function(subscribeTo){
+            //console.log(subscribeTo);
+            UserService.removeFromSubscribeList(subscribeTo,$scope.loggedUser.username).then(
+                function(response){
+                    console.log("Remove subscription");
+                    console.log(response.data);
+                    $scope.user = response.data;
+                    $rootScope.loggedUser = response.data;
+                    $scope.subscriberList = $scope.user.subscribeTo;
+                });
+        };
+
+
+
 
     }
 })();

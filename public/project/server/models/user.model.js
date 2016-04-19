@@ -18,9 +18,12 @@ module.exports = function(mongoose, webDevDb){
         update: update,
         remove: remove,
         //findUserByUsername: findUserByUsername,
-        findUserByCredentials: findUserByCredentials
+        findUserByCredentials: findUserByCredentials,
+        addSubcriber: addSubcriber,
+        removeSubcriber: removeSubcriber,
+        findByUsername: findByUsername
 
-    };
+};
 
     return api;
 
@@ -71,6 +74,22 @@ module.exports = function(mongoose, webDevDb){
         return deferred.promise;
     }
 
+    function findByUsername(username) {
+
+        var deferred = q.defer();
+        UserModel.findOne({'username': username},
+            function(err, user){
+                if (err) {
+                    deferred.reject(err)
+                }
+                else {
+                    deferred.resolve(user);
+                }
+            });
+
+        return deferred.promise;
+    }
+
     function update(id, user){
 
         var deferred = q.defer();
@@ -107,6 +126,55 @@ module.exports = function(mongoose, webDevDb){
                 }
             });
 
+        return deferred.promise;
+    }
+
+    function addSubcriber(subscribeToUsername,username){
+        var deferred = q.defer();
+        UserModel.findOne({'username': username},
+            function(err, user){
+                if (err) {
+                    deferred.reject(err)
+                } else{
+
+                    var found = false;
+                    for(var i = 0; i < user.subscribeTo.length; i++){
+                        if(subscribeToUsername == user.subscribeTo[i]){
+                            found = true;
+                        }
+                    }
+                    if(!found){
+                        user.subscribeTo.push(subscribeToUsername);
+                        user.save(
+                            function(err, updatedUser) {
+                                deferred.resolve(updatedUser);
+                            });
+                    }
+                    deferred.resolve(user);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function removeSubcriber(subscribeToUsername,username){
+        var deferred = q.defer();
+        UserModel.findOne({'username': username},
+            function(err, user){
+                if (err) {
+                    deferred.reject(err)
+                } else{
+
+                    for(var i = 0; i < user.subscribeTo.length; i++){
+                        if(subscribeToUsername == user.subscribeTo[i]){
+                            user.subscribeTo.splice(i,1);
+                        }
+                    }
+                    user.save(
+                        function(err, updatedUser) {
+                            deferred.resolve(updatedUser);
+                        });
+                }
+            });
         return deferred.promise;
     }
 

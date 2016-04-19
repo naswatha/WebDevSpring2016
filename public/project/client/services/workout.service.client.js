@@ -13,13 +13,14 @@
 
             findAllWorkoutForUser: findAllWorkoutForUser,
             createWorkout: createWorkout,
-            //deleteWorkoutById: deleteWorkoutById,
+            deleteWorkoutById: deleteWorkoutById,
             //updateWorkoutById: updateWorkoutById,
             findAllPublicWorkouts: findAllPublicWorkouts,
             updateAllUserWorkoutInactive: updateAllUserWorkoutInactive,
             updateWorkoutActive: updateWorkoutActive,
-            makeWorkoutPublicById: makeWorkoutPublicById
-            //addWorkoutToMyList: addWorkoutToMyList
+            makeWorkoutPublicById: makeWorkoutPublicById,
+            findActiveWorkout: findActiveWorkout
+
 
     };
 
@@ -57,6 +58,24 @@
             var url = "/api/project/makeactive/"+workoutId;
             return $http.put(url);
         }
+
+        function findActiveWorkout (username){
+            var url = "/api/project/findactive/"+username;
+            return $http.get(url);
+        }
+
+        function deleteWorkoutById(workoutId){
+            var url = "/api/project/workout/"+workoutId;
+            return $http.delete(url);
+        }
+
+
+        //function updateRep(workoutId,weekNumber,achievedRep,index){
+        //    var url = "/api/project/updateRep/"+workoutId+"/weekNum/"+weekNumber+"/achrep/"+achievedRep+"/position/"+index;
+        //    return $http.put(url);
+        //}
+
+
 
         //function deleteWorkoutById(userId,workoutId){
         //    var url = "/api/project/user/"+userId+"/workout/"+workoutId;

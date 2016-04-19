@@ -10,8 +10,9 @@ module.exports = function(mongoose){
         "firstName": String,
         "lastName": String,
         "email": String,
-        "activeWorkoutId": String,
-        "myWorkoutIds": [String]
+        "createdDate": {type:Date, default:new Date()},
+        "subscribeTo": [String],
+        "admin": { type: Boolean, default: false }
     },{collection: 'project.user'});
 
     return UserSchema;

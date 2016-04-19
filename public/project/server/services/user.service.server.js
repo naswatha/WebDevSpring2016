@@ -6,10 +6,15 @@
 module.exports = function(app, UserModel){
 
     app.post("/api/project/user", createUser);
+    app.get("/api/project/userbyusername/:username", findUserByUsername);
     app.get("/api/project/user", findUser);
     app.get("/api/project/user/:id", findUserById);
     app.put("/api/project/user/:id", updateUser);
+    app.put("/api/project/addsubcriber/:subscribeTo/loggeduser/:currUsername", addUserAsSubscriber);
+    app.put("/api/project/removesubcriber/:subscribeTo/loggeduser/:currUsername", removeUserAsSubscriber);
+
     app.delete("/api/project/user/:id", deleteUser);
+
 
     function createUser(req, res){
         var user = req.body;
@@ -37,6 +42,13 @@ module.exports = function(app, UserModel){
             });
     }
 
+    function findUserByUsername(req,res){
+        UserModel.findByUsername(req.params.username).then(
+            function(response){
+                res.json(response);
+            });
+    }
+
     function updateUser(req,res){
         UserModel.update(req.params.id, req.body).then(
             function(response){
@@ -46,6 +58,20 @@ module.exports = function(app, UserModel){
 
     function deleteUser(req, res){
         UserModel.remove(req.params.id).then(
+            function(response){
+                res.json(response);
+            });
+    }
+
+    function addUserAsSubscriber(req, res){
+        UserModel.addSubcriber(req.params.subscribeTo, req.params.currUsername).then(
+            function(response){
+                res.json(response);
+            });
+    }
+
+    function removeUserAsSubscriber(req, res){
+        UserModel.removeSubcriber(req.params.subscribeTo, req.params.currUsername).then(
             function(response){
                 res.json(response);
             });

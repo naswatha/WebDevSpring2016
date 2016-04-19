@@ -12,6 +12,7 @@
                         <th><i class="fa fa-fw fa-sort"></i>Workout Name</th>
                         <th><i class="fa fa-fw fa-sort"></i>Created By</th>
                         <th><i class="fa fa-fw fa-sort"></i>View</th>
+                        <th><i class="fa fa-fw fa-sort"></i>Subscribe User</th>
                         <!--<th><i class="fa fa-fw fa-sort"></i>Add to My Workout List</th>-->
                     </tr>
                     </thead>
@@ -22,6 +23,11 @@
                         <td>
                             <div class="btn-group">
                                 <a class="btn btn-default" ng-click="viewWorkout(workout)"><i class="fa fa-eye"></i></a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-default" ng-click="subscribe(workout.username)"><i class="fa fa-check"></i></a>
                             </div>
                         </td>
                         <!--<td>-->

@@ -34,8 +34,8 @@
                 controller: "ExerciseSearchController"
             })
             .when("/active-workout",{
-                templateUrl: "views/workout/active-workout.view.html"
-                //controller: "ExerciseSearchController"
+                templateUrl: "views/workout/active-workout.view.html",
+                controller: "ActiveWorkoutController"
             })
             .when("/my-workouts",{
                 templateUrl: "views/workout/my-workouts.view.html",

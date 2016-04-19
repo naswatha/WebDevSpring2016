@@ -7,7 +7,7 @@
         .module("WorkoutBuilderApp")
         .controller("PublicWorkoutController", PublicWorkoutController);
 
-    function PublicWorkoutController($scope, $location, $rootScope, WorkoutService) {
+    function PublicWorkoutController($scope, $location, $rootScope, WorkoutService,UserService) {
 
 
         $scope.publicWorkouts = [];
@@ -16,10 +16,25 @@
 
         WorkoutService.findAllPublicWorkouts(1).then(
             function(response){
-                console.log("public workouts");
-                console.log(response.data);
+                //console.log("public workouts");
+                //console.log(response.data);
                 $scope.publicWorkouts = response.data;
             });
+
+        $scope.subscribe = function(subscribeTo) {
+
+            //console.log("Before Subscribe");
+            UserService.addToSubscribeList(subscribeTo,$scope.loggedUser.username).then(
+                function(response){
+                    //console.log("After subscribe");
+                    $rootScope.loggedUser = response.data;
+                    //console.log($rootScope.loggedUser);
+                    $scope.successMessage = "You have subscribed to "+subscribeTo;
+                });
+
+        };
+
+
 
 
 

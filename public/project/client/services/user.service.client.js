@@ -15,13 +15,15 @@
             createUser : createUser,
             deleteUserById : deleteUserById,
             updateUser : updateUser,
-            findUserByUsername: findUserByUsername
+            findUserByUsername: findUserByUsername,
+            addToSubscribeList: addToSubscribeList,
+            removeFromSubscribeList: removeFromSubscribeList
         };
 
         return service;
 
         function findUserByUsername (username){
-            return $http.get("/api/project/user?username="+username);
+            return $http.get("/api/project/userbyusername/"+username);
         }
 
         function findUserByCredentials (username, password){
@@ -45,6 +47,16 @@
         function updateUser (userId,user){
             var url = "/api/project/user/"+userId;
             return $http.put(url,user);
+        }
+
+        function addToSubscribeList (subscribeTo,currUsername){
+            var url = "/api/project/addsubcriber/"+subscribeTo+"/loggeduser/"+currUsername;
+            return $http.put(url);
+        }
+
+        function removeFromSubscribeList (subscribeTo,currUsername){
+            var url = "/api/project/removesubcriber/"+subscribeTo+"/loggeduser/"+currUsername;
+            return $http.put(url);
         }
     }
 })();

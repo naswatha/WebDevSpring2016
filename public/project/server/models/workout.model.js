@@ -13,7 +13,7 @@ module.exports = function(mongoose, webDevDb){
 
         create: create,
         //update: update,
-        //remove: remove,
+        remove: remove,
 
         getAllWorkouts: getAllWorkouts,
         //getWorkoutById: getWorkoutById,
@@ -23,7 +23,9 @@ module.exports = function(mongoose, webDevDb){
         makeUserWorkoutTrue: makeUserWorkoutTrue,
         //
         //addWorkoutList: addWorkoutList,
-        makePublic: makePublic
+        makePublic: makePublic,
+        getActiveWorkout: getActiveWorkout,
+        updateExerRep: updateExerRep
         //makeActive: makeActive
 
 
@@ -145,6 +147,59 @@ module.exports = function(mongoose, webDevDb){
                     });
                 }
             });
+        return deferred.promise;
+    }
+
+
+    function getActiveWorkout(username){
+        var deferred = q.defer();
+        WorkoutModel.findOne({"username": username, "active": true},
+            function(err, workout){
+                if (err) {
+                    deferred.reject(err)
+                } else {
+                    deferred.resolve(workout);
+                }
+            });
+        return deferred.promise;
+    }
+
+
+    function updateExerRep(workoutId,weekNumber,achievedRep,index){
+        var deferred = q.defer();
+        WorkoutModel.findById(workoutId,
+            function(err, workout){
+                if (err) {
+                    deferred.reject(err);
+                }
+                else
+                {
+                    workout.public = true;
+                    workout.save(function (err, updatedWorkout){
+                        if(err){
+                            deferred.reject(err);
+                        }
+                        else
+                        {
+                            deferred.resolve(updatedWorkout);
+                        }
+                    });
+                }
+            });
+        return deferred.promise;
+    }
+
+    function remove(workoutId){
+        var deferred = q.defer();
+        WorkoutModel.remove({_id: workoutId},
+            function(err, workout){
+                if (err) {
+                    deferred.reject(err)
+                } else {
+                    deferred.resolve(workout);
+                }
+            });
+
         return deferred.promise;
     }
 

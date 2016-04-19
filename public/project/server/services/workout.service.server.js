@@ -11,15 +11,17 @@ module.exports = function(app,WorkoutModel){
     app.get("/api/project/workout/:workoutId", findWorkoutById);
     app.get("/api/project/user/:username/workout", findWorkoutByUsername);
     app.get("/api/project/getPublic/:publicId", findAllPublicWorkout);
+    app.get("/api/project/findactive/:username", findUserActiveWorkout);
 
     //app.put("/api/project/workout/:workoutId", updateWorkout);
     //app.put("/api/project/user/:username/workout/:workoutId", updateActive);
     app.put("/api/project/makePublicWorkout/:workoutId", updatePublic);
     app.put("/api/project/inactiveall/:username", updateUserWorkoutsInactive);
     app.put("/api/project/makeactive/:workoutId", updateThisWorkoutActive);
+    //app.put("/api/project/updateRep/:workoutId/weekNum/:weekNumber/achrep/:achievedRep/position/:index", updateGivenRep);
     //app.put("/api/project/addList/user/:username/workout/:workoutId", addWorkoutToMyList);
     //
-    //app.delete("/api/project/user/:userId/workout/:workoutId", deleteWorkout);
+    app.delete("/api/project/workout/:workoutId", deleteWorkout);
 
 
     function createWorkout(req, res){
@@ -73,6 +75,31 @@ module.exports = function(app,WorkoutModel){
                 res.json(response);
             });
     }
+
+    function findUserActiveWorkout(req, res){
+        WorkoutModel.getActiveWorkout(req.params.username).then(
+            function(response){
+                res.json(response);
+            });
+    }
+
+    function deleteWorkout(req, res){
+        WorkoutModel.remove(req.params.workoutId).then(
+            function(response){
+                res.json(response);
+            })
+    }
+
+    //function updateGivenRep(req, res){
+    //    console.log(req.params.workoutId);
+    //    console.log(req.params.weekNumber);
+    //    console.log(req.params.achievedRep);
+    //    console.log(req.params.index);
+    //    WorkoutModel.updateExerRep(req.params.workoutId,req.params.weekNumber,req.params.achievedRep,req.params.index).then(
+    //        function(response){
+    //            res.json(response);
+    //        });
+    //}
 
     //function findAllPublicWorkout(req, res){
     //    WorkoutModel.getAllPublicWorkout(req.params.publicId).then(

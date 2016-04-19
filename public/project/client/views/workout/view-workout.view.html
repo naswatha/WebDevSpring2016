@@ -8,31 +8,31 @@
                     <div class="form-group">
                         <label class="col-sm-4"><h3>Name</h3></label>
                         <div class="col-sm-8">
-                            <h2>{{displayWorkout.name}}</h2>
+                            <h4>{{displayWorkout.name}}</h4>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4"><h3>Description</h3></label>
                         <div class="col-sm-8">
-                            <h2>{{displayWorkout.description}}</h2>
+                            <h4>{{displayWorkout.description}}</h4>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4"><h3>Active Workout</h3></label>
                         <div class="col-sm-8">
-                            <h2>{{displayWorkout.active}}</h2>
+                            <h4>{{displayWorkout.active}}</h4>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4"><h3>Public Workout</h3></label>
                         <div class="col-sm-8">
-                            <h2>{{displayWorkout.public}}</h2>
+                            <h4>{{displayWorkout.public}}</h4>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4"><h3>Number of Weeks</h3></label>
                         <div class="col-sm-8">
-                            <h2>{{displayWorkout.numWeeks}}</h2>
+                            <h4>{{displayWorkout.numWeeks}}</h4>
                         </div>
                     </div>
                 </form>
@@ -46,43 +46,43 @@
                     <tr ng-repeat="exercise in week.Sunday.sunExerDet">
                         <td>{{exercise.eName}}</td>
                         <td>{{exercise.repsTarget}}</td>
-                        <td>{{exercise.repsAchieved}}</td>
+                        <!--<td>{{exercise.repsAchieved}}</td>-->
                     </tr>
                     <tr><td><h4>Monday</h4></td><td><h4>Completed: {{week.Monday.dayCompleted}}</td></h4></tr>
-                    <tr ng-repeat="exercise in week.Monday">
+                    <tr ng-repeat="exercise in week.Monday.monExerDet">
                         <td>{{exercise.eName}}</td>
                         <td>{{exercise.repsTarget}}</td>
-                        <td>{{exercise.repsAchieved}}</td>
+                        <!--<td>{{exercise.repsAchieved}}</td>-->
                     </tr>
                     <tr><td><h4>Tuesday</h4></td><td><h4>Completed: {{week.Tuesday.dayCompleted}}</td></h4></tr>
-                    <tr ng-repeat="exercise in week.Tuesday">
+                    <tr ng-repeat="exercise in week.Tuesday.tueExerDet">
                         <td>{{exercise.eName}}</td>
                         <td>{{exercise.repsTarget}}</td>
-                        <td>{{exercise.repsAchieved}}</td>
+                        <!--<td>{{exercise.repsAchieved}}</td>-->
                     </tr>
                     <tr><td><h4>Wednesday</h4></td><td><h4>Completed: {{week.Wednesday.dayCompleted}}</td></h4></tr>
-                    <tr ng-repeat="exercise in week.Wednesday">
+                    <tr ng-repeat="exercise in week.Wednesday.wedExerDet">
                         <td>{{exercise.eName}}</td>
                         <td>{{exercise.repsTarget}}</td>
-                        <td>{{exercise.repsAchieved}}</td>
+                        <!--<td>{{exercise.repsAchieved}}</td>-->
                     </tr>
                     <tr><td><h4>Thursday</h4></td><td><h4>Completed: {{week.Thursday.dayCompleted}}</td></h4></tr>
-                    <tr ng-repeat="exercise in week.Thursday">
+                    <tr ng-repeat="exercise in week.Thursday.thurExerDet">
                         <td>{{exercise.eName}}</td>
                         <td>{{exercise.repsTarget}}</td>
-                        <td>{{exercise.repsAchieved}}</td>
+                        <!--<td>{{exercise.repsAchieved}}</td>-->
                     </tr>
                     <tr><td><h4>Friday</h4></td><td><h4>Completed: {{week.Friday.dayCompleted}}</td></h4></tr>
-                    <tr ng-repeat="exercise in week.Friday">
+                    <tr ng-repeat="exercise in week.Friday.friExerDet">
                         <td>{{exercise.eName}}</td>
                         <td>{{exercise.repsTarget}}</td>
-                        <td>{{exercise.repsAchieved}}</td>
+                        <!--<td>{{exercise.repsAchieved}}</td>-->
                     </tr>
                     <tr><td><h4>Saturday</h4></td><td><h4>Completed: {{week.Saturday.dayCompleted}}</td></h4></tr>
-                    <tr ng-repeat="exercise in week.Saturday">
+                    <tr ng-repeat="exercise in week.Saturday.satExerDet">
                         <td>{{exercise.eName}}</td>
                         <td>{{exercise.repsTarget}}</td>
-                        <td>{{exercise.repsAchieved}}</td>
+                        <!--<td>{{exercise.repsAchieved}}</td>-->
                     </tr>
                     </tbody>
                 </table>

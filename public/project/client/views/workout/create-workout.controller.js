@@ -31,34 +31,6 @@
         //        console.log($scope.exerciseCache);
         //    });
 
-
-        $(function() {
-            var availableTutorials = [
-                "ActionScript",
-                "Boostrap",
-                "C",
-                "C++",
-                "Ecommerce",
-                "Jquery",
-                "Groovy",
-                "Java",
-                "JavaScript",
-                "Lua",
-                "Perl",
-                "Ruby",
-                "Scala",
-                "Swing",
-                "XHTML"
-            ];
-            $( "#automplete-3" ).autocomplete({
-                minLength:2,
-                delay:500,
-                source: availableTutorials
-            });
-        });
-
-
-
         $scope.addTable = function(weekNum){
             //$scope.weekArray = 0;
             $scope.addTableFlag = false;

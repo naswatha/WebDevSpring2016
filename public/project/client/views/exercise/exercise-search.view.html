@@ -16,6 +16,11 @@
                     </div>
                 </div>
                 <br>
+                <button ng-click="search(term)" class="btn btn-secondary btn-md text-left btn-primary ">
+                    Search
+                </button>
+                <br>
+                <br>
 
                 <div class="container-fluid" ng-show="exerciseDetails">
                     <div class="row">
@@ -58,7 +63,7 @@
                         <tr ng-repeat="result in searchResults">
                             <td align="center"> {{result.category}} </td>
                             <td>
-                                <button ng-click="details(result.id)" class="btn btn-secondary btn-md text-left btn-block ">
+                                <button ng-click="details(result.id)" class="btn btn-secondary btn-md text-left btn-primary ">
                                 {{result.value}}
                                 </button>
                             </td>

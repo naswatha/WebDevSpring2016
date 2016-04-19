@@ -12,10 +12,10 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li ng-hide="loggedUser" ng-class="{'active': $location.url()=='/register'}"><a href="#/register">Register</a></li>
-                <li ng-hide="loggedUser" ng-class="{'active': $location.url()=='/login'}"><a href="#/login"><i class="fa fa-sign-in"></i></a></li>
-                <li ng-show="loggedUser" ng-class="{'active': $location.url()=='/profile'}"><a href="#/profile"><i class="fa fa-user"></i></a></li>
+                <li ng-hide="loggedUser" ng-class="{'active': $location.url()=='/login'}"><a href="#/login">Login</i></a></li>
+                <li ng-show="loggedUser" ng-class="{'active': $location.url()=='/profile'}"><a href="#/profile">{{loggedUser.username}}</a></li>
                 <li ng-show="loggedUser.admin" ng-class="{'active': $location.url()=='/admin'}"><a href="#/admin">Admin</a></li>
-                <li ng-show="loggedUser"><a href="#/home" ng-click="logout()"><i class="fa fa-sign-out"></i></a></li>
+                <li ng-show="loggedUser"><a href="#/home" ng-click="logout()">Logout</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-left">
@@ -25,7 +25,7 @@
                 <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/create-workout'}"><a href="#/create-workout">Create New Workout</a></li>
                 <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/my-workouts'}"><a href="#/my-workouts">Workouts</a></li>
                 <li ng-class="{'active' : $location.url() == '/exercise-search'}"><a href="#/exercise-search">Exercises</a></li>
-                <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/public-workouts'}"><a href="#/public-workouts">Public Workouts</a></li>
+                <li ng-class="{'active' : $location.url() == '/public-workouts'}"><a href="#/public-workouts">Public Workouts</a></li>
             </ul>
         </div>
     </div>

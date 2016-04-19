@@ -7,7 +7,7 @@
         .module("WorkoutBuilderApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($rootScope, $scope, $location, UserService) {
+    function LoginController($rootScope, $scope, $location, UserService,WgerApiService) {
 
         $scope.message = null;
 
@@ -36,9 +36,7 @@
                     else{
                         $rootScope.loggedUser = response.data;
                         $location.path("/profile");
-
                     }
-
                 });
         };
     }

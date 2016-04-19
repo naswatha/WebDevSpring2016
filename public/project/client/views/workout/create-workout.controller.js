@@ -7,7 +7,7 @@
         .module("WorkoutBuilderApp")
         .controller("CreateWorkoutController", CreateWorkoutController);
 
-    function CreateWorkoutController($scope,$rootScope, $location,WorkoutService) {
+    function CreateWorkoutController($scope,$rootScope, $location,WorkoutService,WgerApiService) {
 
         $scope.sunExerciseData = {};
         $scope.monExerciseData = {};
@@ -20,6 +20,43 @@
         $scope.workoutPlan = {};
         $scope.displaySuccessFlag = false;
         $scope.numberOfWeeks = 0;
+
+        $scope.exerciseCache = [];
+
+        //WgerApiService.cacheExercises(
+        //    function(response){
+        //        for(var i = 0; i < response.results.length; i++){
+        //            $scope.exerciseCache.push(response.results[i]);
+        //        }
+        //        console.log($scope.exerciseCache);
+        //    });
+
+
+        $(function() {
+            var availableTutorials = [
+                "ActionScript",
+                "Boostrap",
+                "C",
+                "C++",
+                "Ecommerce",
+                "Jquery",
+                "Groovy",
+                "Java",
+                "JavaScript",
+                "Lua",
+                "Perl",
+                "Ruby",
+                "Scala",
+                "Swing",
+                "XHTML"
+            ];
+            $( "#automplete-3" ).autocomplete({
+                minLength:2,
+                delay:500,
+                source: availableTutorials
+            });
+        });
+
 
 
         $scope.addTable = function(weekNum){
@@ -120,6 +157,8 @@
                     }
                 });
         };
+
+
     }
 
 })();

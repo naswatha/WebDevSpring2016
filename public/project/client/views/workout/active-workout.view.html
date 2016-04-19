@@ -24,14 +24,7 @@
                     <tbody>
                     <tr ng-repeat="exercise in currentDayWorkout">
                         <td>{{exercise.eName}}</td>
-                        <td><label ng-repeat="tReps in exercise.repsTarget">{{tReps}}&nbsp;&nbsp;</label></td>
-                        <!--<td><div ng-repeat="tReps in exercise.repsTarget">-->
-                            <!--<input  type="text" ng-model="achieve.rep" maxlength="2" size="2">&nbsp;&nbsp;-->
-                            <!--<div class="btn-group">-->
-                                <!--<a class="btn btn-default" ng-click="saveAchievedReps(achieve,$index,exercise)"><i class="fa fa-floppy-o fa-lg"></i></a>-->
-                            <!--</div>-->
-                            <!--</div>-->
-                        <!--</td>-->
+                        <td><label ng-repeat="tReps in exercise.repsTarget track by $index">{{tReps}}&nbsp;&nbsp;</label></td>
                     </tr>
                     </tbody>
                 </table>

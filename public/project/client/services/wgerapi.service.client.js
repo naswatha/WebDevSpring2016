@@ -14,11 +14,25 @@
             getAllEquipments: getAllEquipments,
             getAllMuscles: getAllMuscles,
             getWeek: getWeek,
-            getExerciseCategory: getExerciseCategory
+            getExerciseCategory: getExerciseCategory,
+            cacheExercises: cacheExercises
         };
 
         var baseUrl = "http://wger.de/api/v2";
         return api;
+
+        function cacheExercises(callback){
+
+            var exerciseCacheUrl = baseUrl +'/exercise/?language=2&page=1&status=2';
+            $http.get(exerciseCacheUrl)
+                .success(callback);
+
+            //for(var i = 1; i <= 9; i++){
+            //    var exerciseCacheUrl = baseUrl +'/exercise/?language=2&page='+i+'&status=2';
+            //    $http.get(exerciseCacheUrl)
+            //        .success(callback);
+            //}
+        }
 
         function searchExercise(term, callback) {
             var exerciseSearchURL = baseUrl + '/exercise/search/?term=' + term;

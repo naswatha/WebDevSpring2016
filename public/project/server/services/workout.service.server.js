@@ -19,6 +19,7 @@ module.exports = function(app,WorkoutModel){
     app.put("/api/project/makePublicWorkout/:workoutId", updatePublic);
     app.put("/api/project/inactiveall/:username", updateUserWorkoutsInactive);
     app.put("/api/project/makeactive/:workoutId", updateThisWorkoutActive);
+    app.put("/api/project/workout/:workoutId/weekNum/:weekNum/day/:day/dayfull", updateCurrentDayWorkout);
     //app.put("/api/project/updateRep/:workoutId/weekNum/:weekNumber/achrep/:achievedRep/position/:index", updateGivenRep);
     //app.put("/api/project/addList/user/:username/workout/:workoutId", addWorkoutToMyList);
     //
@@ -84,12 +85,26 @@ module.exports = function(app,WorkoutModel){
             });
     }
 
+    function updateCurrentDayWorkout(req, res){
+        //console.log("workout server service");
+        //console.log(req.params.workoutId);
+        //console.log(req.params.weekNum);
+        //console.log(req.params.day);
+        //console.log(req.body);
+        WorkoutModel.updateCurrentDay(req.params.workoutId,req.params.weekNum,req.params.day,req.body).then(
+            function(response){
+                res.json(response);
+            });
+    }
+
     function findUserActiveWorkout(req, res){
         WorkoutModel.getActiveWorkout(req.params.username).then(
             function(response){
                 res.json(response);
             });
     }
+
+
 
     function deleteWorkout(req, res){
         WorkoutModel.remove(req.params.workoutId).then(

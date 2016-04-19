@@ -9,14 +9,15 @@
 
     function ActiveWorkoutController($scope,$rootScope, $location,WorkoutService) {
 
-        //console.log($rootScope.loggedUser.username);
-
         $scope.activeWorkout = {};
         $scope.currentDayWorkout = [];
         $scope.currentDayWorkoutFull = {};
         $scope.currentWeekNumber = 0;
         $scope.dayCompletedFlag = true;
+        $scope.day = null;
 
+        console.log("currentDayWorkout");
+        console.log($scope.currentDayWorkout);
 
         WorkoutService.findActiveWorkout($rootScope.loggedUser.username).then(
             function(response){
@@ -24,40 +25,54 @@
                 $scope.activeWorkout = response.data;
                 for(var i = 0; i < $scope.activeWorkout.weeks.length; i++){
                     $scope.currentWeekNumber = i+1;
+
                     if($scope.activeWorkout.weeks[i].Sunday.dayCompleted == false){
                         $scope.currentDayWorkoutFull = $scope.activeWorkout.weeks[i].Sunday;
                         $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Sunday.sunExerDet;
                         $scope.dayCompletedFlag = $scope.activeWorkout.weeks[i].Sunday.dayCompleted;
+                        $scope.day = "Sunday";
                         break;
                     }
                     if($scope.activeWorkout.weeks[i].Monday.dayCompleted == false){
-                        $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Monday;
+                        $scope.currentDayWorkoutFull = $scope.activeWorkout.weeks[i].Monday;
+                        $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Monday.monExerDet;
                         $scope.dayCompletedFlag = $scope.activeWorkout.weeks[i].Monday.dayCompleted;
+                        $scope.day = "Monday";
                         break;
                     }
                     if($scope.activeWorkout.weeks[i].Tuesday.dayCompleted == false){
-                        $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Tuesday;
+                        $scope.currentDayWorkoutFull = $scope.activeWorkout.weeks[i].Tuesday;
+                        $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Tuesday.tueExerDet;
                         $scope.dayCompletedFlag = $scope.activeWorkout.weeks[i].Tuesday.dayCompleted;
+                        $scope.day = "Tuesday";
                         break;
                     }
                     if($scope.activeWorkout.weeks[i].Wednesday.dayCompleted == false){
-                        $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Wednesday;
+                        $scope.currentDayWorkoutFull = $scope.activeWorkout.weeks[i].Wednesday;
+                        $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Wednesday.wedExerDet;
                         $scope.dayCompletedFlag = $scope.activeWorkout.weeks[i].Wednesday.dayCompleted;
+                        $scope.day = "Wednesday";
                         break;
                     }
                     if($scope.activeWorkout.weeks[i].Thursday.dayCompleted == false){
-                        $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Thursday;
+                        $scope.currentDayWorkoutFull = $scope.activeWorkout.weeks[i].Thursday;
+                        $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Thursday.thurExerDet;
                         $scope.dayCompletedFlag = $scope.activeWorkout.weeks[i].Thursday.dayCompleted;
+                        $scope.day = "Thursday";
                         break;
                     }
                     if($scope.activeWorkout.weeks[i].Friday.dayCompleted == false){
-                        $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Friday;
+                        $scope.currentDayWorkoutFull = $scope.activeWorkout.weeks[i].Friday;
+                        $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Friday.friExerDet;
                         $scope.dayCompletedFlag = $scope.activeWorkout.weeks[i].Friday.dayCompleted;
+                        $scope.day = "Friday";
                         break;
                     }
                     if($scope.activeWorkout.weeks[i].Saturday.dayCompleted == false){
-                        $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Saturday;
+                        $scope.currentDayWorkoutFull = $scope.activeWorkout.weeks[i].Saturday;
+                        $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Saturday.satExerDet;
                         $scope.dayCompletedFlag = $scope.activeWorkout.weeks[i].Saturday.dayCompleted;
+                        $scope.day = "Saturday";
                         break;
                     }
                 }
@@ -67,21 +82,73 @@
 
         $scope.currentWorkoutComplete = function(){
 
-            console.log($scope.currentWeekNumber);
-            console.log($scope.activeWorkout._id);
-            console.log($scope.currentDayWorkoutFull);
-            console.log($scope.currentDayWorkoutFull);
+            $scope.currentDayWorkoutFull.dayCompleted = true;
 
-            WorkoutService.completeTodayWorkout($scope.activeWorkout._id,$scope.currentWeekNumber,achievedRep,index).then(
+            WorkoutService.completeTodayWorkout($scope.activeWorkout._id,$scope.currentWeekNumber-1,$scope.day,$scope.currentDayWorkoutFull).then(
                 function(response){
-                    console.log(response.data);
-                    $scope.activeWorkout = response.data;
+                    //console.log(response.data);
+
+                    WorkoutService.findActiveWorkout($rootScope.loggedUser.username).then(
+                        function(response){
+
+                            $scope.activeWorkout = response.data;
+                            for(var i = 0; i < $scope.activeWorkout.weeks.length; i++){
+                                $scope.currentWeekNumber = i+1;
+
+                                if($scope.activeWorkout.weeks[i].Sunday.dayCompleted == false){
+                                    $scope.currentDayWorkoutFull = $scope.activeWorkout.weeks[i].Sunday;
+                                    $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Sunday.sunExerDet;
+                                    $scope.dayCompletedFlag = $scope.activeWorkout.weeks[i].Sunday.dayCompleted;
+                                    $scope.day = "Sunday";
+                                    break;
+                                }
+                                if($scope.activeWorkout.weeks[i].Monday.dayCompleted == false){
+                                    $scope.currentDayWorkoutFull = $scope.activeWorkout.weeks[i].Monday;
+                                    $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Monday.monExerDet;
+                                    $scope.dayCompletedFlag = $scope.activeWorkout.weeks[i].Monday.dayCompleted;
+                                    $scope.day = "Monday";
+                                    break;
+                                }
+                                if($scope.activeWorkout.weeks[i].Tuesday.dayCompleted == false){
+                                    $scope.currentDayWorkoutFull = $scope.activeWorkout.weeks[i].Tuesday;
+                                    $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Tuesday.tueExerDet;
+                                    $scope.dayCompletedFlag = $scope.activeWorkout.weeks[i].Tuesday.dayCompleted;
+                                    $scope.day = "Tuesday";
+                                    break;
+                                }
+                                if($scope.activeWorkout.weeks[i].Wednesday.dayCompleted == false){
+                                    $scope.currentDayWorkoutFull = $scope.activeWorkout.weeks[i].Wednesday;
+                                    $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Wednesday.wedExerDet;
+                                    $scope.dayCompletedFlag = $scope.activeWorkout.weeks[i].Wednesday.dayCompleted;
+                                    $scope.day = "Wednesday";
+                                    break;
+                                }
+                                if($scope.activeWorkout.weeks[i].Thursday.dayCompleted == false){
+                                    $scope.currentDayWorkoutFull = $scope.activeWorkout.weeks[i].Thursday;
+                                    $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Thursday.thurExerDet;
+                                    $scope.dayCompletedFlag = $scope.activeWorkout.weeks[i].Thursday.dayCompleted;
+                                    $scope.day = "Thursday";
+                                    break;
+                                }
+                                if($scope.activeWorkout.weeks[i].Friday.dayCompleted == false){
+                                    $scope.currentDayWorkoutFull = $scope.activeWorkout.weeks[i].Friday;
+                                    $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Friday.friExerDet;
+                                    $scope.dayCompletedFlag = $scope.activeWorkout.weeks[i].Friday.dayCompleted;
+                                    $scope.day = "Friday";
+                                    break;
+                                }
+                                if($scope.activeWorkout.weeks[i].Saturday.dayCompleted == false){
+                                    $scope.currentDayWorkoutFull = $scope.activeWorkout.weeks[i].Saturday;
+                                    $scope.currentDayWorkout = $scope.activeWorkout.weeks[i].Saturday.satExerDet;
+                                    $scope.dayCompletedFlag = $scope.activeWorkout.weeks[i].Saturday.dayCompleted;
+                                    $scope.day = "Saturday";
+                                    break;
+                                }
+                            }
+
+                        });
                 });
         };
-
-
-
-
     }
 
 })();

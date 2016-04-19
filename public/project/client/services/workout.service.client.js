@@ -20,7 +20,8 @@
             updateAllUserWorkoutInactive: updateAllUserWorkoutInactive,
             updateWorkoutActive: updateWorkoutActive,
             makeWorkoutPublicById: makeWorkoutPublicById,
-            findActiveWorkout: findActiveWorkout
+            findActiveWorkout: findActiveWorkout,
+            completeTodayWorkout: completeTodayWorkout
 
 
     };
@@ -73,6 +74,16 @@
         function findAllWorkouts (){
             var url = "/api/project/allworkouts";
             return $http.get(url);
+        }
+
+        function completeTodayWorkout(workoutId,weekNum,day,currentDayWorkout){
+            //console.log("workout client service");
+            //console.log(workoutId);
+            //console.log(weekNum);
+            //console.log(day);
+            //console.log(currentDayWorkout);
+            var url = "/api/project/workout/"+workoutId+"/weekNum/"+weekNum+"/day/"+day+"/dayfull";
+            return $http.put(url,currentDayWorkout);
         }
 
 

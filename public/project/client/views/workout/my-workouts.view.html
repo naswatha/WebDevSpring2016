@@ -10,7 +10,8 @@
                     <thead>
                     <tr>
                         <th><i class="fa fa-fw fa-sort"></i>Workout Name</th>
-                        <th><i class="fa fa-fw fa-sort"></i>Action</th>
+                        <th><i class="fa fa-fw fa-sort"></i>Delete</th>
+                        <th><i class="fa fa-fw fa-sort"></i>View</th>
                         <th><i class="fa fa-fw fa-sort"></i>Make Active</th>
                         <th><i class="fa fa-fw fa-sort"></i>Make Public</th>
                     </tr>
@@ -20,7 +21,11 @@
                         <td> {{workout.name}} </td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-danger" ng-click="deleteWorkout($index)"><i class="fa fa-times"></i></a>
+                                <a class="btn btn-danger" ng-click="deleteWorkout($index)"><i class="fa fa-trash"></i></a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group">
                                 <a class="btn btn-info" ng-click="viewWorkout(workout)"><i class="fa fa-eye"></i></a>
                             </div>
                         </td>

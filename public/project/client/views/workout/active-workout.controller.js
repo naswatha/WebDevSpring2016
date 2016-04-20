@@ -15,14 +15,28 @@
         $scope.currentWeekNumber = 0;
         $scope.dayCompletedFlag = true;
         $scope.day = null;
+        $scope.setActiveWorkoutFlag = false;
+        $scope.workoutCompleteFlag = false;
 
-        console.log("currentDayWorkout");
-        console.log($scope.currentDayWorkout);
+
+        //console.log("currentDayWorkout");
+        //console.log($scope.currentDayWorkout);
 
         WorkoutService.findActiveWorkout($rootScope.loggedUser.username).then(
             function(response){
 
                 $scope.activeWorkout = response.data;
+                if(response.data == null){
+                    $scope.setActiveWorkoutFlag = true;
+                    return;
+                }
+
+                if($scope.activeWorkout.weeks[$scope.activeWorkout.weeks.length-1].Saturday.dayCompleted == true){
+                        $scope.workoutCompleteFlag = true;
+                }
+
+                //console.log($scope.activeWorkout.weeks[$scope.activeWorkout.weeks.length-1].Saturday.dayCompleted);
+
                 for(var i = 0; i < $scope.activeWorkout.weeks.length; i++){
                     $scope.currentWeekNumber = i+1;
 
@@ -83,10 +97,13 @@
         $scope.currentWorkoutComplete = function(){
 
             $scope.currentDayWorkoutFull.dayCompleted = true;
-
+            //console.log($scope.activeWorkout.weeks[$scope.activeWorkout.weeks.length-1].Saturday.dayCompleted);
             WorkoutService.completeTodayWorkout($scope.activeWorkout._id,$scope.currentWeekNumber-1,$scope.day,$scope.currentDayWorkoutFull).then(
                 function(response){
-                    //console.log(response.data);
+
+                    if($scope.activeWorkout.weeks[$scope.activeWorkout.weeks.length-1].Saturday.dayCompleted == true){
+                        $scope.workoutCompleteFlag = true;
+                    }
 
                     WorkoutService.findActiveWorkout($rootScope.loggedUser.username).then(
                         function(response){

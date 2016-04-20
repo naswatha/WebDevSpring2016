@@ -5,11 +5,39 @@
             <div class="main">
             <h1 class="page-header">Active Workouts</h1>
 
-            <dl class="dl-horizontal">
-                <dt>Name :</dt> <dd>{{activeWorkout.name}}</dd>
-                <dt>Description :</dt> <dd>{{activeWorkout.description}}</dd>
-                <dt>Week Number :</dt> <dd>{{currentWeekNumber}}</dd>
-            </dl>
+
+                <div class="alert alert-dismissible alert-success" ng-show="workoutCompleteFlag">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Congratulation!</strong> You have successfully completed your workout. Please select different workout
+                    from your Workouts page. If you have no new workouts, visit Create Workout Page.
+                </div>
+
+                <div class="alert alert-dismissible alert-danger" ng-show="setActiveWorkoutFlag">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Wait!</strong> You have not yet set any workout to be active. Please go to workout page to set any available workout active.
+                    If you have not created one, then visit Create Workout page.
+                </div>
+
+
+                <div ng-show="!setActiveWorkoutFlag && !workoutCompleteFlag">
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading">Name</h3>
+                            <h5 class="list-group-item-text"> : {{activeWorkout.name}}</h5>
+                        </div>
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading">Description</h3>
+                            <h5 class="list-group-item-text"> : {{activeWorkout.description}}</h5>
+                        </div>
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading">Total Weeks</h3>
+                            <h5 class="list-group-item-text"> : {{activeWorkout.numWeeks}}</h5>
+                        </div>
+                        <div class="list-group-item">
+                            <h3 class="list-group-item-heading">Current Week Number</h3>
+                            <h5 class="list-group-item-text"> : {{currentWeekNumber}}</h5>
+                        </div>
+                    </div>
 
             <h3>Workout for today</h3>
             <div class="table-responsive">
@@ -31,6 +59,7 @@
             </div>
                 <div class="col-sm-offset-2 col-sm-10">
                     <button class="btn btn-primary" ng-click="currentWorkoutComplete()">Set Todays Workout Complete</button>
+                </div>
                 </div>
         </div>
     </div>

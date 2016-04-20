@@ -9,12 +9,13 @@
 
     function PublicWorkoutController($scope, $location, $rootScope, WorkoutService,UserService) {
 
-        UserService
-            .getCurrentUser()
-            .then(function (res) {
-                $rootScope.loggedUser = res.data;
-                $scope.user = $rootScope.loggedUser;
-            });
+        //UserService
+        //    .getCurrentUser()
+        //    .then(function (res) {
+        //        $rootScope.loggedUser = res.data;
+        //        $scope.user = $rootScope.loggedUser;
+        //    });
+
 
 
         $scope.publicWorkouts = [];
@@ -33,9 +34,9 @@
             //console.log("Before Subscribe");
             UserService.addToSubscribeList(subscribeTo,$scope.loggedUser.username).then(
                 function(response){
-                    //console.log("After subscribe");
+                    console.log("After subscribe");
                     $rootScope.loggedUser = response.data;
-                    //console.log($rootScope.loggedUser);
+                    console.log($rootScope.loggedUser);
                     $scope.successMessage = "You have subscribed to "+subscribeTo;
                 });
 

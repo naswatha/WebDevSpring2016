@@ -25,6 +25,8 @@
                     $scope.loginFlag = true;
                 }
 
+                console.log("profile");
+                console.log($rootScope.loggedUser);
                 $scope.subscriberList = $scope.user.subscribeTo;
             });
 
@@ -58,6 +60,7 @@
             UserService.updateUser($scope.user._id,user).then(
                 function (response){
                     $rootScope.loggedUser = response.data;
+                    console.log($rootScope.loggedUser);
                     $location.path('/profile');
                 });
 

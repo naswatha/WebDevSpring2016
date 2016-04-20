@@ -9,11 +9,16 @@
 
     function HomeController($scope,$location,UserService,$rootScope){
 
+        //console.log($rootScope.loggedUser);
+        //UserService.setCurrentUser($rootScope.loggedUser);
+        //
         UserService
             .getCurrentUser()
             .then(function (res) {
+                console.log("Inside home");
                 $rootScope.loggedUser = res.data;
                 $scope.user = $rootScope.loggedUser;
+                console.log(res.data);
             });
     }
 

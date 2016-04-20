@@ -23,6 +23,8 @@
         //console.log("currentDayWorkout");
         //console.log($scope.currentDayWorkout);
 
+
+
         UserService
             .getCurrentUser("ActiveWorkoutController")
             .then(function (res) {

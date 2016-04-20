@@ -26,6 +26,7 @@ module.exports = function(app, UserModel){
         var user = req.body;
         UserModel.create(user).then(
             function(response){
+                req.session.loggedUser = response;
                 res.json(response);
             });
     }
@@ -102,7 +103,10 @@ module.exports = function(app, UserModel){
     }
 
     function loggedin(req, res) {
+        console.log("Server service loggedin");
+        console.log(req.session.loggedUser);
         res.json(req.session.loggedUser);
+
     }
 
     function logout(req, res) {

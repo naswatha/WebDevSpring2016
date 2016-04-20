@@ -1,6 +1,3 @@
-/**
- * Created by Naveen on 3/2/2016.
- */
 (function(){
     "use strict";
     angular
@@ -57,7 +54,7 @@
                     else{
                         UserService.createUser(user).then(
                             function (response){
-                                $rootScope.loggedUser = response.data;
+                                UserService.setCurrentUser(response.data);
                             });
                         $location.path('/profile');
                     }

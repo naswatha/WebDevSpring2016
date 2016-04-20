@@ -7,8 +7,14 @@
         .module("WorkoutBuilderApp")
         .controller("HomeController",HomeController);
 
-    function HomeController($scope,$location){
+    function HomeController($scope,$location,UserService,$rootScope){
 
+        UserService
+            .getCurrentUser()
+            .then(function (res) {
+                $rootScope.loggedUser = res.data;
+                $scope.user = $rootScope.loggedUser;
+            });
     }
 
 })();

@@ -178,6 +178,8 @@ module.exports = function(mongoose, webDevDb){
 
     function findUserByCredentials(credentials){
 
+        console.log("Server Model");
+        console.log(credentials);
         var deferred = q.defer();
         UserModel.findOne({ username: credentials.username, password: credentials.password },
             function(err, user){

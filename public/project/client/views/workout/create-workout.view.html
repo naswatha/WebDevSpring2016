@@ -3,6 +3,12 @@
         <!--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">-->
         <div class="main">
             <h1 class="page-header">Create New Workout</h1>
+
+            <div class="alert alert-dismissible alert-danger" ng-show="loginFlag">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Hello!</strong> Please login to use Workout Builder Services.
+            </div>
+
             <form class="form-horizontal" ng-show="!displaySuccessFlag">
                 <div class="form-group">
                     <label for="inputWorkoutName" class="col-sm-2 control-label">Workout Name</label>
@@ -240,7 +246,7 @@
                 </div>
             </form>
             <!--display workout has been successfully created.-->
-            <div class="list-group" ng-show="displaySuccessFlag">
+            <div class="list-group" ng-show="displaySuccessFlag && !loginFlag">
 
                 <div class="alert alert-dismissible alert-success">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>

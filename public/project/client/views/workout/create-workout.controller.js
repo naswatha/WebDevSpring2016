@@ -7,7 +7,20 @@
         .module("WorkoutBuilderApp")
         .controller("CreateWorkoutController", CreateWorkoutController);
 
-    function CreateWorkoutController($scope,$rootScope, $location,WorkoutService,WgerApiService) {
+    function CreateWorkoutController($scope,$rootScope, $location,WorkoutService,UserService) {
+
+        UserService
+            .getCurrentUser()
+            .then(function (res) {
+                $rootScope.loggedUser = res.data;
+                $scope.user = $rootScope.loggedUser;
+
+                if($rootScope.loggedUser == null || !$rootScope.loggedUser){
+                    $scope.loginFlag = true;
+                    $scope.displaySuccessFlag = true;
+                }
+
+            });
 
         $scope.sunExerciseData = {};
         $scope.monExerciseData = {};

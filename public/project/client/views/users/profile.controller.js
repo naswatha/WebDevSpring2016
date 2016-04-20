@@ -10,11 +10,27 @@
     //inject UserServiec
     function ProfileController ($scope,$rootScope,$location,UserService){
 
-        //retreive current user.
-        $scope.user = $rootScope.loggedUser;
-        $scope.subscriberList = $scope.user.subscribeTo;
 
         $scope.message = null;
+
+        UserService
+            .getCurrentUser()
+            .then(function (res) {
+
+                //console.log(res);
+                $rootScope.loggedUser = res.data;
+                $scope.user = $rootScope.loggedUser;
+                if($rootScope.loggedUser == null || $rootScope.loggedUser==""){
+                    //console.log($rootScope.loggedUser);
+                    $scope.loginFlag = true;
+                }
+
+                $scope.subscriberList = $scope.user.subscribeTo;
+            });
+
+        //retreive current user.
+        //$scope.user = $rootScope.loggedUser;
+
 
         //update handler
         $scope.update = function(user){

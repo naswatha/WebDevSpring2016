@@ -5,6 +5,10 @@
             <div class="main">
             <h1 class="page-header">Active Workouts</h1>
 
+                <div class="alert alert-dismissible alert-danger" ng-show="loginFlag">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Hello!</strong> Please login to use Workout Builder Services.
+                </div>
 
                 <div class="alert alert-dismissible alert-success" ng-show="workoutCompleteFlag">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -12,7 +16,7 @@
                     from your Workouts page. If you have no new workouts, visit Create Workout Page.
                 </div>
 
-                <div class="alert alert-dismissible alert-danger" ng-show="setActiveWorkoutFlag">
+                <div class="alert alert-dismissible alert-danger" ng-show="setActiveWorkoutFlag && !loginFlag">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <strong>Wait!</strong> You have not yet set any workout to be active. Please go to workout page to set any available workout active.
                     If you have not created one, then visit Create Workout page.

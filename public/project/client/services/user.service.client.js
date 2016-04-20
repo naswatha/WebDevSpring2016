@@ -10,6 +10,8 @@
     function UserService ($http,$rootScope){
 
         var service = {
+            login: login,
+            logout: logout,
             findAllUsers : findAllUsers,
             findUserByCredentials:findUserByCredentials,
             createUser : createUser,
@@ -17,10 +19,18 @@
             updateUser : updateUser,
             findUserByUsername: findUserByUsername,
             addToSubscribeList: addToSubscribeList,
-            removeFromSubscribeList: removeFromSubscribeList
+            removeFromSubscribeList: removeFromSubscribeList,
+            setCurrentUser: setCurrentUser,
+            getCurrentUser: getCurrentUser
         };
 
         return service;
+
+        function login(credentials) {
+            console.log("Client service");
+            console.log(credentials);
+            return $http.post("/api/project/user/login", credentials);
+        }
 
         function findUserByUsername (username){
             return $http.get("/api/project/userbyusername/"+username);
@@ -57,6 +67,20 @@
         function removeFromSubscribeList (subscribeTo,currUsername){
             var url = "/api/project/removesubcriber/"+subscribeTo+"/loggeduser/"+currUsername;
             return $http.put(url);
+        }
+
+        function setCurrentUser (user) {
+            console.log("client service setting current user: ");
+            $rootScope.loggedUser = user;
+            console.log($rootScope.loggedUser);
+        }
+
+        function getCurrentUser () {
+            return $http.get("/api/project/user/loggedin");
+        }
+
+        function logout () {
+            return $http.post("/api/project/logout");
         }
     }
 })();

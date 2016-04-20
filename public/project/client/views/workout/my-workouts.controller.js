@@ -9,18 +9,38 @@
 
     function MyWorkoutController($scope,$rootScope, $location,WorkoutService,UserService) {
 
+        UserService
+            .getCurrentUser()
+            .then(function (res) {
+                $rootScope.loggedUser = res.data;
+                $scope.user = $rootScope.loggedUser;
+                // display all the workout for the logged user.
+
+                if($rootScope.loggedUser == null || !$rootScope.loggedUser){
+                    $scope.loginFlag =true;
+                }
+
+
+                if($rootScope.loggedUser){
+                    console.log($rootScope.loggedUser);
+                    WorkoutService.findAllWorkoutForUser($rootScope.loggedUser.username).then(
+                        function(response){
+                            $scope.loggedUserWorkouts = response.data;
+                        });
+                }
+            });
+
+        //console.log("myworkout controller");
+        //console.log($scope.user);
+
         $scope.loggedUserWorkouts = {};
         $scope.subscribedList = [];
         $scope.subscribedWorkouts = [];
         $scope.subscribeFlag = true;
 
-        // display all the workout for the logged user.
-        if($rootScope.loggedUser){
-            WorkoutService.findAllWorkoutForUser($rootScope.loggedUser.username).then(
-                function(response){
-                    $scope.loggedUserWorkouts = response.data;
-                });
-        }
+        console.log($rootScope.loggedUser);
+
+
 
         $scope.selectedWorkoutIndex = null;
         var currentWorkout = {};

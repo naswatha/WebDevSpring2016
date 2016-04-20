@@ -8,12 +8,19 @@
         .controller("ExerciseSearchController", ExerciseSearchController);
 
 
-    function ExerciseSearchController ($scope,WgerApiService) {
+    function ExerciseSearchController ($scope,$rootScope,WgerApiService,UserService) {
 
         $scope.search = search;
         $scope.details = details;
         $scope.imageObjects = [];
         $scope.exerciseImageURL = [];
+
+        UserService
+            .getCurrentUser()
+            .then(function (res) {
+                $rootScope.loggedUser = res.data;
+                $scope.user = $rootScope.loggedUser;
+            });
 
         WgerApiService.cacheImageData(
             function(response){

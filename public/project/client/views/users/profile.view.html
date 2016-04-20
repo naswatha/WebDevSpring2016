@@ -5,9 +5,13 @@
             <div class="main">
             <h1 class="page-header">Profile</h1>
 
-            <form class="form-horizontal">
+                <div class="alert alert-dismissible alert-danger" ng-show="loginFlag">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Hello!</strong> Please login to use Workout Builder Services.
+                </div>
 
-                <div class="form-group">
+            <form class="form-horizontal" ng-show="!loginFlag">
+                <div class="form-group" ng-show="!loginFlag">
                     <label for="inputUsername" class="col-sm-2 control-label">Username</label>
                     <div class="input-group col-sm-10">
                         <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
@@ -55,9 +59,9 @@
             </form>
                 <br>
                 <br>
-                <h2 class="page-header">Subscription Details</h2>
+                <h2 class="page-header" ng-show="!loginFlag">Subscription Details</h2>
 
-                <div class="table-responsive">
+                <div class="table-responsive" ng-show="!loginFlag">
                     <table class="table table-striped">
                         <thead>
                         <tr>

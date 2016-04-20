@@ -9,6 +9,13 @@
 
     function PublicWorkoutController($scope, $location, $rootScope, WorkoutService,UserService) {
 
+        UserService
+            .getCurrentUser()
+            .then(function (res) {
+                $rootScope.loggedUser = res.data;
+                $scope.user = $rootScope.loggedUser;
+            });
+
 
         $scope.publicWorkouts = [];
         //$scope.loggedUserWorkouts = [];

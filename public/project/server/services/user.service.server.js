@@ -6,6 +6,9 @@
 module.exports = function(app, UserModel){
 
     app.post("/api/project/user", createUser);
+    app.post("/api/project/user/login", login);
+    app.get("/api/project/user/loggedin", loggedin);
+    app.post("/api/project/logout", logout);
 
     app.get("/api/project/userbyusername/:username", findUserByUsername);
     app.get("/api/project/alluser", findAllUsers);
@@ -87,4 +90,24 @@ module.exports = function(app, UserModel){
                 res.json(response);
             });
     }
+
+    function login(req, res){
+        console.log("Server service");
+        console.log(req.body);
+        UserModel.findUserByCredentials(req.body).then(
+            function(response){
+                req.session.loggedUser = response;
+                res.json(response);
+            });
+    }
+
+    function loggedin(req, res) {
+        res.json(req.session.loggedUser);
+    }
+
+    function logout(req, res) {
+        req.session.destroy();
+        res.send(200);
+    }
+
 };

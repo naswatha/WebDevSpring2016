@@ -14,6 +14,15 @@
         $scope.userList = [];
         $scope.workoutList = [];
 
+        UserService
+            .getCurrentUser()
+            .then(function (res) {
+                $rootScope.loggedUser = res.data;
+                $scope.user = $rootScope.loggedUser;
+                if($rootScope.loggedUser == null || !$rootScope.loggedUser){
+                    $scope.loginFlag = true;
+                }
+            });
 
         if($scope.toggle){
             UserService.findAllUsers().then(

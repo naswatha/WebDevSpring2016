@@ -15,6 +15,7 @@
         $scope.login = function(user) {
             if(user == null){
                 $scope.message = "Please enter Username and Password";
+                console.log("Please enter Username and Password");
                 return;
             }
 
@@ -27,16 +28,31 @@
                 $scope.message = "Please enter Password";
                 return;
             }
-            UserService.findUserByCredentials(user.username,user.password).then(
-                function (response){
-                    if(response.data == null){
+
+            UserService
+                .login(user)
+                .then(function(response){
+                    console.log("Client Controller");
+                    console.log(response);
+                    if(response.data) {
+                        UserService.setCurrentUser(response.data);
+                        $location.url("/home");
+                    }else{
                         $scope.message = "Username and Password does not match, new User please register";
                     }
-                    else{
-                        $rootScope.loggedUser = response.data;
-                        $location.path("/profile");
-                    }
                 });
+
+            //UserService.findUserByCredentials(user.username,user.password).then(
+            //    function (response){
+            //        if(response.data == null){
+            //            $scope.message = "Username and Password does not match, new User please register";
+            //        }
+            //        else{
+            //            UserService.setCurrentUser(response.data);
+            //            //$rootScope.loggedUser = response.data;
+            //            $location.path("/profile");
+            //        }
+            //    });
         };
     }
 })();

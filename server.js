@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var multer = require('multer');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var mongoose = require('mongoose');
 
 
@@ -27,6 +29,12 @@ var webDevDb = mongoose.connect(webDevConnectString);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 
 

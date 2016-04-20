@@ -7,7 +7,8 @@
         .module("WorkoutBuilderApp")
         .controller("ActiveWorkoutController", ActiveWorkoutController);
 
-    function ActiveWorkoutController($scope,$rootScope, $location,WorkoutService) {
+    function ActiveWorkoutController($scope,$rootScope, $location,WorkoutService,UserService) {
+
 
         $scope.activeWorkout = {};
         $scope.currentDayWorkout = [];
@@ -17,10 +18,28 @@
         $scope.day = null;
         $scope.setActiveWorkoutFlag = false;
         $scope.workoutCompleteFlag = false;
-
+        $scope.loginFlag = false;
 
         //console.log("currentDayWorkout");
         //console.log($scope.currentDayWorkout);
+
+        UserService
+            .getCurrentUser("ActiveWorkoutController")
+            .then(function (res) {
+                $rootScope.loggedUser = res.data;
+                $scope.user = $rootScope.loggedUser;
+
+                console.log("ActiveController");
+                console.log($rootScope.loggedUser);
+                console.log($scope.loginFlag);
+
+                if($rootScope.loggedUser == null || !$rootScope.loggedUser){
+                    $scope.loginFlag = true;
+                    $scope.setActiveWorkoutFlag = true;
+                    return;
+                    //console.log($scope.setActiveWorkoutFlag);
+
+                }
 
         WorkoutService.findActiveWorkout($rootScope.loggedUser.username).then(
             function(response){
@@ -90,6 +109,8 @@
                         break;
                     }
                 }
+
+            });
 
             });
 

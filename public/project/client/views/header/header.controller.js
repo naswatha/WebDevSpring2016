@@ -7,9 +7,14 @@
         .module("WorkoutBuilderApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($location, $scope, $rootScope) {
+    function HeaderController($location, $scope, $rootScope,UserService) {
         $scope.logout = function() {
-            $rootScope.loggedUser = null;
+            UserService.setCurrentUser(null);
+            UserService.logout();
+            $location.url("/home");
+            console.log($rootScope.loggedUser);
+            //$rootScope.loggedUser = null;
+            //$location.url("/home");
         }
     }
 })();

@@ -7,8 +7,14 @@
         .module("WorkoutBuilderApp")
         .controller("ViewWorkoutController", ViewWorkoutController);
 
-    function ViewWorkoutController($scope,$rootScope, $location) {
+    function ViewWorkoutController($scope,$rootScope, $location,UserService) {
 
+        UserService
+            .getCurrentUser()
+            .then(function (res) {
+                $rootScope.loggedUser = res.data;
+                $scope.user = $rootScope.loggedUser;
+            });
         //console.log($rootScope.displayWorkout);
         $scope.displayWorkout = $rootScope.displayWorkout;
         $scope.currentDate = (new Date).getTime();

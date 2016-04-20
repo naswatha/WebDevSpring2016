@@ -3,13 +3,19 @@
         <div class="main">
             <h1 class="page-header">Admin</h1>
 
-            <div class="btn-group">
+            <div class="alert alert-dismissible alert-danger" ng-show="loginFlag">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Hello!</strong> Please login as Administrator to manage resources.
+            </div>
+
+
+            <div class="btn-group" ng-show="!loginFlag">
                 <a class="btn btn-primary" ng-click="showUsers()">Users</a>
                 <a class="btn btn-primary" ng-click="showWorkouts()">Workouts</a>
             </div>
             <br>
             <br>
-            <div class="table-responsive" ng-show="toggle">
+            <div class="table-responsive" ng-show="toggle && !loginFlag">
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -35,7 +41,7 @@
             </div>
 
 
-            <div class="table-responsive" ng-show="!toggle">
+            <div class="table-responsive" ng-show="!toggle && !loginFlag">
                 <table class="table table-striped">
                     <thead>
                     <tr>

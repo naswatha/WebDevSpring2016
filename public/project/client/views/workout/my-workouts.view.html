@@ -5,7 +5,12 @@
         <div class="main">
             <h1 class="page-header">My Workouts</h1>
 
-            <div class="table-responsive">
+            <div class="alert alert-dismissible alert-danger" ng-show="loginFlag">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Hello!</strong> Please login to use Workout Builder Services.
+            </div>
+
+            <div class="table-responsive" ng-show="!loginFlag">
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -43,12 +48,12 @@
             <br>
             <br>
 
-            <div class="col-sm-offset-2 col-sm-10" ng-show="subscribeFlag">
+            <div ng-show="subscribeFlag && !loginFlag">
                 <button class="btn btn-primary" ng-click="showSubscribedWorkouts()">Show Subscribed Workouts</button>
             </div>
 
-            <h2 ng-show="!subscribeFlag" class="page-header">Subscribed Workouts</h2>
-            <div ng-show="!subscribeFlag" class="table-responsive">
+            <h2 ng-show="!subscribeFlag && !loginFlag" class="page-header">Subscribed Workouts</h2>
+            <div ng-show="!subscribeFlag && !loginFlag" class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>

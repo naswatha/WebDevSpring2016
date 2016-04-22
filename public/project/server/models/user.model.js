@@ -102,8 +102,7 @@ module.exports = function(mongoose, webDevDb){
                     response.lastName = user.lastName;
                     response.username = user.username;
                     response.password = user.password;
-                    response.emails = user.emails;
-                    response.phones = user.phones;
+                    response.email = user.email;
                     response.save(
                         function(err, document) {
                             deferred.resolve(document);

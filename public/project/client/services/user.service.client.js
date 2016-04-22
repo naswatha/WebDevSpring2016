@@ -70,9 +70,7 @@
         }
 
         function setCurrentUser (user) {
-            console.log("client service setting current user: ");
             $rootScope.loggedUser = user;
-            console.log($rootScope.loggedUser);
         }
 
         function getCurrentUser () {

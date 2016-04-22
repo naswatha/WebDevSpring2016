@@ -15,7 +15,6 @@
                 $rootScope.loggedUser = res.data;
                 $scope.user = $rootScope.loggedUser;
             });
-        //console.log($rootScope.displayWorkout);
         $scope.displayWorkout = $rootScope.displayWorkout;
         $scope.currentDate = (new Date).getTime();
 

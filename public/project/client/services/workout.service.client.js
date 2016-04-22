@@ -77,51 +77,8 @@
         }
 
         function completeTodayWorkout(workoutId,weekNum,day,currentDayWorkout){
-            //console.log("workout client service");
-            //console.log(workoutId);
-            //console.log(weekNum);
-            //console.log(day);
-            //console.log(currentDayWorkout);
             var url = "/api/project/workout/"+workoutId+"/weekNum/"+weekNum+"/day/"+day+"/dayfull";
             return $http.put(url,currentDayWorkout);
         }
-
-
-        //function updateRep(workoutId,weekNumber,achievedRep,index){
-        //    var url = "/api/project/updateRep/"+workoutId+"/weekNum/"+weekNumber+"/achrep/"+achievedRep+"/position/"+index;
-        //    return $http.put(url);
-        //}
-
-
-
-        //function deleteWorkoutById(userId,workoutId){
-        //    var url = "/api/project/user/"+userId+"/workout/"+workoutId;
-        //    return $http.delete(url);
-        //}
-        //
-        //function updateActiveWorkoutById(userId,workoutId){
-        //    var url = "/api/project/user/"+userId+"/workout/"+workoutId;
-        //    return $http.put(url);
-        //}
-        //
-        //function makeWorkoutPublicById(userId,workoutId){
-        //    var url = "/api/project/user/"+userId+"/makePublicWorkout/"+workoutId;
-        //    return $http.put(url);
-        //}
-        //
-        //function findAllPublicWorkouts (publicId){
-        //    var url = "/api/project/getPublic/"+publicId;
-        //    return $http.get(url);
-        //}
-        //
-        //function addWorkoutToMyList(userId,workoutId){
-        //    var url = "/api/project/addList/user/"+userId+"/workout/"+workoutId;
-        //    return $http.put(url);
-        //}
-        //
-        //function updateWorkoutById(userId,workoutId){
-        //    var url = "/api/project/updateWorkout/user/"+userId+"/workout/"+workoutId;
-        //    return $http.put(url);
-        //}
     }
 })();

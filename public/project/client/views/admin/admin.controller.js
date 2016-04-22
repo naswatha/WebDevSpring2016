@@ -8,7 +8,6 @@
         .controller("AdminController", AdminController);
 
     function AdminController($scope, $location,$rootScope,UserService, WorkoutService) {
-        //console.log("AdminController");
 
         $scope.toggle = true;
         $scope.userList = [];
@@ -28,7 +27,7 @@
             UserService.findAllUsers().then(
                 function(response){
                     $scope.userList = response.data;
-                    //console.log($scope.userList);
+
                 });
         }
 
@@ -37,7 +36,7 @@
             UserService.findAllUsers().then(
                 function(response){
                     $scope.userList = response.data;
-                    //console.log($scope.userList);
+
                 });
         };
 
@@ -47,7 +46,7 @@
                     UserService.findAllUsers().then(
                         function(response){
                             $scope.userList = response.data;
-                            //console.log($scope.userList);
+
                         });
                 });
         };
@@ -66,7 +65,6 @@
                     WorkoutService.findAllWorkouts().then(
                         function(response){
                             $scope.workoutList = response.data;
-                            //console.log($scope.workoutList);
                         });
 
                 });

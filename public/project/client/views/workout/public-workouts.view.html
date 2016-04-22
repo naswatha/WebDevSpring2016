@@ -6,9 +6,9 @@
             <h1 class="page-header">Public Workouts</h1>
 
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped table-hover" >
                     <thead>
-                    <tr>
+                    <tr class="danger">
                         <th><i class="fa fa-fw fa-sort"></i>Workout Name</th>
                         <th><i class="fa fa-fw fa-sort"></i>Created By</th>
                         <th><i class="fa fa-fw fa-sort"></i>View</th>
@@ -17,12 +17,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="workout in publicWorkouts">
+                    <tr ng-repeat="workout in publicWorkouts" class="active">
                         <td> {{workout.name}} </td>
                         <td> {{workout.username}} </td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-info" ng-click="viewWorkout(workout)"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-success" ng-click="viewWorkout(workout)"><i class="fa fa-eye"></i></a>
                             </div>
                         </td>
                         <td>
@@ -30,11 +30,6 @@
                                 <a class="btn btn-success" ng-click="subscribe(workout.username)"><i class="fa fa-check"></i></a>
                             </div>
                         </td>
-                        <!--<td>-->
-                            <!--<div class="btn-group">-->
-                                <!--<a class="btn btn-default" ng-show="show(workout)" ng-click="addWorkout($index)"><i class="fa fa-plus"></i></a>-->
-                            <!--</div>-->
-                        <!--</td>-->
                     </tr>
                     </tbody>
                 </table>

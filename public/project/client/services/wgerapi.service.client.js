@@ -25,10 +25,6 @@
 
         function cacheImageData(callback){
 
-                //var exerciseCacheUrl = baseUrl +'/exerciseimage/?page='+1;
-                //$http.get(exerciseCacheUrl)
-                //    .success(callback);
-
             for(var i = 1; i <= 11; i++){
                 var exerciseCacheUrl = baseUrl +'/exerciseimage/?page='+i;
                 $http.get(exerciseCacheUrl)

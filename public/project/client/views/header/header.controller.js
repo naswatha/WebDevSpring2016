@@ -13,8 +13,6 @@
             UserService.logout();
             $location.url("/home");
             console.log($rootScope.loggedUser);
-            //$rootScope.loggedUser = null;
-            //$location.url("/home");
         }
     }
 })();

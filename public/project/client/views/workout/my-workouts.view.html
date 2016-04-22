@@ -11,9 +11,9 @@
             </div>
 
             <div class="table-responsive" ng-show="!loginFlag">
-                <table class="table table-striped">
+                <table class="table table-striped table-hover">
                     <thead>
-                    <tr>
+                    <tr class="danger">
                         <th><i class="fa fa-fw fa-sort"></i>Workout Name</th>
                         <th><i class="fa fa-fw fa-sort"></i>Delete</th>
                         <th><i class="fa fa-fw fa-sort"></i>View</th>
@@ -22,7 +22,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="workout in loggedUserWorkouts">
+                    <tr ng-repeat="workout in loggedUserWorkouts" class="active">
                         <td> {{workout.name}} </td>
                         <td>
                             <div class="btn-group">
@@ -31,7 +31,7 @@
                         </td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-info" ng-click="viewWorkout(workout)"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-success" ng-click="viewWorkout(workout)"><i class="fa fa-eye"></i></a>
                             </div>
                         </td>
                         <td><input ng-show="showActive(workout)" type="radio" ng-click="makeActive($index)" name="activeWork"></td>
@@ -54,21 +54,21 @@
 
             <h2 ng-show="!subscribeFlag && !loginFlag" class="page-header">Subscribed Workouts</h2>
             <div ng-show="!subscribeFlag && !loginFlag" class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped table-hover">
                     <thead>
-                    <tr>
+                    <tr class = "danger">
                         <th><i class="fa fa-fw fa-sort"></i>Workout Name</th>
                         <th><i class="fa fa-fw fa-sort"></i>Created By</th>
                         <th><i class="fa fa-fw fa-sort"></i>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="subworkout in subscribedWorkouts">
+                    <tr ng-repeat="subworkout in subscribedWorkouts" class="active">
                         <td> {{subworkout.name}} </td>
                         <td> {{subworkout.username}} </td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-info" ng-click="viewWorkout(subworkout)"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-success" ng-click="viewWorkout(subworkout)"><i class="fa fa-eye"></i></a>
                             </div>
                         </td>
                     </tr>

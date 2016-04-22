@@ -5,6 +5,8 @@ var multer = require('multer');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
+var passport = require('passport');
+
 
 
 var WebDevDbName = 'webdev';
@@ -35,6 +37,8 @@ app.use(session({
     saveUninitialized: true
 }));
 app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
 

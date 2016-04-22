@@ -32,27 +32,15 @@
             UserService
                 .login(user)
                 .then(function(response){
-                    console.log("Client Controller");
-                    console.log(response);
+
                     if(response.data) {
                         UserService.setCurrentUser(response.data);
-                        $location.url("/home");
+                        $location.url("/active-workout");
                     }else{
                         $scope.message = "Username and Password does not match, new User please register";
                     }
                 });
 
-            //UserService.findUserByCredentials(user.username,user.password).then(
-            //    function (response){
-            //        if(response.data == null){
-            //            $scope.message = "Username and Password does not match, new User please register";
-            //        }
-            //        else{
-            //            UserService.setCurrentUser(response.data);
-            //            //$rootScope.loggedUser = response.data;
-            //            $location.path("/profile");
-            //        }
-            //    });
         };
     }
 })();

@@ -11,21 +11,51 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-hide="loggedUser" ng-class="{'active': $location.url()=='/register'}"><a href="#/register">Register</a></li>
-                <li ng-hide="loggedUser" ng-class="{'active': $location.url()=='/login'}"><a href="#/login">Login</i></a></li>
-                <li ng-show="loggedUser" ng-class="{'active': $location.url()=='/profile'}"><a href="#/profile">{{loggedUser.username}}</a></li>
-                <li ng-show="loggedUser.username == 'bob'" ng-class="{'active': $location.url()=='/admin'}"><a href="#/admin">Admin</a></li>
-                <li ng-show="loggedUser"><a ng-click="logout()">Logout</i></a></li>
+                <li ng-hide="loggedUser" ng-class="{'active': $location.url()=='/register'}">
+                    <a href="#/register" class="hidden-xs">Register</a>
+                    <a href="#/register" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Register</a>
+                </li>
+                <li ng-hide="loggedUser" ng-class="{'active': $location.url()=='/login'}">
+                    <a href="#/login" class="hidden-xs">Login</i></a>
+                    <a href="#/login" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Login</i></a>
+                </li>
+                <li ng-show="loggedUser" ng-class="{'active': $location.url()=='/profile'}">
+                    <a href="#/profile" class="hidden-xs">{{loggedUser.username}}</a>
+                    <a href="#/profile" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs"">{{loggedUser.username}}</a>
+                </li>
+                <li ng-show="loggedUser.username == 'bob'" ng-class="{'active': $location.url()=='/admin'}">
+                    <a href="#/admin" class="hidden-xs">Admin</a>
+                    <a href="#/admin" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Admin</a>
+                </li>
+                <li ng-show="loggedUser">
+                    <a ng-click="logout()" class="hidden-xs">Logout</i></a>
+                    <a ng-click="logout()" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Logout</i></a>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-left">
                 <!--<li ng-class="{'active' : $location.url() == '/home'}"><a href="#/home">Home</a></li>-->
                 <!--<li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/profile'}"><a href="#/profile">Profile</a></li>-->
-                <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/active-workout'}"><a href="#/active-workout">Active Workout</a></li>
-                <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/create-workout'}"><a href="#/create-workout">Create New Workout</a></li>
-                <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/my-workouts'}"><a href="#/my-workouts">Workouts</a></li>
-                <li ng-class="{'active' : $location.url() == '/exercise-search'}"><a href="#/exercise-search">Exercises</a></li>
-                <li ng-class="{'active' : $location.url() == '/public-workouts'}"><a href="#/public-workouts">Public Workouts</a></li>
+                <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/active-workout'}">
+                    <a href="#/active-workout" class="hidden-xs">Active Workout</a>
+                    <a href="#/active-workout" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Active Workout</a>
+                </li>
+                <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/create-workout'}">
+                    <a href="#/create-workout" class="hidden-xs">Create New Workout</a>
+                    <a href="#/create-workout" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Create New Workout</a>
+                </li>
+                <li ng-show="loggedUser" ng-class="{'active' : $location.url() == '/my-workouts'}">
+                    <a href="#/my-workouts" class="hidden-xs">Workouts</a>
+                    <a href="#/my-workouts" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Workouts</a>
+                </li>
+                <li ng-class="{'active' : $location.url() == '/exercise-search'}">
+                    <a href="#/exercise-search" class="hidden-xs">Exercises</a>
+                    <a href="#/exercise-search" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Exercises</a>
+                </li>
+                <li ng-class="{'active' : $location.url() == '/public-workouts'}">
+                    <a href="#/public-workouts" class="hidden-xs">Public Workouts</a>
+                    <a href="#/public-workouts" data-toggle="collapse" data-target=".navbar-collapse" class="visible-xs">Public Workouts</a>
+                </li>
             </ul>
         </div>
     </div>

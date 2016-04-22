@@ -38,21 +38,21 @@
                     </div>
                 </div>
                 <div class="table-responsive" ng-show="addTableFlag" ng-repeat="index in weekArray track by $index">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-hover">
                         <tbody>
-                        <tr>
+                        <tr class="active">
                             <td><h6>Week : {{index.weekNum}}</h6></td>
                         </tr>
 
                         <!--Sunday-->
-                        <tr>
+                        <tr class="active">
                             <td>Day 1</td>
                             <td>
                                 <input ng-model="sunExerciseData.name" type="text" class="form-control"
                                        placeholder="Exercise name"/>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="active">
                             <td>
                                 <div class="btn-group">
                                     <a class="btn btn-primary"
@@ -67,20 +67,20 @@
                                 <input type="number" ng-model="sunExerciseData.rep4" min="1" max="16">
                             </td>
                         </tr>
-                        <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Sunday.sunExerDet">
+                        <tr class="active" ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Sunday.sunExerDet">
                             <td><label>{{exer.eName}}</label></td>
                             <td><label>{{exer.repsTarget}}</label></td>
                         </tr>
 
                         <!--Monday-->
-                        <tr>
+                        <tr class="active">
                             <td>Day 2</td>
                             <td>
                                 <input ng-model="monExerciseData.name" type="text" class="form-control"
                                        placeholder="Exercise name"/>
                             </td>
                             </tr>
-                        <tr>
+                        <tr class="active">
                             <td>
                                 <div class="btn-group">
                                     <a class="btn btn-primary"
@@ -95,20 +95,20 @@
                                 <input type="number" ng-model="monExerciseData.rep4" min="1" max="16">
                             </td>
                         </tr>
-                        <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Monday.monExerDet">
+                        <tr class="active" ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Monday.monExerDet">
                             <td><label>{{exer.eName}}</label></td>
                             <td><label>{{exer.repsTarget}}</label></td>
                         </tr>
 
                         <!--Tuesday-->
-                        <tr>
+                        <tr class="active">
                             <td>Day 3</td>
                             <td>
                                 <input ng-model="tueExerciseData.name" type="text" class="form-control"
                                        placeholder="Exercise name"/>
                             </td>
                             </tr>
-                        <tr>
+                        <tr class="active">
                             <td>
                                 <div class="btn-group">
                                     <a class="btn btn-primary"
@@ -123,20 +123,20 @@
                                 <input type="number" ng-model="tueExerciseData.rep4" min="1" max="16">
                             </td>
                         </tr>
-                        <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Tuesday.tueExerDet">
+                        <tr class="active" ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Tuesday.tueExerDet">
                             <td><label>{{exer.eName}}</label></td>
                             <td><label>{{exer.repsTarget}}</label></td>
                         </tr>
 
                         <!--Wednesday-->
-                        <tr>
+                        <tr class="active">
                             <td>Day 4</td>
                             <td>
                                 <input ng-model="wedExerciseData.name" type="text" class="form-control"
                                        placeholder="Exercise name"/>
                             </td>
                             </tr>
-                        <tr>
+                        <tr class="active">
                             <td>
                                 <div class="btn-group">
                                     <a class="btn btn-primary"
@@ -151,20 +151,20 @@
                                 <input type="number" ng-model="wedExerciseData.rep4" min="1" max="16">
                             </td>
                         </tr>
-                        <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Wednesday.wedExerDet">
+                        <tr class="active" ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Wednesday.wedExerDet">
                             <td><label>{{exer.eName}}</label></td>
                             <td><label>{{exer.repsTarget}}</label></td>
                         </tr>
 
                         <!--Thursday-->
-                        <tr>
+                        <tr class="active">
                             <td>Day 5</td>
                             <td>
                                 <input ng-model="thurExerciseData.name" type="text" class="form-control"
                                        placeholder="Exercise name"/>
                             </td>
                             </tr>
-                        <tr>
+                        <tr class="active">
                             <td>
                                 <div class="btn-group">
                                     <a class="btn btn-primary" ng-click="addExercise(index.weekNum,'thurExerciseData')"><i
@@ -178,20 +178,20 @@
                                 <input type="number" ng-model="thurExerciseData.rep4" min="1" max="16">
                             </td>
                         </tr>
-                        <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Thursday.thurExerDet">
+                        <tr class="active" ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Thursday.thurExerDet">
                             <td><label>{{exer.eName}}</label></td>
                             <td><label>{{exer.repsTarget}}</label></td>
                         </tr>
 
                         <!--Friday-->
-                        <tr>
+                        <tr class="active">
                             <td>Day 6</td>
                             <td>
                                 <input ng-model="friExerciseData.name" type="text" class="form-control"
                                        placeholder="Exercise name"/>
                             </td>
                             </tr>
-                        <tr>
+                        <tr class="active">
                             <td>
                                 <div class="btn-group">
                                     <a class="btn btn-primary"
@@ -206,20 +206,20 @@
                                 <input type="number" ng-model="friExerciseData.rep4" min="1" max="16">
                             </td>
                         </tr>
-                        <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Friday.friExerDet">
+                        <tr class="active" ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Friday.friExerDet">
                             <td><label>{{exer.eName}}</label></td>
                             <td><label>{{exer.repsTarget}}</label></td>
                         </tr>
 
                         <!--Saturday-->
-                        <tr>
+                        <tr class="active">
                             <td>Day 7</td>
                             <td>
                                 <input ng-model="satExerciseData.name" type="text" class="form-control"
                                        placeholder="Exercise name"/>
                             </td>
                             </tr>
-                        <tr>
+                        <tr class="active">
                             <td>
                                 <div class="btn-group">
                                     <a class="btn btn-primary"
@@ -234,7 +234,7 @@
                                 <input type="number" ng-model="satExerciseData.rep4" min="1" max="16">
                             </td>
                         </tr>
-                        <tr ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Saturday.satExerDet">
+                        <tr class="active" ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Saturday.satExerDet">
                             <td><label>{{exer.eName}}</label></td>
                             <td><label>{{exer.repsTarget}}</label></td>
                         </tr>

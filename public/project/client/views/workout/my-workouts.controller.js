@@ -22,7 +22,6 @@
 
 
                 if($rootScope.loggedUser){
-                    console.log($rootScope.loggedUser);
                     WorkoutService.findAllWorkoutForUser($rootScope.loggedUser.username).then(
                         function(response){
                             $scope.loggedUserWorkouts = response.data;
@@ -37,8 +36,6 @@
         $scope.subscribedList = [];
         $scope.subscribedWorkouts = [];
         $scope.subscribeFlag = true;
-
-        console.log($rootScope.loggedUser);
 
 
 
@@ -90,7 +87,6 @@
             currentWorkout = $scope.loggedUserWorkouts[index];
             WorkoutService.deleteWorkoutById(currentWorkout._id).then(
                 function(response){
-                    //console.log(response);
                     WorkoutService.findAllWorkoutForUser($rootScope.loggedUser.username).then(
                         function(response){
                             $scope.loggedUserWorkouts = response.data;

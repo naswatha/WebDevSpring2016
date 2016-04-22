@@ -46,6 +46,7 @@
                     <thead>
                     <tr>
                         <th><i class="fa fa-fw fa-sort"></i>Workout Name</th>
+                        <th><i class="fa fa-fw fa-sort"></i>Creator Name</th>
                         <th><i class="fa fa-fw fa-sort"></i>Creation Date</th>
                         <th><i class="fa fa-fw fa-sort"></i>Public</th>
                         <th><i class="fa fa-fw fa-sort"></i>Action</th>
@@ -54,6 +55,7 @@
                     <tbody>
                     <tr ng-repeat="workout in workoutList">
                         <td>{{workout.name}}</td>
+                        <td>{{workout.username}}</td>
                         <td>{{workout.created}}</td>
                         <td>{{workout.public}}</td>
                         <td>

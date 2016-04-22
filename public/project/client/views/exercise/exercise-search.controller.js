@@ -24,22 +24,10 @@
 
         WgerApiService.cacheImageData(
             function(response){
-                //console.log(response);
                 for(var i = 0; i < response.results.length; i++){
                     $scope.imageObjects.push(response.results[i]);
                 }
-
-                //$scope.imageObjects.push(response.results);
-                //console.log($scope.imageObjects);
-                //for(var j = 0; j < $scope.imageObjects.length; j++){
-                //    console.log($scope.imageObjects[j].image);
-                //}
-
             });
-
-
-
-
 
         function search (term){
             WgerApiService.searchExercise(term,
@@ -64,7 +52,6 @@
                                 }
                             }
                             $scope.displayEquipments = requiredEquipments;
-                            //console.log(requiredEquipments);
                         });
 
 
@@ -81,7 +68,6 @@
                                 }
                             }
                             $scope.displayMuscles = primaryMuscles;
-                            //console.log(primaryMuscles);
 
                             for(var j=0;j<exerciseDetails.muscles_secondary.length;j++){
                                 for(var i=0;i<muscles.results.length;i++){
@@ -91,7 +77,6 @@
                                 }
                             }
                             $scope.displaySecondaryMuscles = secondaryMuscles;
-                            //console.log(secondaryMuscles);
                         });
 
                     var description = $scope.exerciseDetails.description;
@@ -104,7 +89,6 @@
                             $scope.exerciseImageURL.push($scope.imageObjects[i].image);
                         }
                     }
-                    console.log($scope.exerciseImageURL);
                 });
         }
     }

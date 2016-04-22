@@ -9,8 +9,6 @@
 
         $scope.message = null;
 
-        console.log($rootScope.loggedUser);
-
         //implement event handler register()
         $scope.register = function(user){
 
@@ -43,10 +41,8 @@
 
             UserService.findUserByUsername(user.username).then(
                 function (response){
-                    console.log("HEre");
                     if(response.data !=null){
                         if(response.data.username == user.username){
-                            console.log(response.data.username);
                             $scope.message = "Oops! Username already exists, try new one...";
                             return;
                         }
@@ -54,8 +50,6 @@
                     else{
                         UserService.createUser(user).then(
                             function (response){
-                                console.log("HEre");
-                                console.log(response);
                                 UserService.setCurrentUser(response.data);
                                 $location.path('/home');
                             });

@@ -36,16 +36,7 @@
 
         $scope.exerciseCache = [];
 
-        //WgerApiService.cacheExercises(
-        //    function(response){
-        //        for(var i = 0; i < response.results.length; i++){
-        //            $scope.exerciseCache.push(response.results[i]);
-        //        }
-        //        console.log($scope.exerciseCache);
-        //    });
-
         $scope.addTable = function(weekNum){
-            //$scope.weekArray = 0;
             $scope.addTableFlag = false;
             if(weekNum >= 1){
                 $scope.addTableFlag = true;
@@ -68,7 +59,6 @@
 
         $scope.addExercise = function(index, day) {
 
-            console.log(day);
             $scope.showFlag = true;
             var exerciseDetails = {};
             var repTargetArr = [];
@@ -85,7 +75,6 @@
                 repTargetArr.push($scope[day].rep4);
             }
             exerciseDetails.eName = $scope[day].name;
-            //exerciseDetails.dayCompleted = false;
             exerciseDetails.repsTarget = repTargetArr;
             exerciseDetails.repsAchieved = [];
             for(var i = 0; i <= index; i++){
@@ -133,7 +122,6 @@
             newWorkout.username = $rootScope.loggedUser.username;
             newWorkout.numWeeks = $scope.numberOfWeeks;
             newWorkout.weeks = $scope.weekArray;
-            console.log(newWorkout);
             WorkoutService.createWorkout(newWorkout).then(
                 function (response){
                     if(response){

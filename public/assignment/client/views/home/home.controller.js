@@ -7,8 +7,11 @@
         .module("FormBuilderApp")
         .controller("HomeController",HomeController);
 
-    function HomeController($scope,$location){
-
+    function HomeController($scope,$location,UserService){
+        UserService.getCurrentUser().then(
+            function(response){
+                UserService.setCurrentUser(response.data);
+            });
     }
 
 })();

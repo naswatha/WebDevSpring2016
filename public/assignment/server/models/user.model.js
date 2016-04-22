@@ -7,7 +7,7 @@ module.exports = function(mongoose, webDevDb){
 
     //var users = require("./user.mock.json");
     var UserSchema = require("./user.schema.server.js")(mongoose);
-    var UserModel = mongoose.model('User',UserSchema);
+    var UserModel = mongoose.model('aUser',UserSchema);
 
     var api = {
 
@@ -82,11 +82,10 @@ module.exports = function(mongoose, webDevDb){
                     response.lastName = user.lastName;
                     response.username = user.username;
                     response.password = user.password;
-                    response.emails = user.emails;
-                    response.phones = user.phones;
+                    response.email = user.email;
                     response.save(
-                        function(err, document) {
-                            deferred.resolve(document);
+                        function(err, updatedUser) {
+                            deferred.resolve(updatedUser);
                 });
             }
         });

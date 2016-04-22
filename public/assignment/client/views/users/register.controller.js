@@ -41,10 +41,7 @@
                 //userService to create new user
                 UserService.createUser(user).then(
                     function (response){
-                        //console.log("register");
-                        //console.log(response);
-
-                        $rootScope.loggedUser = response.data;
+                        UserService.setCurrentUser(response.data);
                     });
                 $location.path('/profile');
             };

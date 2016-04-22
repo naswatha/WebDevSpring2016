@@ -28,14 +28,19 @@
                 $scope.message = "Please enter Password";
                 return;
             }
-            UserService.findUserByCredentials(user.username,user.password).then(
+            UserService.login(user).then(
                     function (response){
+                        console.log(response);
                         if(response.data == null){
+                            console.log("user does not exists");
+
                             $scope.message = "Username and Password does not match, new User please register";
                         }
                         else{
-                            $rootScope.loggedUser = response.data;
-                            $location.path("/profile");
+                            console.log("User exists");
+                            UserService.setCurrentUser(response.data);
+                            console.log(response.data);
+                            $location.url("/profile");
                         }
 
                     });

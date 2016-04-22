@@ -10,12 +10,22 @@
     //inject UserServiec
     function ProfileController ($scope,$rootScope,$location,UserService){
 
+        //console.log("profil onroller");
         //retreive current user.
-        $scope.user = $rootScope.loggedUser;
+        //console.log($rootScope.loggedUser);
+        //$scope.user = $rootScope.loggedUser;
 
-        $scope.message = null;
-        //console.log("Profile");
-        //console.log($scope.user);
+        //$scope.message = null;
+
+        UserService.getCurrentUser().then(
+            function (response){
+                console.log("give me the current logged user");
+                console.log(response.data);
+                UserService.setCurrentUser(response.data);
+                $scope.user = response.data;
+
+            });
+
 
         //update handler
         $scope.update = function(user){
@@ -40,12 +50,14 @@
                 return;
             }
 
-            console.log($scope.user._id);
-            console.log(user);
             UserService.updateUser($scope.user._id,user).then(
                 function (response){
+                    console.log("Set updated user");
                     console.log(response.data);
-                    $rootScope.loggedUser = response.data;
+                    $scope.user = response.data;
+                    UserService.setCurrentUser(response.data);
+                    console.log("rootscope loggeduser");
+                    console.log($rootScope.loggedUser);
                     $location.path('/profile');
             });
 

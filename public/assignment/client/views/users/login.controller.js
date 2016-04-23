@@ -24,7 +24,7 @@
                 return;
             }
 
-            if(user.password == null){
+            if(!user.password || user.password == null){
                 $scope.message = "Please enter Password";
                 return;
             }
@@ -32,8 +32,6 @@
                     function (response){
                         console.log(response);
                         if(response.data == null){
-                            console.log("user does not exists");
-
                             $scope.message = "Username and Password does not match, new User please register";
                         }
                         else{

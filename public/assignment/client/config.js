@@ -11,19 +11,31 @@
             $routeProvider
                 .when("/home",{
                     templateUrl: "views/home/home.view.html",
-                    controller: "HomeController"
+                    controller: "HomeController",
+                    resolve: {
+                        loggedin: checkCurrentUser
+                    }
                 })
                 .when("/admin",{
-                    templateUrl: "views/admin/admin.view.html"
-                    //controller: "AdminController"
+                    templateUrl: "views/admin/admin.view.html",
+                    controller: "AdminController",
+                    resolve: {
+                        loggedin: checkLoggedin
+                    }
                 })
                 .when("/forms",{
                     templateUrl: "views/forms/forms.view.html",
-                    controller: "FormController"
+                    controller: "FormController",
+                    resolve: {
+                        loggedin: checkLoggedin
+                    }
                 })
                 .when("/form/:formId/fields",{
                     templateUrl:"views/forms/field.view.html",
-                    controller:"FieldController"
+                    controller:"FieldController",
+                    resolve: {
+                        loggedin: checkLoggedin
+                    }
                 })
                 .when("/login",{
                     templateUrl: "views/users/login.view.html",
@@ -31,7 +43,10 @@
                 })
                 .when("/profile",{
                     templateUrl: "views/users/profile.view.html",
-                    controller: "ProfileController"
+                    controller: "ProfileController",
+                    resolve: {
+                        loggedin: checkLoggedin
+                    }
                 })
                 .when("/register",{
                     templateUrl: "views/users/register.view.html",
@@ -41,4 +56,40 @@
                     redirectTo: "/home"
                 });
         }
+
+    var checkLoggedin = function($q, $timeout, $http, $location, $rootScope){
+        var deferred = $q.defer();
+        console.log("Inside checkLoggedin");
+        $http.get("/api/assignment/user/loggedin").success(function(user){
+
+            if(user) {
+                $rootScope.loggedUser = user;
+                deferred.resolve();
+            } else {
+                deferred.reject();
+                $location.url("/home");
+            }
+        });
+
+        return deferred.promise;
+    };
+
+    var checkCurrentUser = function($q, $timeout, $http, $location, $rootScope)
+    {
+        var deferred = $q.defer();
+        console.log("Inside checkCurrentUser");
+        $http.get("/api/assignment/user/loggedin").success(function(user)
+        {
+            $rootScope.errorMessage = null;
+            // User is Authenticated
+            if (user)
+            {
+                $rootScope.loggedUser = user;
+
+            }
+            deferred.resolve();
+        });
+        return deferred.promise;
+    };
+
 })();

@@ -2,9 +2,9 @@
  * Created by Naveen on 3/16/2016.
  */
 "use strict";
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var mongoose = require("mongoose");
+//var passport = require('passport');
+//var LocalStrategy = require('passport-local').Strategy;
+//var mongoose = require("mongoose");
 
 module.exports = function(app, UserModel){
 
@@ -18,46 +18,46 @@ module.exports = function(app, UserModel){
     app.put("/api/assignment/user/:id", updateUser);
     app.delete("/api/assignment/user/:id", deleteUser);
 
-    passport.use(new LocalStrategy(localStrategy));
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
+    //passport.use(new LocalStrategy(localStrategy));
+    //passport.serializeUser(serializeUser);
+    //passport.deserializeUser(deserializeUser);
 
-    function localStrategy(username, password, done) {
-        UserModel
-            .findUserByCredentials({username: username, password: password})
-            .then(
-                function (user) {
-                    //if (user && bcrypt.compareSync(password, user.password)) {
-                    if (!user) {
-                        return done(null, false);
-                    } else {
-                        return done(null, user);
-                    }
-                },
-                function (err) {
-                    if (err) {
-                        return done(err);
-                    }
-                }
-            );
-    }
-
-    function serializeUser(user, done) {
-        done(null, user);
-    }
-
-    function deserializeUser(user, done) {
-        UserModel
-            .findById(user._id)
-            .then(
-                function (userResp) {
-                    done(null, userResp);
-                },
-                function (err) {
-                    done(err, null);
-                }
-            );
-    }
+    //function localStrategy(username, password, done) {
+    //    UserModel
+    //        .findUserByCredentials({username: username, password: password})
+    //        .then(
+    //            function (user) {
+    //                //if (user && bcrypt.compareSync(password, user.password)) {
+    //                if (!user) {
+    //                    return done(null, false);
+    //                } else {
+    //                    return done(null, user);
+    //                }
+    //            },
+    //            function (err) {
+    //                if (err) {
+    //                    return done(err);
+    //                }
+    //            }
+    //        );
+    //}
+    //
+    //function serializeUser(user, done) {
+    //    done(null, user);
+    //}
+    //
+    //function deserializeUser(user, done) {
+    //    UserModel
+    //        .findById(user._id)
+    //        .then(
+    //            function (userResp) {
+    //                done(null, userResp);
+    //            },
+    //            function (err) {
+    //                done(err, null);
+    //            }
+    //        );
+    //}
 
 
     function createUser(req, res){

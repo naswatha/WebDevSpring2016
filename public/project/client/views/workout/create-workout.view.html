@@ -48,8 +48,9 @@
                         <tr class="active">
                             <td>Day 1</td>
                             <td>
-                                <input ng-model="sunExerciseData.name" type="text" class="form-control"
-                                       placeholder="Exercise name"/>
+                                <select ng-model="sunExerciseData.name" class="form-control" ng-options="i.name for i in allExerciseData"></select>
+                                <!--<input ng-model="sunExerciseData.name" type="text" class="form-control"-->
+                                       <!--placeholder="Exercise name"/>-->
                             </td>
                         </tr>
                         <tr class="active">
@@ -67,17 +68,19 @@
                                 <input type="number" ng-model="sunExerciseData.rep4" min="1" max="16">
                             </td>
                         </tr>
-                        <tr class="active" ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Sunday.sunExerDet">
-                            <td><label>{{exer.eName}}</label></td>
-                            <td><label>{{exer.repsTarget}}</label></td>
+                        <tr class="active" ng-show="showFlag" ng-repeat="exercise in weekArray[index.weekNum-1].Sunday.sunExerDet">
+                            <!--<td><label>{{exercise.exer.name}}</label></td>-->
+                            <td><a class="btn btn-default btn-xs btn-block" data-toggle="modal" data-target="#myModal" ng-click="showExerciseDetails(exercise.exer)">{{exercise.exer.name}}</a></td>
+                            <td><label>{{exercise.repsTarget}}</label></td>
                         </tr>
 
                         <!--Monday-->
                         <tr class="active">
                             <td>Day 2</td>
                             <td>
-                                <input ng-model="monExerciseData.name" type="text" class="form-control"
-                                       placeholder="Exercise name"/>
+                                <select ng-model="monExerciseData.name" class="form-control" ng-options="i.name for i in allExerciseData"></select>
+                                <!--<input ng-model="monExerciseData.name" type="text" class="form-control"-->
+                                       <!--placeholder="Exercise name"/>-->
                             </td>
                             </tr>
                         <tr class="active">
@@ -95,17 +98,19 @@
                                 <input type="number" ng-model="monExerciseData.rep4" min="1" max="16">
                             </td>
                         </tr>
-                        <tr class="active" ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Monday.monExerDet">
-                            <td><label>{{exer.eName}}</label></td>
-                            <td><label>{{exer.repsTarget}}</label></td>
+                        <tr class="active" ng-show="showFlag" ng-repeat="exercise in weekArray[index.weekNum-1].Monday.monExerDet">
+                            <!--<td><label>{{exercise.exer.name}}</label></td>-->
+                            <td><a class="btn btn-default btn-xs btn-block" data-toggle="modal" data-target="#myModal" ng-click="showExerciseDetails(exercise.exer)">{{exercise.exer.name}}</a></td>
+                            <td><label>{{exercise.repsTarget}}</label></td>
                         </tr>
 
                         <!--Tuesday-->
                         <tr class="active">
                             <td>Day 3</td>
                             <td>
-                                <input ng-model="tueExerciseData.name" type="text" class="form-control"
-                                       placeholder="Exercise name"/>
+                                <select ng-model="tueExerciseData.name" class="form-control" ng-options="i.name for i in allExerciseData"></select>
+                                <!--<input ng-model="tueExerciseData.name" type="text" class="form-control"-->
+                                       <!--placeholder="Exercise name"/>-->
                             </td>
                             </tr>
                         <tr class="active">
@@ -123,17 +128,19 @@
                                 <input type="number" ng-model="tueExerciseData.rep4" min="1" max="16">
                             </td>
                         </tr>
-                        <tr class="active" ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Tuesday.tueExerDet">
-                            <td><label>{{exer.eName}}</label></td>
-                            <td><label>{{exer.repsTarget}}</label></td>
+                        <tr class="active" ng-show="showFlag" ng-repeat="exercise in weekArray[index.weekNum-1].Tuesday.tueExerDet">
+                            <!--<td><label>{{exercise.exer.name}}</label></td>-->
+                            <td><a class="btn btn-default btn-xs btn-block" data-toggle="modal" data-target="#myModal" ng-click="showExerciseDetails(exercise.exer)">{{exercise.exer.name}}</a></td>
+                            <td><label>{{exercise.repsTarget}}</label></td>
                         </tr>
 
                         <!--Wednesday-->
                         <tr class="active">
                             <td>Day 4</td>
                             <td>
-                                <input ng-model="wedExerciseData.name" type="text" class="form-control"
-                                       placeholder="Exercise name"/>
+                                <select ng-model="wedExerciseData.name" class="form-control" ng-options="i.name for i in allExerciseData"></select>
+                                <!--<input ng-model="wedExerciseData.name" type="text" class="form-control"-->
+                                       <!--placeholder="Exercise name"/>-->
                             </td>
                             </tr>
                         <tr class="active">
@@ -151,17 +158,19 @@
                                 <input type="number" ng-model="wedExerciseData.rep4" min="1" max="16">
                             </td>
                         </tr>
-                        <tr class="active" ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Wednesday.wedExerDet">
-                            <td><label>{{exer.eName}}</label></td>
-                            <td><label>{{exer.repsTarget}}</label></td>
+                        <tr class="active" ng-show="showFlag" ng-repeat="exercise in weekArray[index.weekNum-1].Wednesday.wedExerDet">
+                            <!--<td><label>{{exercise.exer.name}}</label></td>-->
+                            <td><a class="btn btn-default btn-xs btn-block" data-toggle="modal" data-target="#myModal" ng-click="showExerciseDetails(exercise.exer)">{{exercise.exer.name}}</a></td>
+                            <td><label>{{exercise.repsTarget}}</label></td>
                         </tr>
 
                         <!--Thursday-->
                         <tr class="active">
                             <td>Day 5</td>
                             <td>
-                                <input ng-model="thurExerciseData.name" type="text" class="form-control"
-                                       placeholder="Exercise name"/>
+                                <select ng-model="thurExerciseData.name" class="form-control" ng-options="i.name for i in allExerciseData"></select>
+                                <!--<input ng-model="thurExerciseData.name" type="text" class="form-control"-->
+                                       <!--placeholder="Exercise name"/>-->
                             </td>
                             </tr>
                         <tr class="active">
@@ -178,17 +187,19 @@
                                 <input type="number" ng-model="thurExerciseData.rep4" min="1" max="16">
                             </td>
                         </tr>
-                        <tr class="active" ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Thursday.thurExerDet">
-                            <td><label>{{exer.eName}}</label></td>
-                            <td><label>{{exer.repsTarget}}</label></td>
+                        <tr class="active" ng-show="showFlag" ng-repeat="exercise in weekArray[index.weekNum-1].Thursday.thurExerDet">
+                            <!--<td><label>{{exercise.exer.name}}</label></td>-->
+                            <td><a class="btn btn-default btn-xs btn-block" data-toggle="modal" data-target="#myModal" ng-click="showExerciseDetails(exercise.exer)">{{exercise.exer.name}}</a></td>
+                            <td><label>{{exercise.repsTarget}}</label></td>
                         </tr>
 
                         <!--Friday-->
                         <tr class="active">
                             <td>Day 6</td>
                             <td>
-                                <input ng-model="friExerciseData.name" type="text" class="form-control"
-                                       placeholder="Exercise name"/>
+                                <select ng-model="friExerciseData.name" class="form-control" ng-options="i.name for i in allExerciseData"></select>
+                                <!--<input ng-model="friExerciseData.name" type="text" class="form-control"-->
+                                       <!--placeholder="Exercise name"/>-->
                             </td>
                             </tr>
                         <tr class="active">
@@ -206,17 +217,19 @@
                                 <input type="number" ng-model="friExerciseData.rep4" min="1" max="16">
                             </td>
                         </tr>
-                        <tr class="active" ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Friday.friExerDet">
-                            <td><label>{{exer.eName}}</label></td>
-                            <td><label>{{exer.repsTarget}}</label></td>
+                        <tr class="active" ng-show="showFlag" ng-repeat="exercise in weekArray[index.weekNum-1].Friday.friExerDet">
+                            <!--<td><label>{{exercise.exer.name}}</label></td>-->
+                            <td><a class="btn btn-default btn-xs btn-block" data-toggle="modal" data-target="#myModal" ng-click="showExerciseDetails(exercise.exer)">{{exercise.exer.name}}</a></td>
+                            <td><label>{{exercise.repsTarget}}</label></td>
                         </tr>
 
                         <!--Saturday-->
                         <tr class="active">
                             <td>Day 7</td>
                             <td>
-                                <input ng-model="satExerciseData.name" type="text" class="form-control"
-                                       placeholder="Exercise name"/>
+                                <select ng-model="satExerciseData.name" class="form-control" ng-options="i.name for i in allExerciseData"></select>
+                                <!--<input ng-model="satExerciseData.name" type="text" class="form-control"-->
+                                       <!--placeholder="Exercise name"/>-->
                             </td>
                             </tr>
                         <tr class="active">
@@ -234,9 +247,10 @@
                                 <input type="number" ng-model="satExerciseData.rep4" min="1" max="16">
                             </td>
                         </tr>
-                        <tr class="active" ng-show="showFlag" ng-repeat="exer in weekArray[index.weekNum-1].Saturday.satExerDet">
-                            <td><label>{{exer.eName}}</label></td>
-                            <td><label>{{exer.repsTarget}}</label></td>
+                        <tr class="active" ng-show="showFlag" ng-repeat="exercise in weekArray[index.weekNum-1].Saturday.satExerDet">
+                            <!--<td><label>{{exercise.exer.name}}</label></td>-->
+                            <td><a class="btn btn-default btn-xs btn-block" data-toggle="modal" data-target="#myModal" ng-click="showExerciseDetails(exercise.exer)">{{exercise.exer.name}}</a></td>
+                            <td><label>{{exercise.repsTarget}}</label></td>
                         </tr>
                         </tbody>
                     </table>
@@ -273,6 +287,57 @@
                 <div class="list-group-item">
                     <h3 class="list-group-item-heading">Number of Weeks</h3>
                     <h5 class="list-group-item-text"> : {{createdWorkout.numWeeks}}</h5>
+                </div>
+            </div>
+
+            <div id="myModal" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Exercise Details</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="list-group">
+                                <div class="list-group-item">
+                                    <h4 class="list-group-item-heading">Name</h4>
+                                    <p class="list-group-item-text">{{exerciseDetails.name}}</p>
+                                </div>
+                                <div class="list-group-item">
+                                    <h4 class="list-group-item-heading">Description</h4>
+                                    <p class="list-group-item-text">{{exerciseDetails.description}}</p>
+                                </div>
+                                <div class="list-group-item">
+                                    <h4 class="list-group-item-heading">Equipment</h4>
+                                    <p ng-repeat="eq in displayEquipments" class="list-group-item-text">{{eq}}</p>
+                                </div>
+                                <div class="list-group-item">
+                                    <h4 class="list-group-item-heading">Primary Muscle</h4>
+                                    <p ng-repeat="mus in displayMuscles" class="list-group-item-text">{{mus}}</p>
+                                </div>
+                                <div class="list-group-item">
+                                    <h4 class="list-group-item-heading">Secondary Muscle</h4>
+                                    <p ng-repeat="smus in displaySecondaryMuscles" class="list-group-item-text">{{smus}}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="page-header">Exercise Gallery</h4>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-xs-6 thumb" ng-repeat="image in exerciseImageURL">
+                                    <a class="thumbnail">
+                                        <img class="img-responsive" ng-src="{{image}}" alt="">
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

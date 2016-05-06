@@ -35,7 +35,6 @@
                     $scope.searchResults = response;
                 });
         }
-
         function details (exerciseId){
             $scope.exerciseImageURL = [];
             WgerApiService.findExerciseByID ( exerciseId,
@@ -91,5 +90,6 @@
                     }
                 });
         }
+
     }
 })();

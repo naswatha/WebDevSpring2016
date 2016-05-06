@@ -7,9 +7,10 @@
         .module("WorkoutBuilderApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($rootScope, $scope, $location, UserService) {
+    function LoginController($rootScope, $scope, $location, UserService,WgerApiService) {
 
         $scope.message = null;
+        $rootScope.exerciseList = [];
 
         // login handler
         $scope.login = function(user) {
@@ -35,6 +36,15 @@
 
                     if(response.data) {
                         UserService.setCurrentUser(response.data);
+                            WgerApiService.cacheExercises(
+                                function (exercises){
+                                    //console.log(exercises.results);
+                                    for(var i = 0; i < exercises.results.length; i++){
+                                        $rootScope.exerciseList.push(exercises.results[i]);
+
+                                    }
+                                    //console.log($rootScope.exerciseList);
+                                });
                         $location.url("/active-workout");
                     }else{
                         $scope.message = "Username and Password does not match, new User please register";

@@ -19,7 +19,7 @@ module.exports = function(mongoose){
                     {
                         "dayCompleted": { type: Boolean, default: false },
                         "sunExerDet":[{
-                            "eName": String,
+                            "exer": { name: String, id: Number},
                             "repsTarget": [{type: Number, min: 0, max: 50}],
                             "repsAchieved": [{type: Number, min: 0, max: 50}]
                         }]
@@ -28,7 +28,7 @@ module.exports = function(mongoose){
                 {
                     "dayCompleted": { type: Boolean, default: false },
                     "monExerDet":[{
-                        "eName": String,
+                        "exer": { name: String, id: Number},
                         "repsTarget": [{type: Number, min: 0, max: 50}],
                         "repsAchieved": [{type: Number, min: 0, max: 50}]
                     }]
@@ -37,7 +37,7 @@ module.exports = function(mongoose){
                 {
                     "dayCompleted": { type: Boolean, default: false },
                     "tueExerDet":[{
-                        "eName": String,
+                        "exer": { name: String, id: Number},
                         "repsTarget": [{type: Number, min: 0, max: 50}],
                         "repsAchieved": [{type: Number, min: 0, max: 50}]
                     }]
@@ -46,7 +46,7 @@ module.exports = function(mongoose){
                 {
                     "dayCompleted": { type: Boolean, default: false },
                     "wedExerDet":[{
-                        "eName": String,
+                        "exer": { name: String, id: Number},
                         "repsTarget": [{type: Number, min: 0, max: 50}],
                         "repsAchieved": [{type: Number, min: 0, max: 50}]
                     }]
@@ -55,7 +55,7 @@ module.exports = function(mongoose){
                 {
                     "dayCompleted": { type: Boolean, default: false },
                     "thurExerDet":[{
-                        "eName": String,
+                        "exer": { name: String, id: Number},
                         "repsTarget": [{type: Number, min: 0, max: 50}],
                         "repsAchieved": [{type: Number, min: 0, max: 50}]
                     }]
@@ -64,7 +64,7 @@ module.exports = function(mongoose){
                 {
                     "dayCompleted": { type: Boolean, default: false },
                     "friExerDet":[{
-                        "eName": String,
+                        "exer": { name: String, id: Number},
                         "repsTarget": [{type: Number, min: 0, max: 50}],
                         "repsAchieved": [{type: Number, min: 0, max: 50}]
                     }]
@@ -73,7 +73,7 @@ module.exports = function(mongoose){
                 {
                     "dayCompleted": { type: Boolean, default: false },
                     "satExerDet":[{
-                        "eName": String,
+                        "exer": { name: String, id: Number},
                         "repsTarget": [{type: Number, min: 0, max: 50}],
                         "repsAchieved": [{type: Number, min: 0, max: 50}]
                     }]

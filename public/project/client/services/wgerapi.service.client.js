@@ -15,7 +15,7 @@
             getAllMuscles: getAllMuscles,
             getWeek: getWeek,
             getExerciseCategory: getExerciseCategory,
-            //cacheExercises: cacheExercises,
+            cacheExercises: cacheExercises,
             cacheImageData: cacheImageData
         };
 
@@ -33,18 +33,18 @@
         }
 
 
-        //function cacheExercises(callback){
-        //
-        //    var exerciseCacheUrl = baseUrl +'/exercise/?language=2&page=1&status=2';
-        //    $http.get(exerciseCacheUrl)
-        //        .success(callback);
-        //
-        //    //for(var i = 1; i <= 9; i++){
-        //    //    var exerciseCacheUrl = baseUrl +'/exercise/?language=2&page='+i+'&status=2';
-        //    //    $http.get(exerciseCacheUrl)
-        //    //        .success(callback);
-        //    //}
-        //}
+        function cacheExercises(callback){
+                var exerciseCacheUrl = baseUrl + '/exercise/?language=2&page=2&status=2';
+                $http.get(exerciseCacheUrl)
+                    .success(callback);
+
+
+            //for(var i = 1; i <= 9; i++) {
+            //    var exerciseCacheUrl = baseUrl + '/exercise/?language=2&page='+i+'&status=2';
+            //    $http.get(exerciseCacheUrl)
+            //        .success(callback);
+            //}
+        }
 
         function searchExercise(term, callback) {
             var exerciseSearchURL = baseUrl + '/exercise/search/?term=' + term;
